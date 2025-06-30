@@ -1,5 +1,5 @@
 CREATE TABLE pokemons (
-    id SERIAL INT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     tipo VARCHAR(50) NOT NULL,
     habilidades VARCHAR(255),  
@@ -8,9 +8,13 @@ CREATE TABLE pokemons (
     altura REAL,
     peso REAL,
     descripcion VARCHAR(255),
-    evoluciona_de INT REFERENCES pokemons(id),
-    evoluciona_a INT REFERENCES pokemons(id)
+    evoluciona_de INT,
+    evoluciona_a INT
 );
+
+ALTER TABLE pokemons
+    ADD CONSTRAINT fk_evoluciona_de FOREIGN KEY (evoluciona_de) REFERENCES pokemons(id),
+    ADD CONSTRAINT fk_evoluciona_a FOREIGN KEY (evoluciona_a) REFERENCES pokemons(id);
 
 CREATE TABLE entrenadores (
     id SERIAL PRIMARY KEY,
