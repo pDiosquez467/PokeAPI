@@ -15,14 +15,15 @@ async function get(id) {
 
 async function deleteByID(id) {
     const result = await db.query(
-        `DELETE FROM pokemons WHERE id = $1`,
+        `DELETE FROM pokemons WHERE id = $1 RETURNING *`,
         [id]
-    )
-    return result.rows[0]
+    );
+    return result.rows[0];
+
 }
 
 module.exports = {
     getAll,
-    get, 
+    get,
     deleteByID
 };
