@@ -5,4 +5,15 @@ async function getAll() {
     return result.rows;
 }
 
-module.exports = { getAll };
+async function get(id) {
+    const result = await db.query(
+        'SELECT * FROM pokemons WHERE id = $1;',
+        [id]
+    );
+    return result.rows[0];
+}
+
+module.exports = {
+    getAll,
+    get
+};
