@@ -26,17 +26,22 @@ router.get('/:id', async (req, res) => {
 
         res.json(pokemon);
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err.message })
     }
 });
 
-router.post('/', (req, res) => {
-    res.json({ msg: "Status OK" });
-});
+router.post('/', async (req, res) => {
+  try {
+    const nuevo = await controller.create(req.body)
+    res.status(201).json(nuevo)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+})
 
 router.put('/:id', (req, res) => {
     res.json({ msg: "Status OK" })
-});
+})
 
 router.delete('/:id', async (req, res) => {
   try {
