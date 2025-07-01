@@ -32,6 +32,20 @@ router.get('/:id', async (req, res) => {
     }
 })
 
+router.post('/', async (req, res) => {
+    try {
+        const nuevo = await controller.create(req.body)
+        res.status(201).json({
+                msg: 'Entrenador creado correctamente',
+                data: nuevo
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+})
+
 router.delete('/:id', async (req, res) => {
     try {
 
@@ -50,7 +64,7 @@ router.delete('/:id', async (req, res) => {
         res.status(200).json({
             msg: 'Entrenador eliminado correctamente',
             data: deleted
-        });
+        })
 
     } catch (error) {
         res.status(500).json({ error: error.message })
