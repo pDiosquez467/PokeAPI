@@ -11,6 +11,26 @@ async function get(id) {
     return result.rows[0]
 }
 
+async function create(data) {
+
+    const query = `INSERT INTO entrenadores
+    (nombre, nacionalidad, escuela, medallas, pokemon_default, edad, experiencia)
+    VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;`
+
+    values = [
+        data.nombre,
+        data.nacionalidad ?? null,
+        data.escuela ?? null,
+        data.medallas ?? null,
+        data.pokemon_default,
+        data.edad ?? 0,
+        data.experiencia ?? 0
+    ]
+
+    const result = await db.query(query, values)
+    return result.rows[0]
+}
+
 async function deleteByID(id) {
     const deleted = await db.query(`DELETE FROM entrenadores WHERE id = $1 RETURNING *`,
         [id]
@@ -22,5 +42,6 @@ async function deleteByID(id) {
 module.exports = {
     getAll,
     get, 
+    create, 
     deleteByID
 }
