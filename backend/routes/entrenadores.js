@@ -47,27 +47,27 @@ router.post('/', async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
-    try {
-        const id = Number(req.params.id)
+  try {
+    const id = Number(req.params.id)
 
-        if (isNaN(id)) {
-            return res.status(400).json({ error: 'ID inválido' })
-        }
-
-        const updated = await controller.update(id, req.body)
-
-        if (!updated) {
-            return res.status(404).json({ error: 'Entrenador no encontrado o sin cambios' })
-        }
-
-        res.status(200).json({
-            msg: 'Entrenador updated correctamente',
-            data: updated
-        })
-
-    } catch (error) {
-        res.status(500).json({ error: error.message })
+    if (isNaN(id)) {
+      return res.status(400).json({ error: 'ID inválido' })
     }
+
+    const updated = await controller.update(id, req.body)
+
+    if (!updated) {
+      return res.status(404).json({ error: 'Entrenador no encontrado o sin cambios' })
+    }
+
+    res.status(200).json({
+      msg: 'Entrenador actualizado correctamente',
+      data: updated
+    })
+
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
 })
 
 router.delete('/:id', async (req, res) => {
