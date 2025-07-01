@@ -11,7 +11,16 @@ async function get(id) {
     return result.rows[0]
 }
 
+async function deleteByID(id) {
+    const deleted = await db.query(`DELETE FROM entrenadores WHERE id = $1 RETURNING *`,
+        [id]
+    )
+    return deleted.rows[0]
+} 
+
+
 module.exports = {
     getAll,
-    get
+    get, 
+    deleteByID
 }
