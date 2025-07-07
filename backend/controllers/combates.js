@@ -31,8 +31,13 @@ const create = async (nuevoCombate) => {
     return creado.rows[0]
 }
 
+const deleteByID = async (combateId) => {
+
+}
+
 module.exports = {
     getAll,
     get, 
-    create
+    create, 
+    deleteByID
 }
