@@ -5,8 +5,8 @@ const PORT = process.env.PORT || 5000
 const pokemonsRoutes = require('./routes/pokemons')
 app.use('/api/pokemons', pokemonsRoutes)
 
-const entrandoresRoutes = require('./routes/entrenadores')
-app.use('/api/entrenadores', entrandoresRoutes)
+const entrenadoresRoutes = require('./routes/entrenadores')
+app.use('/api/entrenadores', entrenadoresRoutes)
 
 app.use(express.json())
 
