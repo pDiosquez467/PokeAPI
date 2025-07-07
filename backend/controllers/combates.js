@@ -32,7 +32,8 @@ const create = async (nuevoCombate) => {
 }
 
 const deleteByID = async (combateId) => {
-
+    const borrado = await db.query(`DELETE FROM combates WHERE id = %1 RETURNING *;`, [combateId])
+    return borrado.rows[0]
 }
 
 module.exports = {
