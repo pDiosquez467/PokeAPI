@@ -8,6 +8,9 @@ app.use('/api/pokemons', pokemonsRoutes)
 const entrenadoresRoutes = require('./routes/entrenadores')
 app.use('/api/entrenadores', entrenadoresRoutes)
 
+const combatesRoutes = require('./routes/combates')
+app.use('/api/combates', combatesRoutes)
+
 app.use(express.json())
 
 app.get('/api/health', (req, res) => {
