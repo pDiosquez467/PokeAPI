@@ -58,6 +58,27 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.put('/:id', async (req, res) => {
+    try {
+        const combateID = Number(req.params.id)
+
+        if (isNaN(combateID)) {
+            return res.status(400).send({ status: 'Error', error: 'ID inválido' })
+        }
+
+        const actualizado = await controller.update(combateID, req.body)
+
+        if (!actualizado) {
+            return res.status(400).send({ status: 'Error', error: 'Combate NO encontrado o sin cambios' })
+        }
+
+        res.status(200).send({ status: 'Combate actualizado correctamente', data: actualizado })
+
+    } catch (error) {
+        res.status(500).send({ status: 'OK', error: error.message })
+    }
+})
+
 router.delete('/:id', async (req, res) => {
     try {
         const combateID = Number(req.params.id)

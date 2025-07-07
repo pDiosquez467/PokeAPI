@@ -31,6 +31,52 @@ const create = async (nuevoCombate) => {
     return creado.rows[0]
 }
 
+const update = async (combateID, cambios) => {
+    const fields = []
+    const values = []
+    let i = 1
+
+    if (!cambios.pokemon_1_id) {
+        fields.push(`pokemon_1_id = $${i++}`)
+        values.push(pokemon_1_id)
+    }
+
+    if (!cambios.pokemon_2_id) {
+        fields.push(`pokemon_2_id = $${i++}`)
+        values.push(pokemon_2_id)
+    }
+
+    if (!cambios.entrenador_1_id) {
+        fields.push(`entrenador_1_id = $${i++}`)
+        values.push(entrenador_1_id)
+    }
+
+    if (!cambios.entrenador_2_id) {
+        fields.push(`entrenador_2_id = $${i++}`)
+        values.push(entrenador_2_id)
+    }
+    
+    if (!cambios.lugar) {
+        fields.push(`lugar = $${i++}`)
+        values.push(lugar)
+    }
+
+    if (!cambios.evento) {
+        fields.push(`evento = $${i++}`)
+        values.push(evento)
+    }
+
+    if (fields.length === 0) {
+        return undefined
+    }
+
+    values.push(combateID)
+
+    const query = `UPDATE combates SET ${fields.join(', ')} WHERE id = $${i} RETURNING *;`
+
+    return await db.query(query, values)
+}
+
 const deleteByID = async (combateId) => {
     const borrado = await db.query(`DELETE FROM combates WHERE id = %1 RETURNING *;`, [combateId])
     return borrado.rows[0]
@@ -40,5 +86,6 @@ module.exports = {
     getAll,
     get, 
     create, 
+    update,
     deleteByID
 }
