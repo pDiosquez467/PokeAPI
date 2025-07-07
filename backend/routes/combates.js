@@ -32,4 +32,30 @@ router.get('/:id', async (req, res) => {
     }
 })
 
+router.post('/', async (req, res) => {
+    try {
+        const { body } = req 
+
+        if (!body.pokemon_1_id ||
+            !body.pokemon_2_id ||
+            !body.lugar || 
+            !body.ganador_id || 
+            !body.fecha
+        ) {
+            return res.status(400).send({ status: 'Error', error: 'Faltan campos obligatorios' })
+        }
+
+        const nuevo = {
+            ...body
+        }
+
+        const creado = await controller.create(nuevo)
+
+        res.status(201).send({ status: 'Combate creado correctamente', data: creado })
+
+    } catch (error) {
+        res.status(500).send({ status: 'Error', error: error })
+    }
+})
+
 module.exports = router
