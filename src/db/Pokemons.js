@@ -23,7 +23,16 @@ const createNewPokemon = async (newPokemon) => {
   return result.rows[0]
 }
 
+const deleteOnePokemon = async (pokemonId) => {
+    const query = `DELETE FROM pokemons WHERE id = $1 RETURNING *;`
+    const deletedPokemon = await DB.query(query, [pokemonId])
+    return deletedPokemon.rows[0]
+    
+}
+
 module.exports = {
     getAllPokemons, 
-    getOnePokemon
+    getOnePokemon, 
+    createNewPokemon, 
+    deleteOnePokemon
 }

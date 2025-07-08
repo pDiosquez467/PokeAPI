@@ -49,8 +49,16 @@ const updateOnePokemon = async (req, res) => {
 }
 
 const deleteOnePokemon = async (req, res) => {
-    const deletedPokemon = await pokemonService.deleteOnePokemon()
-    res.send('Delete an existing pokemon')
+    const {
+        params: { pokemonId },
+    } = req;
+
+    if (!pokemonId) {
+        return
+    }
+
+    const deletedPokemon = await pokemonService.deleteOnePokemon(pokemonId)
+    res.status(202).send({ status: 'OK', data: deletedPokemon })
 }
 
 module.exports = {
