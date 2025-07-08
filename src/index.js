@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const PORT = process.env.PORT ?? 3000
 
-const v1PokemonRouter = require('./v1/routes/pokemons')
+const v1PokemonRouter = require('./v1/routes/pokemonsRoutes')
 
 app.use(express.json())
 
