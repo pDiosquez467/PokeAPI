@@ -2,12 +2,20 @@ const pokemonService = require('../services/pokemonsService')
 
 const getAllPokemons = async (req, res) => {
     const allPokemons = await pokemonService.getAllPokemons()
-    res.send({ status: 'OK', data: allPokemons })
+    res.status(200).send({ status: 'OK', data: allPokemons })
 }
 
 const getOnePokemon = async (req, res) => {
-    const pokemon = await pokemonService.getOnePokemon()
-    res.send('Get an existing pokemon')
+    const {
+        params: { pokemonId },
+    } = req;
+
+    if(!pokemonId) {
+        return 
+    }
+
+    const pokemon = await pokemonService.getOnePokemon(pokemonId)
+    res.status(200).send({ status: 'OK', data: pokemon })
 }
 
 const createNewPokemon = async (req, res) => {
