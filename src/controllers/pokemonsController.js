@@ -2,7 +2,7 @@ const pokemonService = require('../services/pokemonsService')
 
 const getAllPokemons = async (req, res) => {
     const allPokemons = await pokemonService.getAllPokemons()
-    res.send('Get All pokemons')
+    res.send({ status: 'OK', data: allPokemons })
 }
 
 const getOnePokemon = async (req, res) => {

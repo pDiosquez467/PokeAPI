@@ -1,5 +1,8 @@
+const Pokemons = require('../db/Pokemons')
+
 const getAllPokemons = async () => {
-    return 
+    const allPokemons = await Pokemons.getAllPokemons()
+    return allPokemons 
 }
 
 const getOnePokemon = async () => {
