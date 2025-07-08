@@ -10,8 +10,8 @@ const getOnePokemon = async (req, res) => {
         params: { pokemonId },
     } = req;
 
-    if(!pokemonId) {
-        return 
+    if (!pokemonId) {
+        return
     }
 
     const pokemon = await pokemonService.getOnePokemon(pokemonId)
@@ -19,8 +19,28 @@ const getOnePokemon = async (req, res) => {
 }
 
 const createNewPokemon = async (req, res) => {
-    const createdPokemon = await pokemonService.createNewPokemon()
-    res.send('Create a new pokemon')
+    const { body } = req
+
+    if (
+        !body.nombre ||
+        !body.tipo ||
+        !body.nivel_poder ||
+        !body.altura ||
+        !body.peso
+    ) {
+        return
+    }
+
+    const newPokemon = {
+        nombre: body.nombre,
+        tipo: body.tipo,
+        nivel_poder: body.nivel_poder,
+        altura: body.altura,
+        peso: body.peso
+    }
+
+    const createdPokemon = await pokemonService.createNewPokemon(newPokemon)
+    res.status(201).send({ status: 'OK', data: createdPokemon })
 }
 
 const updateOnePokemon = async (req, res) => {
@@ -35,7 +55,7 @@ const deleteOnePokemon = async (req, res) => {
 
 module.exports = {
     getAllPokemons,
-    getOnePokemon, 
+    getOnePokemon,
     createNewPokemon,
     updateOnePokemon,
     deleteOnePokemon

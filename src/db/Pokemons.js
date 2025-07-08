@@ -11,6 +11,18 @@ const getOnePokemon = async (pokemonId) => {
     return pokemon.rows[0]
 }
 
+const createNewPokemon = async (newPokemon) => {
+  const values = [...Object.values(newPokemon)]
+  const query = `
+    INSERT INTO pokemons (nombre, tipo, nivel_poder, altura, peso)
+    VALUES ($1, $2, $3, $4, $5)
+    RETURNING *;
+  `;
+  
+  const result = await DB.query(query, values)
+  return result.rows[0]
+}
+
 module.exports = {
     getAllPokemons, 
     getOnePokemon

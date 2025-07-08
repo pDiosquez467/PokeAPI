@@ -8,8 +8,12 @@ const getOnePokemon = async (pokemonId) => {
     return await Pokemons.getOnePokemon(pokemonId) 
 }
 
-const createNewPokemon = async () => {
-    return 
+const createNewPokemon = async (newPokemon) => {
+    const pokemonToInsert = {
+        ...newPokemon
+    }
+    
+    return Pokemons.createNewPokemon(pokemonToInsert) 
 }
 
 const updateOnePokemon = async () => {
