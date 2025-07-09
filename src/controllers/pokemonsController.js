@@ -44,8 +44,17 @@ const createNewPokemon = async (req, res) => {
 }
 
 const updateOnePokemon = async (req, res) => {
-    const updatedPokemon = await pokemonService.updateOnePokemon()
-    res.send('Update an existing pokemon')
+    const {
+        body,
+        params: { pokemonId }
+    } = req 
+
+    if (!pokemonId) {
+        return 
+    }
+
+    const updatedPokemon = await pokemonService.updateOnePokemon(pokemonId, body)
+    res.status(200).send({ status: 'OK', data: { updatedPokemon } })
 }
 
 const deleteOnePokemon = async (req, res) => {

@@ -13,11 +13,11 @@ const createNewPokemon = async (newPokemon) => {
         ...newPokemon
     }
 
-    return Pokemons.createNewPokemon(pokemonToInsert) 
+    return await Pokemons.createNewPokemon(pokemonToInsert) 
 }
 
-const updateOnePokemon = async () => {
-    return 
+const updateOnePokemon = async (pokemonId, changes) => {
+    return await Pokemons.updateOnePokemon(pokemonId, changes)
 }
 
 const deleteOnePokemon = async (pokemonId) => {

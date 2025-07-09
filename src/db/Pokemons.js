@@ -1,38 +1,92 @@
 const DB = require('./conn')
 
 const getAllPokemons = async () => {
-    const allPokemons = await DB.query(`SELECT * FROM pokemons;`)
-    return allPokemons.rows
+	const allPokemons = await DB.query(`SELECT * FROM pokemons;`)
+	return allPokemons.rows
 }
 
 const getOnePokemon = async (pokemonId) => {
-    const pokemon = await DB.query(`SELECT * FROM pokemons WHERE id = $1;`,
-    [pokemonId])
-    return pokemon.rows[0]
+	const pokemon = await DB.query(`SELECT * FROM pokemons WHERE id = $1;`,
+		[pokemonId])
+	return pokemon.rows[0]
 }
 
 const createNewPokemon = async (newPokemon) => {
-  const values = [...Object.values(newPokemon)]
-  const query = `
+	const values = [...Object.values(newPokemon)]
+	const query = `
     INSERT INTO pokemons (nombre, tipo, nivel_poder, altura, peso)
     VALUES ($1, $2, $3, $4, $5)
     RETURNING *;
   `;
-  
-  const result = await DB.query(query, values)
-  return result.rows[0]
+
+	const result = await DB.query(query, values)
+	return result.rows[0]
+}
+
+const updateOnePokemon = async (pokemonId, changes) => {
+	const fields = []
+	const values = []
+
+	if (!changes.nombre) {
+		fields.push(`nombre = $${values.length + 1}`)
+		values.push(changes.nombre)
+	}
+
+	if (!changes.tipo) {
+		fields.push(`tipo = $${values.length + 1}`)
+		values.push(changes.tipo)
+	}
+
+	if (!changes.habilidades) {
+		fields.push(`habilidades = $${values.length + 1}`)
+		values.push(changes.habilidades)
+	}
+
+	if (!changes.nivel_poder) {
+		fields.push(`nivel_poder = $${values.length + 1}`)
+		values.push(changes.nivel_poder)
+	}
+
+	if (!changes.altura) {
+		fields.push(`altura = $${values.length + 1}`)
+		values.push(changes.altura)
+	}
+
+	if (!changes.peso) {
+		fields.push(`peso = $${values.length + 1}`)
+		values.push(changes.peso)
+	}
+
+	if (fields.length === 0) {
+		return undefined
+	}
+
+	values.push(pokemonId)
+	const indiceId = values.length
+
+	const query = {
+		text: `UPDATE pokemons SET ${fields.join(', ')} WHERE id = $${indiceId} RETURNING *;`,
+		values: values
+	}
+	const updatedPokemon = await DB.query(query)
+
+	if (updatedPokemon.rows.length === 0){
+		return undefined
+	}
+
+	return updatedPokemon.rows[0]
 }
 
 const deleteOnePokemon = async (pokemonId) => {
-    const query = `DELETE FROM pokemons WHERE id = $1 RETURNING *;`
-    const deletedPokemon = await DB.query(query, [pokemonId])
-    return deletedPokemon.rows[0]
-    
+	const query = `DELETE FROM pokemons WHERE id = $1 RETURNING *;`
+	const deletedPokemon = await DB.query(query, [pokemonId])
+	return deletedPokemon.rows[0]
+
 }
 
 module.exports = {
-    getAllPokemons, 
-    getOnePokemon, 
-    createNewPokemon, 
-    deleteOnePokemon
+	getAllPokemons,
+	getOnePokemon,
+	createNewPokemon,
+	deleteOnePokemon
 }
