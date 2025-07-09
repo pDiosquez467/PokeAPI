@@ -1,8 +1,14 @@
 const pokemonService = require('../services/pokemonsService')
 
 const getAllPokemons = async (req, res) => {
-    const allPokemons = await pokemonService.getAllPokemons()
-    res.status(200).send({ status: 'OK', data: allPokemons })
+    try {
+        const allPokemons = await pokemonService.getAllPokemons()
+        res.status(200).send({ status: 'OK', data: allPokemons })
+    } catch (error) {
+        res
+            .status(error?.status || 500)
+            .send({ status: 'FAILED', data: { error: error?.message || error } })
+    }
 }
 
 const getOnePokemon = async (req, res) => {
@@ -47,7 +53,7 @@ const createNewPokemon = async (req, res) => {
     } catch (error) {
         res
             .status(error?.status || 500)
-            .send({ data: error?.message || error })
+            .send({ data: { error: error?.message || error } })
     }
 }
 
