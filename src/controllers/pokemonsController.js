@@ -17,7 +17,7 @@ const getOnePokemon = async (req, res) => {
     } = req;
 
     if (!pokemonId) {
-        return res.status(400).send({ status: 'FAILED', data: { error: `Parameter ':workoutId' can not be empty` } })
+        return res.status(400).send({ status: 'FAILED', data: { error: `Parameter ':pokemonId' can not be empty` } })
     }
 
     try {
@@ -83,11 +83,17 @@ const deleteOnePokemon = async (req, res) => {
     } = req;
 
     if (!pokemonId) {
-        return
+        return res.status(400).send({ status: 'FAILED', data: { error:  `Parameter ':pokemonId' can not be empty`} })
     }
 
-    const deletedPokemon = await pokemonService.deleteOnePokemon(pokemonId)
-    res.status(202).send({ status: 'OK', data: deletedPokemon })
+    try {
+        const deletedPokemon = await pokemonService.deleteOnePokemon(pokemonId)
+        res.status(202).send({ status: 'OK', data: deletedPokemon })
+    } catch (error) {
+        res
+            .status(error?.status || 500)
+            .send({ status: 'FAILED', data: { error: error?.message || error } })
+    }
 }
 
 module.exports = {
