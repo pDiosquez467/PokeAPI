@@ -17,11 +17,17 @@ const getOnePokemon = async (req, res) => {
     } = req;
 
     if (!pokemonId) {
-        return
+        return res.status(400).send({ status: 'FAILED', data: { error: `Parameter ':workoutId' can not be empty` } })
     }
 
-    const pokemon = await pokemonService.getOnePokemon(pokemonId)
-    res.status(200).send({ status: 'OK', data: pokemon })
+    try {
+        const pokemon = await pokemonService.getOnePokemon(pokemonId)
+        res.status(200).send({ status: 'OK', data: pokemon })
+    } catch (error) {
+        res
+            .status(error?.status || 500)
+            .send({ data: { error: error?.message || error } })
+    }
 }
 
 const createNewPokemon = async (req, res) => {
