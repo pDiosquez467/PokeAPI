@@ -1,14 +1,27 @@
 const DB = require('./conn')
 
 const getAllPokemons = async () => {
-	const allPokemons = await DB.query(`SELECT * FROM pokemons;`)
-	return allPokemons.rows
+	try {
+		const allPokemons = await DB.query(`SELECT * FROM pokemons;`)
+		return allPokemons.rows
+	} catch (error) {
+		throw { status: error?.status || 500, message: error?.message || error }
+	}
 }
 
 const getOnePokemon = async (pokemonId) => {
-	const pokemon = await DB.query(`SELECT * FROM pokemons WHERE id = $1;`,
-		[pokemonId])
-	return pokemon.rows[0]
+	try {
+		const pokemon = await DB.query(`SELECT * FROM pokemons WHERE id = $1;`,
+			[pokemonId])
+
+		if (!pokemon) {
+			throw { status: 400, message: `Can't find pokemon with the id '${workoutId}'` }
+		}
+
+		return pokemon.rows[0]
+	} catch (error) {
+		throw { status: error?.status || 500, message: error?.message || error }
+	}
 }
 
 const createNewPokemon = async (newPokemon) => {
@@ -23,7 +36,7 @@ const createNewPokemon = async (newPokemon) => {
 		const result = await DB.query(query, values)
 		return result.rows[0]
 	} catch (error) {
-		throw { status: 'FAILED', message: error?.message || error } 
+		throw { status: error?.status || 500, message: error?.message || error }
 	}
 }
 
@@ -68,24 +81,36 @@ const updateOnePokemon = async (pokemonId, changes) => {
 	values.push(pokemonId)
 	const indiceId = values.length
 
-	const query = {
-		text: `UPDATE pokemons SET ${fields.join(', ')} WHERE id = $${indiceId} RETURNING *;`,
-		values: values
-	}
-	const updatedPokemon = await DB.query(query)
+	try {
+		const query = {
+			text: `UPDATE pokemons SET ${fields.join(', ')} WHERE id = $${indiceId} RETURNING *;`,
+			values: values
+		}
+		const updatedPokemon = await DB.query(query)
 
-	if (updatedPokemon.rows.length === 0){
-		return undefined
-	}
+		if (updatedPokemon.rows.length === 0) {
+			throw { status: 400, message: 'There is nothing to update :(' }
+		}
 
-	return updatedPokemon.rows[0]
+		return updatedPokemon.rows[0]
+	} catch (error) {
+		throw { status: error?.status || 500, message: error?.message || error }
+	}
 }
 
 const deleteOnePokemon = async (pokemonId) => {
-	const query = `DELETE FROM pokemons WHERE id = $1 RETURNING *;`
-	const deletedPokemon = await DB.query(query, [pokemonId])
-	return deletedPokemon.rows[0]
+	try {
+		const query = `DELETE FROM pokemons WHERE id = $1 RETURNING *;`
+		const deletedPokemon = await DB.query(query, [pokemonId])
 
+		if (!deletedPokemon) {
+			throw { status: 400, message: `Can't find pokemon with the id '${workoutId}'` }
+		}
+
+		return deletedPokemon.rows[0]
+	} catch (error) {
+		throw { status: error?.status || 500, message: error?.message || error }
+	}
 }
 
 module.exports = {
