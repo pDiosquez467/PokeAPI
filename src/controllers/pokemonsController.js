@@ -70,11 +70,17 @@ const updateOnePokemon = async (req, res) => {
     } = req 
 
     if (!pokemonId) {
-        return 
+        return res.status(400).send({ status: 'FAILED', data: { error:  `Parameter ':pokemonId' can not be empty`} })
     }
 
-    const updatedPokemon = await pokemonService.updateOnePokemon(pokemonId, body)
-    res.status(200).send({ status: 'OK', data: { updatedPokemon } })
+    try {
+        const updatedPokemon = await pokemonService.updateOnePokemon(pokemonId, body)
+        res.status(200).send({ status: 'OK', data: { updatedPokemon } })
+    } catch (error) {
+        res
+            .status(error?.status || 500)
+            .send({ status: 'FAILED', data: { error: error?.message || error } })
+    }
 }
 
 const deleteOnePokemon = async (req, res) => {
