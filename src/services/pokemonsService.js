@@ -1,11 +1,19 @@
 const Pokemons = require('../db/Pokemons')
 
 const getAllPokemons = async () => {
-    return await Pokemons.getAllPokemons()
+    try {
+        return await Pokemons.getAllPokemons()
+    } catch (error) {
+        throw error 
+    }
 }
 
 const getOnePokemon = async (pokemonId) => {
-    return await Pokemons.getOnePokemon(pokemonId) 
+    try {
+        return await Pokemons.getOnePokemon(pokemonId) 
+    } catch (error) {
+        throw error 
+    }
 }
 
 const createNewPokemon = async (newPokemon) => {
@@ -21,11 +29,19 @@ const createNewPokemon = async (newPokemon) => {
 }
 
 const updateOnePokemon = async (pokemonId, changes) => {
-    return await Pokemons.updateOnePokemon(pokemonId, changes)
+    try {
+        return await Pokemons.updateOnePokemon(pokemonId, changes)
+    } catch (error) {
+        throw error 
+    }
 }
 
 const deleteOnePokemon = async (pokemonId) => {
-    return await Pokemons.deleteOnePokemon(pokemonId)
+    try {
+        return await Pokemons.deleteOnePokemon(pokemonId)
+    } catch (error) {
+        throw error 
+    }
 }
 
 module.exports = {
