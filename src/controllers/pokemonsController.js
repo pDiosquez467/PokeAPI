@@ -28,7 +28,9 @@ const createNewPokemon = async (req, res) => {
         !body.altura ||
         !body.peso
     ) {
-        return
+        return res
+            .status(400)
+            .send({ status: 'FAILED', data: { error: `One of the following keys is missing or is empty in request body: 'nombre', 'tipo', 'nivel_poder', 'altura', 'peso'` } })
     }
 
     const newPokemon = {
@@ -39,8 +41,14 @@ const createNewPokemon = async (req, res) => {
         peso: body.peso
     }
 
-    const createdPokemon = await pokemonService.createNewPokemon(newPokemon)
-    res.status(201).send({ status: 'OK', data: createdPokemon })
+    try {
+        const createdPokemon = await pokemonService.createNewPokemon(newPokemon)
+        res.status(201).send({ status: 'OK', data: createdPokemon })
+    } catch (error) {
+        res
+            .status(error?.status || 500)
+            .send({ data: error?.message || error })
+    }
 }
 
 const updateOnePokemon = async (req, res) => {

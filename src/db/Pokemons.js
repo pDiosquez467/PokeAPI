@@ -19,8 +19,12 @@ const createNewPokemon = async (newPokemon) => {
     RETURNING *;
   `;
 
-	const result = await DB.query(query, values)
-	return result.rows[0]
+	try {
+		const result = await DB.query(query, values)
+		return result.rows[0]
+	} catch (error) {
+		throw { status: 'FAILED', message: error?.message || error } 
+	}
 }
 
 const updateOnePokemon = async (pokemonId, changes) => {

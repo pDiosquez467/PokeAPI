@@ -13,7 +13,11 @@ const createNewPokemon = async (newPokemon) => {
         ...newPokemon
     }
 
-    return await Pokemons.createNewPokemon(pokemonToInsert) 
+    try {
+        return await Pokemons.createNewPokemon(pokemonToInsert) 
+    } catch (error) {
+        throw error
+    }
 }
 
 const updateOnePokemon = async (pokemonId, changes) => {
