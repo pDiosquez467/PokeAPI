@@ -88,5 +88,6 @@ module.exports = {
 	getAllPokemons,
 	getOnePokemon,
 	createNewPokemon,
+	updateOnePokemon,
 	deleteOnePokemon
 }
