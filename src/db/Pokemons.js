@@ -14,8 +14,8 @@ const getOnePokemon = async (pokemonId) => {
 		const pokemon = await DB.query(`SELECT * FROM pokemons WHERE id = $1;`,
 			[pokemonId])
 
-		if (!pokemon) {
-			throw { status: 400, message: `Can't find pokemon with the id '${workoutId}'` }
+		if (pokemon.rows.length === 0) {
+			throw { status: 404, message: `Can't find pokemon with the id '${pokemonId}'` }
 		}
 
 		return pokemon.rows[0]
@@ -44,32 +44,32 @@ const updateOnePokemon = async (pokemonId, changes) => {
 	const fields = []
 	const values = []
 
-	if (!changes.nombre) {
+	if (changes.nombre !== undefined) {
 		fields.push(`nombre = $${values.length + 1}`)
 		values.push(changes.nombre)
 	}
 
-	if (!changes.tipo) {
+	if (changes.tipo !== undefined) {
 		fields.push(`tipo = $${values.length + 1}`)
 		values.push(changes.tipo)
 	}
 
-	if (!changes.habilidades) {
+	if (changes.habilidades !== undefined) {
 		fields.push(`habilidades = $${values.length + 1}`)
 		values.push(changes.habilidades)
 	}
 
-	if (!changes.nivel_poder) {
+	if (changes.nivel_poder !== undefined) {
 		fields.push(`nivel_poder = $${values.length + 1}`)
 		values.push(changes.nivel_poder)
 	}
 
-	if (!changes.altura) {
+	if (changes.altura !== undefined) {
 		fields.push(`altura = $${values.length + 1}`)
 		values.push(changes.altura)
 	}
 
-	if (!changes.peso) {
+	if (changes.peso !== undefined) {
 		fields.push(`peso = $${values.length + 1}`)
 		values.push(changes.peso)
 	}
@@ -89,7 +89,7 @@ const updateOnePokemon = async (pokemonId, changes) => {
 		const updatedPokemon = await DB.query(query)
 
 		if (updatedPokemon.rows.length === 0) {
-			throw { status: 400, message: 'There is nothing to update :(' }
+			throw { status: 404, message: `Can't find pokemon with the id '${pokemonId}'` }
 		}
 
 		return updatedPokemon.rows[0]
@@ -103,8 +103,8 @@ const deleteOnePokemon = async (pokemonId) => {
 		const query = `DELETE FROM pokemons WHERE id = $1 RETURNING *;`
 		const deletedPokemon = await DB.query(query, [pokemonId])
 
-		if (!deletedPokemon) {
-			throw { status: 400, message: `Can't find pokemon with the id '${workoutId}'` }
+		if (deletedPokemon.rows.length === 0) {
+			throw { status: 404, message: `Can't find pokemon with the id '${pokemonId}'` }
 		}
 
 		return deletedPokemon.rows[0]
