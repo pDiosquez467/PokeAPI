@@ -85,7 +85,7 @@ describe('DELETE /api/v1/pokemons/:id', () => {
 		const deleteRes = await request(app).delete(`/api/v1/pokemons/${createdId}`)
 		expect(deleteRes.status).toBe(202)
 
-		// const getRes = await request(app).get(`/api/v1/pokemons/${createdId}`)
-		// expect(getRes.status).toBe(404)
+		const getRes = await request(app).get(`/api/v1/pokemons/${createdId}`)
+		expect(getRes.status).toBe(404)
 	})
 }) 
