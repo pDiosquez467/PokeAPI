@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model combates {
+  id                                                 Int           @id @default(autoincrement())
+  entrenador1_id                                     Int?
+  pokemon1_id                                        Int?
+  pokemon2_id                                        Int?
+  entrenador2_id                                     Int?
+  lugar                                              String?       @db.VarChar(50)
+  evento                                             String?       @db.VarChar(100)
+  ganador_id                                         Int?
+  fecha                                              DateTime?     @db.Date
+  rondas                                             Int?
+  descripcion                                        String?       @db.VarChar(255)
+  entrenadores_combates_entrenador1_idToentrenadores entrenadores? @relation("combates_entrenador1_idToentrenadores", fields: [entrenador1_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  entrenadores_combates_entrenador2_idToentrenadores entrenadores? @relation("combates_entrenador2_idToentrenadores", fields: [entrenador2_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  pokemons_combates_ganador_idTopokemons             pokemons?     @relation("combates_ganador_idTopokemons", fields: [ganador_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  pokemons_combates_pokemon1_idTopokemons            pokemons?     @relation("combates_pokemon1_idTopokemons", fields: [pokemon1_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  pokemons_combates_pokemon2_idTopokemons            pokemons?     @relation("combates_pokemon2_idTopokemons", fields: [pokemon2_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model entrenadores {
+  id                                             Int        @id @default(autoincrement())
+  nombre                                         String     @db.VarChar(50)
+  origen                                         String?    @db.VarChar(50)
+  escuela                                        String?    @db.VarChar(50)
+  medallas                                       String?    @db.VarChar(255)
+  pokemon_default                                Int?
+  edad                                           Int?
+  experiencia                                    Int?
+  combates_combates_entrenador1_idToentrenadores combates[] @relation("combates_entrenador1_idToentrenadores")
+  combates_combates_entrenador2_idToentrenadores combates[] @relation("combates_entrenador2_idToentrenadores")
+  pokemons                                       pokemons?  @relation(fields: [pokemon_default], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model pokemons {
+  id                                              Int            @id @default(autoincrement())
+  nombre                                          String         @db.VarChar(50)
+  tipo                                            String         @db.VarChar(50)
+  habilidades                                     String?        @db.VarChar(255)
+  nivel_poder                                     Int?
+  imagen                                          String?        @db.VarChar(255)
+  altura                                          Float?         @db.Real
+  peso                                            Float?         @db.Real
+  descripcion                                     String?        @db.VarChar(255)
+  evoluciona_de                                   Int?
+  evoluciona_a                                    Int?
+  combates_combates_ganador_idTopokemons          combates[]     @relation("combates_ganador_idTopokemons")
+  combates_combates_pokemon1_idTopokemons         combates[]     @relation("combates_pokemon1_idTopokemons")
+  combates_combates_pokemon2_idTopokemons         combates[]     @relation("combates_pokemon2_idTopokemons")
+  entrenadores                                    entrenadores[]
+  pokemons_pokemons_evoluciona_aTopokemons        pokemons?      @relation("pokemons_evoluciona_aTopokemons", fields: [evoluciona_a], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_evoluciona_a")
+  other_pokemons_pokemons_evoluciona_aTopokemons  pokemons[]     @relation("pokemons_evoluciona_aTopokemons")
+  pokemons_pokemons_evoluciona_deTopokemons       pokemons?      @relation("pokemons_evoluciona_deTopokemons", fields: [evoluciona_de], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_evoluciona_de")
+  other_pokemons_pokemons_evoluciona_deTopokemons pokemons[]     @relation("pokemons_evoluciona_deTopokemons")
+}
