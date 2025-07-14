@@ -1393,10 +1393,10 @@ export namespace Prisma {
 
   export type CombatesGroupByOutputType = {
     id: number
-    entrenador1_id: number | null
-    pokemon1_id: number | null
-    pokemon2_id: number | null
-    entrenador2_id: number | null
+    entrenador1_id: number
+    pokemon1_id: number
+    pokemon2_id: number
+    entrenador2_id: number
     lugar: string | null
     evento: string | null
     ganador_id: number | null
@@ -1529,10 +1529,10 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      entrenador1_id: number | null
-      pokemon1_id: number | null
-      pokemon2_id: number | null
-      entrenador2_id: number | null
+      entrenador1_id: number
+      pokemon1_id: number
+      pokemon2_id: number
+      entrenador2_id: number
       lugar: string | null
       evento: string | null
       ganador_id: number | null
@@ -2196,7 +2196,7 @@ export namespace Prisma {
     /**
      * The data needed to create a combates.
      */
-    data?: XOR<combatesCreateInput, combatesUncheckedCreateInput>
+    data: XOR<combatesCreateInput, combatesUncheckedCreateInput>
   }
 
   /**
@@ -3935,8 +3935,8 @@ export namespace Prisma {
     habilidades: string | null
     nivel_poder: number | null
     imagen: string | null
-    altura: number | null
-    peso: number | null
+    altura: number
+    peso: number
     descripcion: string | null
     evoluciona_de: number | null
     evoluciona_a: number | null
@@ -4070,8 +4070,8 @@ export namespace Prisma {
       habilidades: string | null
       nivel_poder: number | null
       imagen: string | null
-      altura: number | null
-      peso: number | null
+      altura: number
+      peso: number
       descripcion: string | null
       evoluciona_de: number | null
       evoluciona_a: number | null
@@ -5268,10 +5268,10 @@ export namespace Prisma {
     OR?: combatesWhereInput[]
     NOT?: combatesWhereInput | combatesWhereInput[]
     id?: IntFilter<"combates"> | number
-    entrenador1_id?: IntNullableFilter<"combates"> | number | null
-    pokemon1_id?: IntNullableFilter<"combates"> | number | null
-    pokemon2_id?: IntNullableFilter<"combates"> | number | null
-    entrenador2_id?: IntNullableFilter<"combates"> | number | null
+    entrenador1_id?: IntFilter<"combates"> | number
+    pokemon1_id?: IntFilter<"combates"> | number
+    pokemon2_id?: IntFilter<"combates"> | number
+    entrenador2_id?: IntFilter<"combates"> | number
     lugar?: StringNullableFilter<"combates"> | string | null
     evento?: StringNullableFilter<"combates"> | string | null
     ganador_id?: IntNullableFilter<"combates"> | number | null
@@ -5287,10 +5287,10 @@ export namespace Prisma {
 
   export type combatesOrderByWithRelationInput = {
     id?: SortOrder
-    entrenador1_id?: SortOrderInput | SortOrder
-    pokemon1_id?: SortOrderInput | SortOrder
-    pokemon2_id?: SortOrderInput | SortOrder
-    entrenador2_id?: SortOrderInput | SortOrder
+    entrenador1_id?: SortOrder
+    pokemon1_id?: SortOrder
+    pokemon2_id?: SortOrder
+    entrenador2_id?: SortOrder
     lugar?: SortOrderInput | SortOrder
     evento?: SortOrderInput | SortOrder
     ganador_id?: SortOrderInput | SortOrder
@@ -5309,10 +5309,10 @@ export namespace Prisma {
     AND?: combatesWhereInput | combatesWhereInput[]
     OR?: combatesWhereInput[]
     NOT?: combatesWhereInput | combatesWhereInput[]
-    entrenador1_id?: IntNullableFilter<"combates"> | number | null
-    pokemon1_id?: IntNullableFilter<"combates"> | number | null
-    pokemon2_id?: IntNullableFilter<"combates"> | number | null
-    entrenador2_id?: IntNullableFilter<"combates"> | number | null
+    entrenador1_id?: IntFilter<"combates"> | number
+    pokemon1_id?: IntFilter<"combates"> | number
+    pokemon2_id?: IntFilter<"combates"> | number
+    entrenador2_id?: IntFilter<"combates"> | number
     lugar?: StringNullableFilter<"combates"> | string | null
     evento?: StringNullableFilter<"combates"> | string | null
     ganador_id?: IntNullableFilter<"combates"> | number | null
@@ -5328,10 +5328,10 @@ export namespace Prisma {
 
   export type combatesOrderByWithAggregationInput = {
     id?: SortOrder
-    entrenador1_id?: SortOrderInput | SortOrder
-    pokemon1_id?: SortOrderInput | SortOrder
-    pokemon2_id?: SortOrderInput | SortOrder
-    entrenador2_id?: SortOrderInput | SortOrder
+    entrenador1_id?: SortOrder
+    pokemon1_id?: SortOrder
+    pokemon2_id?: SortOrder
+    entrenador2_id?: SortOrder
     lugar?: SortOrderInput | SortOrder
     evento?: SortOrderInput | SortOrder
     ganador_id?: SortOrderInput | SortOrder
@@ -5350,10 +5350,10 @@ export namespace Prisma {
     OR?: combatesScalarWhereWithAggregatesInput[]
     NOT?: combatesScalarWhereWithAggregatesInput | combatesScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"combates"> | number
-    entrenador1_id?: IntNullableWithAggregatesFilter<"combates"> | number | null
-    pokemon1_id?: IntNullableWithAggregatesFilter<"combates"> | number | null
-    pokemon2_id?: IntNullableWithAggregatesFilter<"combates"> | number | null
-    entrenador2_id?: IntNullableWithAggregatesFilter<"combates"> | number | null
+    entrenador1_id?: IntWithAggregatesFilter<"combates"> | number
+    pokemon1_id?: IntWithAggregatesFilter<"combates"> | number
+    pokemon2_id?: IntWithAggregatesFilter<"combates"> | number
+    entrenador2_id?: IntWithAggregatesFilter<"combates"> | number
     lugar?: StringNullableWithAggregatesFilter<"combates"> | string | null
     evento?: StringNullableWithAggregatesFilter<"combates"> | string | null
     ganador_id?: IntNullableWithAggregatesFilter<"combates"> | number | null
@@ -5450,8 +5450,8 @@ export namespace Prisma {
     habilidades?: StringNullableFilter<"pokemons"> | string | null
     nivel_poder?: IntNullableFilter<"pokemons"> | number | null
     imagen?: StringNullableFilter<"pokemons"> | string | null
-    altura?: FloatNullableFilter<"pokemons"> | number | null
-    peso?: FloatNullableFilter<"pokemons"> | number | null
+    altura?: FloatFilter<"pokemons"> | number
+    peso?: FloatFilter<"pokemons"> | number
     descripcion?: StringNullableFilter<"pokemons"> | string | null
     evoluciona_de?: IntNullableFilter<"pokemons"> | number | null
     evoluciona_a?: IntNullableFilter<"pokemons"> | number | null
@@ -5472,8 +5472,8 @@ export namespace Prisma {
     habilidades?: SortOrderInput | SortOrder
     nivel_poder?: SortOrderInput | SortOrder
     imagen?: SortOrderInput | SortOrder
-    altura?: SortOrderInput | SortOrder
-    peso?: SortOrderInput | SortOrder
+    altura?: SortOrder
+    peso?: SortOrder
     descripcion?: SortOrderInput | SortOrder
     evoluciona_de?: SortOrderInput | SortOrder
     evoluciona_a?: SortOrderInput | SortOrder
@@ -5497,8 +5497,8 @@ export namespace Prisma {
     habilidades?: StringNullableFilter<"pokemons"> | string | null
     nivel_poder?: IntNullableFilter<"pokemons"> | number | null
     imagen?: StringNullableFilter<"pokemons"> | string | null
-    altura?: FloatNullableFilter<"pokemons"> | number | null
-    peso?: FloatNullableFilter<"pokemons"> | number | null
+    altura?: FloatFilter<"pokemons"> | number
+    peso?: FloatFilter<"pokemons"> | number
     descripcion?: StringNullableFilter<"pokemons"> | string | null
     evoluciona_de?: IntNullableFilter<"pokemons"> | number | null
     evoluciona_a?: IntNullableFilter<"pokemons"> | number | null
@@ -5519,8 +5519,8 @@ export namespace Prisma {
     habilidades?: SortOrderInput | SortOrder
     nivel_poder?: SortOrderInput | SortOrder
     imagen?: SortOrderInput | SortOrder
-    altura?: SortOrderInput | SortOrder
-    peso?: SortOrderInput | SortOrder
+    altura?: SortOrder
+    peso?: SortOrder
     descripcion?: SortOrderInput | SortOrder
     evoluciona_de?: SortOrderInput | SortOrder
     evoluciona_a?: SortOrderInput | SortOrder
@@ -5541,8 +5541,8 @@ export namespace Prisma {
     habilidades?: StringNullableWithAggregatesFilter<"pokemons"> | string | null
     nivel_poder?: IntNullableWithAggregatesFilter<"pokemons"> | number | null
     imagen?: StringNullableWithAggregatesFilter<"pokemons"> | string | null
-    altura?: FloatNullableWithAggregatesFilter<"pokemons"> | number | null
-    peso?: FloatNullableWithAggregatesFilter<"pokemons"> | number | null
+    altura?: FloatWithAggregatesFilter<"pokemons"> | number
+    peso?: FloatWithAggregatesFilter<"pokemons"> | number
     descripcion?: StringNullableWithAggregatesFilter<"pokemons"> | string | null
     evoluciona_de?: IntNullableWithAggregatesFilter<"pokemons"> | number | null
     evoluciona_a?: IntNullableWithAggregatesFilter<"pokemons"> | number | null
@@ -5563,10 +5563,10 @@ export namespace Prisma {
 
   export type combatesUncheckedCreateInput = {
     id?: number
-    entrenador1_id?: number | null
-    pokemon1_id?: number | null
-    pokemon2_id?: number | null
-    entrenador2_id?: number | null
+    entrenador1_id: number
+    pokemon1_id: number
+    pokemon2_id: number
+    entrenador2_id: number
     lugar?: string | null
     evento?: string | null
     ganador_id?: number | null
@@ -5590,10 +5590,10 @@ export namespace Prisma {
 
   export type combatesUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    entrenador1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    pokemon1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    pokemon2_id?: NullableIntFieldUpdateOperationsInput | number | null
-    entrenador2_id?: NullableIntFieldUpdateOperationsInput | number | null
+    entrenador1_id?: IntFieldUpdateOperationsInput | number
+    pokemon1_id?: IntFieldUpdateOperationsInput | number
+    pokemon2_id?: IntFieldUpdateOperationsInput | number
+    entrenador2_id?: IntFieldUpdateOperationsInput | number
     lugar?: NullableStringFieldUpdateOperationsInput | string | null
     evento?: NullableStringFieldUpdateOperationsInput | string | null
     ganador_id?: NullableIntFieldUpdateOperationsInput | number | null
@@ -5604,10 +5604,10 @@ export namespace Prisma {
 
   export type combatesCreateManyInput = {
     id?: number
-    entrenador1_id?: number | null
-    pokemon1_id?: number | null
-    pokemon2_id?: number | null
-    entrenador2_id?: number | null
+    entrenador1_id: number
+    pokemon1_id: number
+    pokemon2_id: number
+    entrenador2_id: number
     lugar?: string | null
     evento?: string | null
     ganador_id?: number | null
@@ -5626,10 +5626,10 @@ export namespace Prisma {
 
   export type combatesUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    entrenador1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    pokemon1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    pokemon2_id?: NullableIntFieldUpdateOperationsInput | number | null
-    entrenador2_id?: NullableIntFieldUpdateOperationsInput | number | null
+    entrenador1_id?: IntFieldUpdateOperationsInput | number
+    pokemon1_id?: IntFieldUpdateOperationsInput | number
+    pokemon2_id?: IntFieldUpdateOperationsInput | number
+    entrenador2_id?: IntFieldUpdateOperationsInput | number
     lugar?: NullableStringFieldUpdateOperationsInput | string | null
     evento?: NullableStringFieldUpdateOperationsInput | string | null
     ganador_id?: NullableIntFieldUpdateOperationsInput | number | null
@@ -5725,8 +5725,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     combates_combates_ganador_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_ganador_idTopokemonsInput
     combates_combates_pokemon1_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_pokemon1_idTopokemonsInput
@@ -5745,8 +5745,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     evoluciona_de?: number | null
     evoluciona_a?: number | null
@@ -5764,8 +5764,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     combates_combates_ganador_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_ganador_idTopokemonsNestedInput
     combates_combates_pokemon1_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_pokemon1_idTopokemonsNestedInput
@@ -5784,8 +5784,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     evoluciona_de?: NullableIntFieldUpdateOperationsInput | number | null
     evoluciona_a?: NullableIntFieldUpdateOperationsInput | number | null
@@ -5804,8 +5804,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     evoluciona_de?: number | null
     evoluciona_a?: number | null
@@ -5817,8 +5817,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -5829,8 +5829,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     evoluciona_de?: NullableIntFieldUpdateOperationsInput | number | null
     evoluciona_a?: NullableIntFieldUpdateOperationsInput | number | null
@@ -5847,17 +5847,6 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -5871,6 +5860,17 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -5977,22 +5977,6 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -6009,6 +5993,22 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -6115,15 +6115,15 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type FloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type EntrenadoresListRelationFilter = {
@@ -6206,20 +6206,20 @@ export namespace Prisma {
     evoluciona_a?: SortOrder
   }
 
-  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedFloatNullableFilter<$PrismaModel>
-    _min?: NestedFloatNullableFilter<$PrismaModel>
-    _max?: NestedFloatNullableFilter<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type entrenadoresCreateNestedOneWithoutCombates_combates_entrenador1_idToentrenadoresInput = {
@@ -6526,8 +6526,8 @@ export namespace Prisma {
     connect?: pokemonsWhereUniqueInput | pokemonsWhereUniqueInput[]
   }
 
-  export type NullableFloatFieldUpdateOperationsInput = {
-    set?: number | null
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
     increment?: number
     decrement?: number
     multiply?: number
@@ -6733,17 +6733,6 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -6756,6 +6745,17 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
@@ -6796,6 +6796,23 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -6821,23 +6838,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -6885,20 +6885,20 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedFloatNullableFilter<$PrismaModel>
-    _min?: NestedFloatNullableFilter<$PrismaModel>
-    _max?: NestedFloatNullableFilter<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type entrenadoresCreateWithoutCombates_combates_entrenador1_idToentrenadoresInput = {
@@ -6963,8 +6963,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     combates_combates_pokemon1_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_pokemon1_idTopokemonsInput
     combates_combates_pokemon2_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_pokemon2_idTopokemonsInput
@@ -6982,8 +6982,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     evoluciona_de?: number | null
     evoluciona_a?: number | null
@@ -7005,8 +7005,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     combates_combates_ganador_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_ganador_idTopokemonsInput
     combates_combates_pokemon2_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_pokemon2_idTopokemonsInput
@@ -7024,8 +7024,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     evoluciona_de?: number | null
     evoluciona_a?: number | null
@@ -7047,8 +7047,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     combates_combates_ganador_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_ganador_idTopokemonsInput
     combates_combates_pokemon1_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_pokemon1_idTopokemonsInput
@@ -7066,8 +7066,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     evoluciona_de?: number | null
     evoluciona_a?: number | null
@@ -7168,8 +7168,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     combates_combates_pokemon1_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_pokemon1_idTopokemonsNestedInput
     combates_combates_pokemon2_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_pokemon2_idTopokemonsNestedInput
@@ -7187,8 +7187,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     evoluciona_de?: NullableIntFieldUpdateOperationsInput | number | null
     evoluciona_a?: NullableIntFieldUpdateOperationsInput | number | null
@@ -7216,8 +7216,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     combates_combates_ganador_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_ganador_idTopokemonsNestedInput
     combates_combates_pokemon2_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_pokemon2_idTopokemonsNestedInput
@@ -7235,8 +7235,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     evoluciona_de?: NullableIntFieldUpdateOperationsInput | number | null
     evoluciona_a?: NullableIntFieldUpdateOperationsInput | number | null
@@ -7264,8 +7264,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     combates_combates_ganador_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_ganador_idTopokemonsNestedInput
     combates_combates_pokemon1_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_pokemon1_idTopokemonsNestedInput
@@ -7283,8 +7283,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     evoluciona_de?: NullableIntFieldUpdateOperationsInput | number | null
     evoluciona_a?: NullableIntFieldUpdateOperationsInput | number | null
@@ -7309,9 +7309,9 @@ export namespace Prisma {
 
   export type combatesUncheckedCreateWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput = {
     id?: number
-    pokemon1_id?: number | null
-    pokemon2_id?: number | null
-    entrenador2_id?: number | null
+    pokemon1_id: number
+    pokemon2_id: number
+    entrenador2_id: number
     lugar?: string | null
     evento?: string | null
     ganador_id?: number | null
@@ -7344,9 +7344,9 @@ export namespace Prisma {
 
   export type combatesUncheckedCreateWithoutEntrenadores_combates_entrenador2_idToentrenadoresInput = {
     id?: number
-    entrenador1_id?: number | null
-    pokemon1_id?: number | null
-    pokemon2_id?: number | null
+    entrenador1_id: number
+    pokemon1_id: number
+    pokemon2_id: number
     lugar?: string | null
     evento?: string | null
     ganador_id?: number | null
@@ -7371,8 +7371,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     combates_combates_ganador_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_ganador_idTopokemonsInput
     combates_combates_pokemon1_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_pokemon1_idTopokemonsInput
@@ -7390,8 +7390,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     evoluciona_de?: number | null
     evoluciona_a?: number | null
@@ -7428,10 +7428,10 @@ export namespace Prisma {
     OR?: combatesScalarWhereInput[]
     NOT?: combatesScalarWhereInput | combatesScalarWhereInput[]
     id?: IntFilter<"combates"> | number
-    entrenador1_id?: IntNullableFilter<"combates"> | number | null
-    pokemon1_id?: IntNullableFilter<"combates"> | number | null
-    pokemon2_id?: IntNullableFilter<"combates"> | number | null
-    entrenador2_id?: IntNullableFilter<"combates"> | number | null
+    entrenador1_id?: IntFilter<"combates"> | number
+    pokemon1_id?: IntFilter<"combates"> | number
+    pokemon2_id?: IntFilter<"combates"> | number
+    entrenador2_id?: IntFilter<"combates"> | number
     lugar?: StringNullableFilter<"combates"> | string | null
     evento?: StringNullableFilter<"combates"> | string | null
     ganador_id?: IntNullableFilter<"combates"> | number | null
@@ -7473,8 +7473,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     combates_combates_ganador_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_ganador_idTopokemonsNestedInput
     combates_combates_pokemon1_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_pokemon1_idTopokemonsNestedInput
@@ -7492,8 +7492,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     evoluciona_de?: NullableIntFieldUpdateOperationsInput | number | null
     evoluciona_a?: NullableIntFieldUpdateOperationsInput | number | null
@@ -7518,10 +7518,10 @@ export namespace Prisma {
 
   export type combatesUncheckedCreateWithoutPokemons_combates_ganador_idTopokemonsInput = {
     id?: number
-    entrenador1_id?: number | null
-    pokemon1_id?: number | null
-    pokemon2_id?: number | null
-    entrenador2_id?: number | null
+    entrenador1_id: number
+    pokemon1_id: number
+    pokemon2_id: number
+    entrenador2_id: number
     lugar?: string | null
     evento?: string | null
     fecha?: Date | string | null
@@ -7553,9 +7553,9 @@ export namespace Prisma {
 
   export type combatesUncheckedCreateWithoutPokemons_combates_pokemon1_idTopokemonsInput = {
     id?: number
-    entrenador1_id?: number | null
-    pokemon2_id?: number | null
-    entrenador2_id?: number | null
+    entrenador1_id: number
+    pokemon2_id: number
+    entrenador2_id: number
     lugar?: string | null
     evento?: string | null
     ganador_id?: number | null
@@ -7588,9 +7588,9 @@ export namespace Prisma {
 
   export type combatesUncheckedCreateWithoutPokemons_combates_pokemon2_idTopokemonsInput = {
     id?: number
-    entrenador1_id?: number | null
-    pokemon1_id?: number | null
-    entrenador2_id?: number | null
+    entrenador1_id: number
+    pokemon1_id: number
+    entrenador2_id: number
     lugar?: string | null
     evento?: string | null
     ganador_id?: number | null
@@ -7648,8 +7648,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     combates_combates_ganador_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_ganador_idTopokemonsInput
     combates_combates_pokemon1_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_pokemon1_idTopokemonsInput
@@ -7667,8 +7667,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     evoluciona_de?: number | null
     evoluciona_a?: number | null
@@ -7690,8 +7690,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     combates_combates_ganador_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_ganador_idTopokemonsInput
     combates_combates_pokemon1_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_pokemon1_idTopokemonsInput
@@ -7709,8 +7709,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     evoluciona_de?: number | null
     combates_combates_ganador_idTopokemons?: combatesUncheckedCreateNestedManyWithoutPokemons_combates_ganador_idTopokemonsInput
@@ -7737,8 +7737,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     combates_combates_ganador_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_ganador_idTopokemonsInput
     combates_combates_pokemon1_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_pokemon1_idTopokemonsInput
@@ -7756,8 +7756,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     evoluciona_de?: number | null
     evoluciona_a?: number | null
@@ -7779,8 +7779,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     combates_combates_ganador_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_ganador_idTopokemonsInput
     combates_combates_pokemon1_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_pokemon1_idTopokemonsInput
@@ -7798,8 +7798,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     evoluciona_a?: number | null
     combates_combates_ganador_idTopokemons?: combatesUncheckedCreateNestedManyWithoutPokemons_combates_ganador_idTopokemonsInput
@@ -7915,8 +7915,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     combates_combates_ganador_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_ganador_idTopokemonsNestedInput
     combates_combates_pokemon1_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_pokemon1_idTopokemonsNestedInput
@@ -7934,8 +7934,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     evoluciona_de?: NullableIntFieldUpdateOperationsInput | number | null
     evoluciona_a?: NullableIntFieldUpdateOperationsInput | number | null
@@ -7972,8 +7972,8 @@ export namespace Prisma {
     habilidades?: StringNullableFilter<"pokemons"> | string | null
     nivel_poder?: IntNullableFilter<"pokemons"> | number | null
     imagen?: StringNullableFilter<"pokemons"> | string | null
-    altura?: FloatNullableFilter<"pokemons"> | number | null
-    peso?: FloatNullableFilter<"pokemons"> | number | null
+    altura?: FloatFilter<"pokemons"> | number
+    peso?: FloatFilter<"pokemons"> | number
     descripcion?: StringNullableFilter<"pokemons"> | string | null
     evoluciona_de?: IntNullableFilter<"pokemons"> | number | null
     evoluciona_a?: IntNullableFilter<"pokemons"> | number | null
@@ -7996,8 +7996,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     combates_combates_ganador_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_ganador_idTopokemonsNestedInput
     combates_combates_pokemon1_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_pokemon1_idTopokemonsNestedInput
@@ -8015,8 +8015,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     evoluciona_de?: NullableIntFieldUpdateOperationsInput | number | null
     evoluciona_a?: NullableIntFieldUpdateOperationsInput | number | null
@@ -8045,9 +8045,9 @@ export namespace Prisma {
 
   export type combatesCreateManyEntrenadores_combates_entrenador1_idToentrenadoresInput = {
     id?: number
-    pokemon1_id?: number | null
-    pokemon2_id?: number | null
-    entrenador2_id?: number | null
+    pokemon1_id: number
+    pokemon2_id: number
+    entrenador2_id: number
     lugar?: string | null
     evento?: string | null
     ganador_id?: number | null
@@ -8058,9 +8058,9 @@ export namespace Prisma {
 
   export type combatesCreateManyEntrenadores_combates_entrenador2_idToentrenadoresInput = {
     id?: number
-    entrenador1_id?: number | null
-    pokemon1_id?: number | null
-    pokemon2_id?: number | null
+    entrenador1_id: number
+    pokemon1_id: number
+    pokemon2_id: number
     lugar?: string | null
     evento?: string | null
     ganador_id?: number | null
@@ -8083,9 +8083,9 @@ export namespace Prisma {
 
   export type combatesUncheckedUpdateWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput = {
     id?: IntFieldUpdateOperationsInput | number
-    pokemon1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    pokemon2_id?: NullableIntFieldUpdateOperationsInput | number | null
-    entrenador2_id?: NullableIntFieldUpdateOperationsInput | number | null
+    pokemon1_id?: IntFieldUpdateOperationsInput | number
+    pokemon2_id?: IntFieldUpdateOperationsInput | number
+    entrenador2_id?: IntFieldUpdateOperationsInput | number
     lugar?: NullableStringFieldUpdateOperationsInput | string | null
     evento?: NullableStringFieldUpdateOperationsInput | string | null
     ganador_id?: NullableIntFieldUpdateOperationsInput | number | null
@@ -8096,9 +8096,9 @@ export namespace Prisma {
 
   export type combatesUncheckedUpdateManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput = {
     id?: IntFieldUpdateOperationsInput | number
-    pokemon1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    pokemon2_id?: NullableIntFieldUpdateOperationsInput | number | null
-    entrenador2_id?: NullableIntFieldUpdateOperationsInput | number | null
+    pokemon1_id?: IntFieldUpdateOperationsInput | number
+    pokemon2_id?: IntFieldUpdateOperationsInput | number
+    entrenador2_id?: IntFieldUpdateOperationsInput | number
     lugar?: NullableStringFieldUpdateOperationsInput | string | null
     evento?: NullableStringFieldUpdateOperationsInput | string | null
     ganador_id?: NullableIntFieldUpdateOperationsInput | number | null
@@ -8121,9 +8121,9 @@ export namespace Prisma {
 
   export type combatesUncheckedUpdateWithoutEntrenadores_combates_entrenador2_idToentrenadoresInput = {
     id?: IntFieldUpdateOperationsInput | number
-    entrenador1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    pokemon1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    pokemon2_id?: NullableIntFieldUpdateOperationsInput | number | null
+    entrenador1_id?: IntFieldUpdateOperationsInput | number
+    pokemon1_id?: IntFieldUpdateOperationsInput | number
+    pokemon2_id?: IntFieldUpdateOperationsInput | number
     lugar?: NullableStringFieldUpdateOperationsInput | string | null
     evento?: NullableStringFieldUpdateOperationsInput | string | null
     ganador_id?: NullableIntFieldUpdateOperationsInput | number | null
@@ -8134,9 +8134,9 @@ export namespace Prisma {
 
   export type combatesUncheckedUpdateManyWithoutEntrenadores_combates_entrenador2_idToentrenadoresInput = {
     id?: IntFieldUpdateOperationsInput | number
-    entrenador1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    pokemon1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    pokemon2_id?: NullableIntFieldUpdateOperationsInput | number | null
+    entrenador1_id?: IntFieldUpdateOperationsInput | number
+    pokemon1_id?: IntFieldUpdateOperationsInput | number
+    pokemon2_id?: IntFieldUpdateOperationsInput | number
     lugar?: NullableStringFieldUpdateOperationsInput | string | null
     evento?: NullableStringFieldUpdateOperationsInput | string | null
     ganador_id?: NullableIntFieldUpdateOperationsInput | number | null
@@ -8147,10 +8147,10 @@ export namespace Prisma {
 
   export type combatesCreateManyPokemons_combates_ganador_idTopokemonsInput = {
     id?: number
-    entrenador1_id?: number | null
-    pokemon1_id?: number | null
-    pokemon2_id?: number | null
-    entrenador2_id?: number | null
+    entrenador1_id: number
+    pokemon1_id: number
+    pokemon2_id: number
+    entrenador2_id: number
     lugar?: string | null
     evento?: string | null
     fecha?: Date | string | null
@@ -8160,9 +8160,9 @@ export namespace Prisma {
 
   export type combatesCreateManyPokemons_combates_pokemon1_idTopokemonsInput = {
     id?: number
-    entrenador1_id?: number | null
-    pokemon2_id?: number | null
-    entrenador2_id?: number | null
+    entrenador1_id: number
+    pokemon2_id: number
+    entrenador2_id: number
     lugar?: string | null
     evento?: string | null
     ganador_id?: number | null
@@ -8173,9 +8173,9 @@ export namespace Prisma {
 
   export type combatesCreateManyPokemons_combates_pokemon2_idTopokemonsInput = {
     id?: number
-    entrenador1_id?: number | null
-    pokemon1_id?: number | null
-    entrenador2_id?: number | null
+    entrenador1_id: number
+    pokemon1_id: number
+    entrenador2_id: number
     lugar?: string | null
     evento?: string | null
     ganador_id?: number | null
@@ -8201,8 +8201,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     evoluciona_de?: number | null
   }
@@ -8214,8 +8214,8 @@ export namespace Prisma {
     habilidades?: string | null
     nivel_poder?: number | null
     imagen?: string | null
-    altura?: number | null
-    peso?: number | null
+    altura: number
+    peso: number
     descripcion?: string | null
     evoluciona_a?: number | null
   }
@@ -8234,10 +8234,10 @@ export namespace Prisma {
 
   export type combatesUncheckedUpdateWithoutPokemons_combates_ganador_idTopokemonsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    entrenador1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    pokemon1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    pokemon2_id?: NullableIntFieldUpdateOperationsInput | number | null
-    entrenador2_id?: NullableIntFieldUpdateOperationsInput | number | null
+    entrenador1_id?: IntFieldUpdateOperationsInput | number
+    pokemon1_id?: IntFieldUpdateOperationsInput | number
+    pokemon2_id?: IntFieldUpdateOperationsInput | number
+    entrenador2_id?: IntFieldUpdateOperationsInput | number
     lugar?: NullableStringFieldUpdateOperationsInput | string | null
     evento?: NullableStringFieldUpdateOperationsInput | string | null
     fecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8247,10 +8247,10 @@ export namespace Prisma {
 
   export type combatesUncheckedUpdateManyWithoutPokemons_combates_ganador_idTopokemonsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    entrenador1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    pokemon1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    pokemon2_id?: NullableIntFieldUpdateOperationsInput | number | null
-    entrenador2_id?: NullableIntFieldUpdateOperationsInput | number | null
+    entrenador1_id?: IntFieldUpdateOperationsInput | number
+    pokemon1_id?: IntFieldUpdateOperationsInput | number
+    pokemon2_id?: IntFieldUpdateOperationsInput | number
+    entrenador2_id?: IntFieldUpdateOperationsInput | number
     lugar?: NullableStringFieldUpdateOperationsInput | string | null
     evento?: NullableStringFieldUpdateOperationsInput | string | null
     fecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8272,9 +8272,9 @@ export namespace Prisma {
 
   export type combatesUncheckedUpdateWithoutPokemons_combates_pokemon1_idTopokemonsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    entrenador1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    pokemon2_id?: NullableIntFieldUpdateOperationsInput | number | null
-    entrenador2_id?: NullableIntFieldUpdateOperationsInput | number | null
+    entrenador1_id?: IntFieldUpdateOperationsInput | number
+    pokemon2_id?: IntFieldUpdateOperationsInput | number
+    entrenador2_id?: IntFieldUpdateOperationsInput | number
     lugar?: NullableStringFieldUpdateOperationsInput | string | null
     evento?: NullableStringFieldUpdateOperationsInput | string | null
     ganador_id?: NullableIntFieldUpdateOperationsInput | number | null
@@ -8285,9 +8285,9 @@ export namespace Prisma {
 
   export type combatesUncheckedUpdateManyWithoutPokemons_combates_pokemon1_idTopokemonsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    entrenador1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    pokemon2_id?: NullableIntFieldUpdateOperationsInput | number | null
-    entrenador2_id?: NullableIntFieldUpdateOperationsInput | number | null
+    entrenador1_id?: IntFieldUpdateOperationsInput | number
+    pokemon2_id?: IntFieldUpdateOperationsInput | number
+    entrenador2_id?: IntFieldUpdateOperationsInput | number
     lugar?: NullableStringFieldUpdateOperationsInput | string | null
     evento?: NullableStringFieldUpdateOperationsInput | string | null
     ganador_id?: NullableIntFieldUpdateOperationsInput | number | null
@@ -8310,9 +8310,9 @@ export namespace Prisma {
 
   export type combatesUncheckedUpdateWithoutPokemons_combates_pokemon2_idTopokemonsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    entrenador1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    pokemon1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    entrenador2_id?: NullableIntFieldUpdateOperationsInput | number | null
+    entrenador1_id?: IntFieldUpdateOperationsInput | number
+    pokemon1_id?: IntFieldUpdateOperationsInput | number
+    entrenador2_id?: IntFieldUpdateOperationsInput | number
     lugar?: NullableStringFieldUpdateOperationsInput | string | null
     evento?: NullableStringFieldUpdateOperationsInput | string | null
     ganador_id?: NullableIntFieldUpdateOperationsInput | number | null
@@ -8323,9 +8323,9 @@ export namespace Prisma {
 
   export type combatesUncheckedUpdateManyWithoutPokemons_combates_pokemon2_idTopokemonsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    entrenador1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    pokemon1_id?: NullableIntFieldUpdateOperationsInput | number | null
-    entrenador2_id?: NullableIntFieldUpdateOperationsInput | number | null
+    entrenador1_id?: IntFieldUpdateOperationsInput | number
+    pokemon1_id?: IntFieldUpdateOperationsInput | number
+    entrenador2_id?: IntFieldUpdateOperationsInput | number
     lugar?: NullableStringFieldUpdateOperationsInput | string | null
     evento?: NullableStringFieldUpdateOperationsInput | string | null
     ganador_id?: NullableIntFieldUpdateOperationsInput | number | null
@@ -8373,8 +8373,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     combates_combates_ganador_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_ganador_idTopokemonsNestedInput
     combates_combates_pokemon1_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_pokemon1_idTopokemonsNestedInput
@@ -8392,8 +8392,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     evoluciona_de?: NullableIntFieldUpdateOperationsInput | number | null
     combates_combates_ganador_idTopokemons?: combatesUncheckedUpdateManyWithoutPokemons_combates_ganador_idTopokemonsNestedInput
@@ -8411,8 +8411,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     evoluciona_de?: NullableIntFieldUpdateOperationsInput | number | null
   }
@@ -8423,8 +8423,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     combates_combates_ganador_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_ganador_idTopokemonsNestedInput
     combates_combates_pokemon1_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_pokemon1_idTopokemonsNestedInput
@@ -8442,8 +8442,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     evoluciona_a?: NullableIntFieldUpdateOperationsInput | number | null
     combates_combates_ganador_idTopokemons?: combatesUncheckedUpdateManyWithoutPokemons_combates_ganador_idTopokemonsNestedInput
@@ -8461,8 +8461,8 @@ export namespace Prisma {
     habilidades?: NullableStringFieldUpdateOperationsInput | string | null
     nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    altura?: NullableFloatFieldUpdateOperationsInput | number | null
-    peso?: NullableFloatFieldUpdateOperationsInput | number | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     evoluciona_a?: NullableIntFieldUpdateOperationsInput | number | null
   }

@@ -11,10 +11,10 @@ datasource db {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model combates {
   id                                                 Int           @id @default(autoincrement())
-  entrenador1_id                                     Int?
-  pokemon1_id                                        Int?
-  pokemon2_id                                        Int?
-  entrenador2_id                                     Int?
+  entrenador1_id                                     Int
+  pokemon1_id                                        Int
+  pokemon2_id                                        Int
+  entrenador2_id                                     Int
   lugar                                              String?       @db.VarChar(50)
   evento                                             String?       @db.VarChar(100)
   ganador_id                                         Int?
@@ -51,8 +51,8 @@ model pokemons {
   habilidades                                     String?        @db.VarChar(255)
   nivel_poder                                     Int?
   imagen                                          String?        @db.VarChar(255)
-  altura                                          Float?         @db.Real
-  peso                                            Float?         @db.Real
+  altura                                          Float          @db.Real
+  peso                                            Float          @db.Real
   descripcion                                     String?        @db.VarChar(255)
   evoluciona_de                                   Int?
   evoluciona_a                                    Int?
