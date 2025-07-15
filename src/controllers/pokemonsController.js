@@ -28,7 +28,25 @@ async function getOnePokemon(req, res) {
     }
 }
 
+async function deleteOnePokemon(req, res) {
+    try {
+        const pokemonId = Number(req.params.id)
+
+        if (isNaN(pokemonId)) {
+            throw { status:'FAILED', error: 'Invalid ID' }
+        }
+
+        const deleted = await pokemonsModel.deleteOnePokemon(pokemonId)
+
+        res.status(200).send({ status: 'OK', data: deleted })
+
+    } catch (error) {
+        res.status(500).send({ status: 'FAILED', error: error?.message || error })
+    }
+}
+
 module.exports = {
     getAllPokemons,
-    getOnePokemon
+    getOnePokemon,
+    deleteOnePokemon
 }
