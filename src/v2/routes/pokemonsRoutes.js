@@ -5,12 +5,12 @@ const pokemonController = require('../../controllers/pokemonsController')
 
 router.get('/', pokemonController.getAllPokemons)
 
-router.get('/:pokemonId', pokemonController.getOnePokemon)
+// router.get('/:pokemonId', pokemonController.getOnePokemon)
 
-router.post('/', pokemonController.createNewPokemon)
+// router.post('/', pokemonController.createNewPokemon)
 
-router.patch('/:pokemonId', pokemonController.updateOnePokemon)
+// router.patch('/:pokemonId', pokemonController.updateOnePokemon)
 
-router.delete('/:pokemonId', pokemonController.deleteOnePokemon)
+// router.delete('/:pokemonId', pokemonController.deleteOnePokemon)
 
 module.exports = router
