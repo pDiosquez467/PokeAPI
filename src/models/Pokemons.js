@@ -34,11 +34,6 @@ async function deleteOnePokemon(pokemonId) {
                 id: pokemonId
             }
         })
-
-        if (!deleted) {
-            throw { status: 'FAILED', message: `Can't find pokemon with ID ${pokemonId}` }
-        }
-
         return deleted
 
     } catch (error) {

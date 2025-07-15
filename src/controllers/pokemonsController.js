@@ -41,7 +41,7 @@ async function deleteOnePokemon(req, res) {
         res.status(200).send({ status: 'OK', data: deleted })
 
     } catch (error) {
-        res.status(500).send({ status: 'FAILED', error: error?.message || error })
+        res.status(500).send({ status: 'FAILED', error: error?.error })
     }
 }
 
