@@ -20,6 +20,27 @@ async function getOnePokemon(pokemonId) {
             throw { status: 'FAILED', message: `Can't find pokemon with ID '${pokemonId}'` }
         }
 
+        return pokemon
+
+    } catch (error) {
+        throw { status: error?.status || 500, message: error?.message || error }
+    }
+}
+
+async function deleteOnePokemon(pokemonId) {
+    try {
+        const deleted = await prisma.pokemons.delete({
+            where: {
+                id: pokemonId
+            }
+        })
+
+        if (!deleted) {
+            throw { status: 'FAILED', message: `Can't find pokemon with ID ${pokemonId}` }
+        }
+
+        return deleted
+
     } catch (error) {
         throw { status: error?.status || 500, message: error?.message || error }
     }
@@ -27,5 +48,6 @@ async function getOnePokemon(pokemonId) {
 
 module.exports = {
     getAllPokemons,
-    getOnePokemon
+    getOnePokemon,
+    deleteOnePokemon
 }
