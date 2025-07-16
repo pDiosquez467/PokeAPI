@@ -3,14 +3,13 @@ const router = express.Router()
 
 const pokemonController = require('../../controllers/pokemonsController')
 
-router.get('/', pokemonController.getAllPokemons)
+router.route('/')
+    .get(pokemonController.getAllPokemons)
+    // .post(pokemonController.createNewPokemon)
 
-// router.get('/:pokemonId', pokemonController.getOnePokemon)
-
-// router.post('/', pokemonController.createNewPokemon)
-
-// router.patch('/:pokemonId', pokemonController.updateOnePokemon)
-
-// router.delete('/:pokemonId', pokemonController.deleteOnePokemon)
+router.route('/:pokemonId')
+    .get(pokemonController.getOnePokemon)
+    .delete(pokemonController.deleteOnePokemon)
+    // .patch('/:pokemonId', pokemonController.updateOnePokemon)
 
 module.exports = router
