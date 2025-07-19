@@ -10,6 +10,6 @@ router.route('/')
 router.route('/:pokemonId')
     .get(pokemonController.getOnePokemon)
     .delete(pokemonController.deleteOnePokemon)
-    .patch('/:pokemonId', pokemonController.updateOnePokemon)
+    .patch(pokemonController.updateOnePokemon)
 
 module.exports = router

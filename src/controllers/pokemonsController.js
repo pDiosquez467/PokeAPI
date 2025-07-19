@@ -74,11 +74,11 @@ async function updateOnePokemon(req, res) {
             return res.status(400).send({ status: 'FAILED', error: "Parameter ':pokemonId' can not be empty" })
         }
 
-        pokemonId = Number(pokemonId)
+        // pokemonId = Number(pokemonId)
 
-        if (isNaN(pokemonId)) {
-            return res.status(400).send({ status: 'FAILED', error: 'Invalid ID' })
-        }
+        // if (isNaN(pokemonId)) {
+        //     return res.status(400).send({ status: 'FAILED', error: 'Invalid ID' })
+        // }
 
         const updatedPokemon = await pokemonsModel.updateOnePokemon(pokemonId, body)
 
