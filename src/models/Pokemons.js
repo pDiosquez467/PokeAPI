@@ -43,6 +43,15 @@ async function createOnePokemon(newPokemon) {
 
 async function updateOnePokemon(pokemonId, changes) {
     try {
+
+        const exists = await prisma.pokemons.findUnique({
+            where: id
+        })
+
+        if (!exists) {
+            throw { status: 404, message: `Can't find pokemon with ID '${pokemonId}'` }
+        }
+
         const updatedPokemon = await prisma.pokemons.update({
             where: {
                 id: pokemonId
@@ -51,8 +60,9 @@ async function updateOnePokemon(pokemonId, changes) {
         })
 
         return updatedPokemon
+
     } catch (error) {
-        throw { status: error?.status || 500, error: error?.message || error }
+        throw { status: error?.status || 500, message: error?.message || error }
 
     }
 }
