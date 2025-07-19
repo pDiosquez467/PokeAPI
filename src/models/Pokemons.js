@@ -4,7 +4,7 @@ async function getAllPokemons() {
     try {
         return await prisma.pokemons.findMany()
     } catch (error) {
-        throw { status: error?.status || 500, message: error?.message || error }
+        throw { status: error?.status || 500, message: error?.message || String(error) }
     }
 }
 
@@ -23,7 +23,7 @@ async function getOnePokemon(pokemonId) {
         return pokemon
 
     } catch (error) {
-        throw { status: error?.status || 500, message: error?.message || error }
+        throw { status: error?.status || 500, message: error?.message || String(error) }
     }
 }
 
@@ -37,7 +37,7 @@ async function createOnePokemon(newPokemon) {
         return createdPokemon
 
     } catch (error) {
-        throw { status: error?.status || 500, message: error?.message || error }
+        throw { status: error?.status || 500, message: error?.message || String(error) }
     }
 }
 
@@ -62,8 +62,7 @@ async function updateOnePokemon(pokemonId, changes) {
         return updatedPokemon
 
     } catch (error) {
-        throw { status: error?.status || 500, message: error?.message || error }
-
+        throw { status: error?.status || 500, message: error?.message || String(error) }
     }
 }
 
@@ -86,7 +85,7 @@ async function deleteOnePokemon(pokemonId) {
         return deleted
 
     } catch (error) {
-        throw { status: error?.status || 500, message: error?.message || error }
+        throw { status: error?.status || 500, message: error?.message || String(error) }
     }
 }
 
