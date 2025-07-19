@@ -10,14 +10,14 @@ async function getAllPokemons() {
 
 async function getOnePokemon(pokemonId) {
     try {
-        const pokemon = await prisma.pokemons.findFirst({
+        const pokemon = await prisma.pokemons.findUnique({
             where: {
                 id: pokemonId
             }
         })
 
         if (!pokemon) {
-            throw { status: 'FAILED', message: `Can't find pokemon with ID '${pokemonId}'` }
+            throw { status: 404, message: `Can't find pokemon with ID '${pokemonId}'` }
         }
 
         return pokemon
