@@ -7,7 +7,7 @@ stop-db:
 	cd ./db && docker compose down
 
 start-backend:
-	cd ./backend && npm run dev
+	cd src && npm run dev
 
 run-backend: start-db
 	$(MAKE) start-backend
