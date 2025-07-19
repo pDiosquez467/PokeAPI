@@ -6,3 +6,7 @@ function sendError(res, error) {
             data: { error: error?.message || error }
     })
 }
+
+module.exports = {
+    sendError
+}
