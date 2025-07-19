@@ -31,16 +31,13 @@ async function createOnePokemon(newPokemon) {
     try {
         const createdPokemon = await prisma.pokemons.create({
             data: {
-                nombre: newPokemon.nombre,
-                tipo: newPokemon.tipo,
-                altura: newPokemon.altura,
-                peso: newPokemon.peso
+                ...newPokemon
             }
         })
         return createdPokemon
 
     } catch (error) {
-        throw { status: error?.status || 500, error: error?.message || error }
+        throw { status: error?.status || 500, message: error?.message || error }
     }
 }
 
