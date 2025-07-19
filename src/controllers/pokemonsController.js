@@ -1,4 +1,6 @@
 const pokemonsModel = require('../models/Pokemons')
+const { sendError } = require('../utils/sendError')
+
 
 async function getAllPokemons(req, res) {
     try {
@@ -6,28 +8,19 @@ async function getAllPokemons(req, res) {
 
         res.status(200).send({ status: 'OK', data: allPokemons })
     } catch (error) {
-        res
-            .status(error?.status || 500)
-            .send({ status: "FAILED", data: { error: error?.message || error } })
+        sendError(res, error) 
     }
 }
 
 async function getOnePokemon(req, res) {
     try {
-        const pokemonId = Number(req.params.pokemonId)
-
-        if (isNaN(pokemonId)) {
-            return res.status(400).send({ status: 'FAILED', data: { error: 'Invalid ID' } })
-        }
-
+        const pokemonId = Number(req.params.id)
         const pokemon = await pokemonsModel.getOnePokemon(pokemonId)
 
         res.status(200).send({ status: 'OK', data: pokemon })
 
     } catch (error) {
-        res
-            .status(error?.status || 500)
-            .send({ status: "FAILED", data: { error: error?.message || error } })
+        sendError(res, error)
     }
 }
 
@@ -52,57 +45,34 @@ async function createOnePokemon(req, res) {
 
         res.status(201).send({ status: 'OK', data: createdPokemon })
     } catch (error) {
-        res
-            .status(error?.status || 500)
-            .send({ status: "FAILED", data: { error: error?.message || error } })
+        sendError(res, error)
     }
 
 }
 
 async function updateOnePokemon(req, res) {
     try {
-        let {
-            body,
-            params: { pokemonId }
-        } = req
-
-        if (!pokemonId) {
-            return res.status(400).send({ status: 'FAILED', data: { error: "Parameter ':pokemonId' can not be empty" } })
-        }
-
-        pokemonId = Number(pokemonId)
-
-        if (isNaN(pokemonId)) {
-            return res.status(400).send({ status: 'FAILED', data: { error: 'Invalid ID' } })
-        }
+        const pokemonId = Number(req.params.id)
+        const { body } = req
 
         const updatedPokemon = await pokemonsModel.updateOnePokemon(pokemonId, body)
 
         res.status(200).send({ status: 'OK', data: updatedPokemon })
     } catch (error) {
-        res
-            .status(error?.status || 500)
-            .send({ status: "FAILED", data: { error: error?.message || error } })
+        sendError(res, error)
     }
 }
 
 async function deleteOnePokemon(req, res) {
     try {
-        let { pokemonId }  = req.params
-        pokemonId = Number(pokemonId)
-
-        if (isNaN(pokemonId)) {
-            return res.status(400).send({ status: 'FAILED', data: { error: 'Invalid ID' } })
-        }
+        const pokemonId = Number(req.params.id)
 
         const deleted = await pokemonsModel.deleteOnePokemon(pokemonId)
 
         res.status(200).send({ status: 'OK', data: deleted })
 
     } catch (error) {
-        res
-            .status(error?.status || 500)
-            .send({ status: "FAILED", data: { error: error?.message || error } })
+        sendError(res, error)
     }
 }
 
