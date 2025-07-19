@@ -28,6 +28,37 @@ async function getOnePokemon(req, res) {
     }
 }
 
+async function createOnePokemon(req, res) {
+    try {
+        const { body } = req
+
+    if (
+        !body.nombre ||
+        !body.tipo ||
+        !body.altura ||
+        !body.peso 
+    ) {
+        res.status(400).send({ status: 'FAILED', error: "One of the following keys is missing or is empty in request body: 'nombre', 'tipo', 'altura', 'peso'" })
+    }
+
+    const newPokemon = {
+        nombre: body.nombre,
+        tipo: body.tipo,
+        altura: body.altura,
+        peso: body.peso
+    }
+    
+    const createdPokemon = await pokemonsModel.createOnePokemon(newPokemon)
+
+    res.status(201).send({ status: 'OK', data: createdPokemon })
+    } catch (error) {
+        res
+            .status(error?.status || 500)
+            .send({ status: "FAILED", data: { error: error?.message || error } });   
+    }
+
+}
+
 async function deleteOnePokemon(req, res) {
     try {
         const pokemonId = Number(req.params.id)
@@ -48,5 +79,6 @@ async function deleteOnePokemon(req, res) {
 module.exports = {
     getAllPokemons,
     getOnePokemon,
+    createOnePokemon,
     deleteOnePokemon
 }

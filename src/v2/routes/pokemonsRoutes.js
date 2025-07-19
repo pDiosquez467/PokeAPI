@@ -5,7 +5,7 @@ const pokemonController = require('../../controllers/pokemonsController')
 
 router.route('/')
     .get(pokemonController.getAllPokemons)
-    // .post(pokemonController.createNewPokemon)
+    .post(pokemonController.createOnePokemon)
 
 router.route('/:pokemonId')
     .get(pokemonController.getOnePokemon)
