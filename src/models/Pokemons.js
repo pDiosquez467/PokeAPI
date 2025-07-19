@@ -27,6 +27,23 @@ async function getOnePokemon(pokemonId) {
     }
 }
 
+async function createOnePokemon(newPokemon) {
+    try {
+        const createdPokemon = await prisma.pokemons.create({
+            data: {
+                nombre: newPokemon.nombre,
+                tipo: newPokemon.tipo,
+                altura: newPokemon.altura,
+                peso: newPokemon.peso
+            }
+        })
+        return createdPokemon
+
+    } catch (error) {
+        throw { status: error?.status || 500, error: error?.message || error }
+    }
+}
+
 async function deleteOnePokemon(pokemonId) {
     try {
         const deleted = await prisma.pokemons.delete({
@@ -44,5 +61,6 @@ async function deleteOnePokemon(pokemonId) {
 module.exports = {
     getAllPokemons,
     getOnePokemon,
+    createOnePokemon,
     deleteOnePokemon
 }
