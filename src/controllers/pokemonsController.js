@@ -5,7 +5,6 @@ async function getAllPokemons(req, res) {
         const allPokemons = await pokemonsModel.getAllPokemons()
 
         res.status(200).send({ status: 'OK', data: allPokemons })
-
     } catch (error) {
         res
             .status(error?.status || 500)
@@ -18,7 +17,7 @@ async function getOnePokemon(req, res) {
         const pokemonId = Number(req.params.pokemonId)
 
         if (isNaN(pokemonId)) {
-            res.status(400).send({ status: 'FAILED', error: 'Invalid ID' })
+            return res.status(400).send({ status: 'FAILED', error: 'Invalid ID' })
         }
 
         const pokemon = await pokemonsModel.getOnePokemon(pokemonId)
@@ -46,10 +45,7 @@ async function createOnePokemon(req, res) {
         }
 
         const newPokemon = {
-            nombre: body.nombre,
-            tipo: body.tipo,
-            altura: body.altura,
-            peso: body.peso
+            ...body
         }
 
         const createdPokemon = await pokemonsModel.createOnePokemon(newPokemon)
@@ -74,11 +70,11 @@ async function updateOnePokemon(req, res) {
             return res.status(400).send({ status: 'FAILED', error: "Parameter ':pokemonId' can not be empty" })
         }
 
-        // pokemonId = Number(pokemonId)
+        pokemonId = Number(pokemonId)
 
-        // if (isNaN(pokemonId)) {
-        //     return res.status(400).send({ status: 'FAILED', error: 'Invalid ID' })
-        // }
+        if (isNaN(pokemonId)) {
+            return res.status(400).send({ status: 'FAILED', error: 'Invalid ID' })
+        }
 
         const updatedPokemon = await pokemonsModel.updateOnePokemon(pokemonId, body)
 
