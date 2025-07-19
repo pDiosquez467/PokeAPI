@@ -27,7 +27,7 @@ async function getOnePokemon(req, res) {
     } catch (error) {
         res
             .status(error?.status || 500)
-            .send({ status: "FAILED", data: { error: error?.message || error } });
+            .send({ status: "FAILED", data: { error: error?.message || error } })
     }
 }
 
@@ -41,7 +41,7 @@ async function createOnePokemon(req, res) {
             !body.altura ||
             !body.peso
         ) {
-            res.status(400).send({ status: 'FAILED', error: "One of the following keys is missing or is empty in request body: 'nombre', 'tipo', 'altura', 'peso'" })
+            return res.status(400).send({ status: 'FAILED', error: "One of the following keys is missing or is empty in request body: 'nombre', 'tipo', 'altura', 'peso'" })
         }
 
         const newPokemon = {
@@ -54,7 +54,7 @@ async function createOnePokemon(req, res) {
     } catch (error) {
         res
             .status(error?.status || 500)
-            .send({ status: "FAILED", data: { error: error?.message || error } });
+            .send({ status: "FAILED", data: { error: error?.message || error } })
     }
 
 }
