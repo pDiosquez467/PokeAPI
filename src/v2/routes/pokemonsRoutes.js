@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const pokemonController = require('../../controllers/pokemonsController')
+const pokemonVaidateId = require('')
 
 router.route('/')
     .get(pokemonController.getAllPokemons)
