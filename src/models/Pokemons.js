@@ -69,6 +69,15 @@ async function updateOnePokemon(pokemonId, changes) {
 
 async function deleteOnePokemon(pokemonId) {
     try {
+
+        const exists = await prisma.pokemons.findUnique({
+            where: id
+        })
+
+        if (!exists) {
+            throw { status: 404, message: `Can't find pokemon with ID '${pokemonId}'` }
+        }
+
         const deleted = await prisma.pokemons.delete({
             where: {
                 id: pokemonId
