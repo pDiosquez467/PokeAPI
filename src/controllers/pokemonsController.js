@@ -88,7 +88,8 @@ async function updateOnePokemon(req, res) {
 
 async function deleteOnePokemon(req, res) {
     try {
-        const pokemonId = Number(req.params.id)
+        let { pokemonId }  = req.params
+        pokemonId = Number(pokemonId)
 
         if (isNaN(pokemonId)) {
             return res.status(400).send({ status: 'FAILED', error: 'Invalid ID' })
