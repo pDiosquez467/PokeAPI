@@ -1,6 +1,5 @@
 async function validateId(req, res, next) {
     let { id } = req.params 
-    id = Number(id)
 
     if (isNaN(id)) {
         return res.status(400).send( {
@@ -9,6 +8,10 @@ async function validateId(req, res, next) {
         })
     }
 
-    req.params.id = id
+    req.params.id = Number(id)
     next()
+}
+
+module.exports = {
+    validateId
 }
