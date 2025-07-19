@@ -61,7 +61,7 @@ async function createOnePokemon(req, res) {
 
 async function updateOnePokemon(req, res) {
     try {
-        const {
+        let {
             body,
             params: { pokemonId }
         } = req
