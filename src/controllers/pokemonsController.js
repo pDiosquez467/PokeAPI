@@ -63,6 +63,27 @@ async function createOnePokemon(req, res) {
 
 }
 
+async function updateOnePokemon(req, res) {
+    try {
+        const {
+            body,
+            params: { pokemonId }
+        } = req
+
+        if (!pokemonId) {
+            return res.status(400).send({ status: 'FAILED', error: "Parameter ':pokemonId' can not be empty" })
+        }
+
+        const updatedPokemon = await pokemonsModel.updateOnePokemon(pokemonId, body)
+
+        res.status(200).send({ status: 'OK', data: updatedPokemon })
+    } catch (error) {
+        res
+            .status(error?.status || 500)
+            .send({ status: "FAILED", data: { error: error?.message || error } })
+    }
+}
+
 async function deleteOnePokemon(req, res) {
     try {
         const pokemonId = Number(req.params.id)
@@ -78,7 +99,7 @@ async function deleteOnePokemon(req, res) {
     } catch (error) {
         res
             .status(error?.status || 500)
-            .send({ status: "FAILED", data: { error: error?.message || error } });
+            .send({ status: "FAILED", data: { error: error?.message || error } })
     }
 }
 
@@ -86,5 +107,6 @@ module.exports = {
     getAllPokemons,
     getOnePokemon,
     createOnePokemon,
+    updateOnePokemon,
     deleteOnePokemon
 }
