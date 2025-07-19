@@ -44,6 +44,22 @@ async function createOnePokemon(newPokemon) {
     }
 }
 
+async function updateOnePokemon(pokemonId, changes) {
+    try {
+        const updatedPokemon = await prisma.pokemons.update({
+            where: {
+                id: pokemonId
+            },
+            data: changes
+        })
+
+        return updatedPokemon
+    } catch (error) {
+        throw { status: error?.status || 500, error: error?.message || error }
+
+    }
+}
+
 async function deleteOnePokemon(pokemonId) {
     try {
         const deleted = await prisma.pokemons.delete({
@@ -62,5 +78,6 @@ module.exports = {
     getAllPokemons,
     getOnePokemon,
     createOnePokemon,
+    updateOnePokemon,
     deleteOnePokemon
 }
