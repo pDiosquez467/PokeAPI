@@ -7,7 +7,9 @@ async function getAllPokemons(req, res) {
         res.status(200).send({ status: 'OK', data: allPokemons })
 
     } catch (error) {
-        res.status(500).send({ status: 'FAILED', error: error?.message || error })
+        res
+            .status(error?.status || 500)
+            .send({ status: "FAILED", data: { error: error?.message || error } });
     }
 }
 
@@ -24,7 +26,9 @@ async function getOnePokemon(req, res) {
         res.status(200).send({ status: 'OK', data: pokemon })
 
     } catch (error) {
-        res.status(500).send({ status: 'FAILED', error: error?.message || error })
+        res
+            .status(error?.status || 500)
+            .send({ status: "FAILED", data: { error: error?.message || error } });
     }
 }
 
@@ -32,29 +36,29 @@ async function createOnePokemon(req, res) {
     try {
         const { body } = req
 
-    if (
-        !body.nombre ||
-        !body.tipo ||
-        !body.altura ||
-        !body.peso 
-    ) {
-        res.status(400).send({ status: 'FAILED', error: "One of the following keys is missing or is empty in request body: 'nombre', 'tipo', 'altura', 'peso'" })
-    }
+        if (
+            !body.nombre ||
+            !body.tipo ||
+            !body.altura ||
+            !body.peso
+        ) {
+            res.status(400).send({ status: 'FAILED', error: "One of the following keys is missing or is empty in request body: 'nombre', 'tipo', 'altura', 'peso'" })
+        }
 
-    const newPokemon = {
-        nombre: body.nombre,
-        tipo: body.tipo,
-        altura: body.altura,
-        peso: body.peso
-    }
-    
-    const createdPokemon = await pokemonsModel.createOnePokemon(newPokemon)
+        const newPokemon = {
+            nombre: body.nombre,
+            tipo: body.tipo,
+            altura: body.altura,
+            peso: body.peso
+        }
 
-    res.status(201).send({ status: 'OK', data: createdPokemon })
+        const createdPokemon = await pokemonsModel.createOnePokemon(newPokemon)
+
+        res.status(201).send({ status: 'OK', data: createdPokemon })
     } catch (error) {
         res
             .status(error?.status || 500)
-            .send({ status: "FAILED", data: { error: error?.message || error } });   
+            .send({ status: "FAILED", data: { error: error?.message || error } });
     }
 
 }
@@ -64,7 +68,7 @@ async function deleteOnePokemon(req, res) {
         const pokemonId = Number(req.params.id)
 
         if (isNaN(pokemonId)) {
-            throw { status:'FAILED', error: 'Invalid ID' }
+            throw { status: 'FAILED', error: 'Invalid ID' }
         }
 
         const deleted = await pokemonsModel.deleteOnePokemon(pokemonId)
@@ -72,7 +76,9 @@ async function deleteOnePokemon(req, res) {
         res.status(200).send({ status: 'OK', data: deleted })
 
     } catch (error) {
-        res.status(500).send({ status: 'FAILED', error: error?.error })
+        res
+            .status(error?.status || 500)
+            .send({ status: "FAILED", data: { error: error?.message || error } });
     }
 }
 
