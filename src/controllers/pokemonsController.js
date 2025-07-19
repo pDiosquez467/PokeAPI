@@ -8,7 +8,7 @@ async function getAllPokemons(req, res) {
     } catch (error) {
         res
             .status(error?.status || 500)
-            .send({ status: "FAILED", data: { error: error?.message || error } });
+            .send({ status: "FAILED", data: { error: error?.message || error } })
     }
 }
 
@@ -17,7 +17,7 @@ async function getOnePokemon(req, res) {
         const pokemonId = Number(req.params.pokemonId)
 
         if (isNaN(pokemonId)) {
-            return res.status(400).send({ status: 'FAILED', error: 'Invalid ID' })
+            return res.status(400).send({ status: 'FAILED', data: { error: 'Invalid ID' } })
         }
 
         const pokemon = await pokemonsModel.getOnePokemon(pokemonId)
@@ -41,7 +41,7 @@ async function createOnePokemon(req, res) {
             !body.altura ||
             !body.peso
         ) {
-            return res.status(400).send({ status: 'FAILED', error: "One of the following keys is missing or is empty in request body: 'nombre', 'tipo', 'altura', 'peso'" })
+            return res.status(400).send({ status: 'FAILED', data: { error: "One of the following keys is missing or is empty in request body: 'nombre', 'tipo', 'altura', 'peso'" } })
         }
 
         const newPokemon = {
@@ -67,13 +67,13 @@ async function updateOnePokemon(req, res) {
         } = req
 
         if (!pokemonId) {
-            return res.status(400).send({ status: 'FAILED', error: "Parameter ':pokemonId' can not be empty" })
+            return res.status(400).send({ status: 'FAILED', data: { error: "Parameter ':pokemonId' can not be empty" } })
         }
 
         pokemonId = Number(pokemonId)
 
         if (isNaN(pokemonId)) {
-            return res.status(400).send({ status: 'FAILED', error: 'Invalid ID' })
+            return res.status(400).send({ status: 'FAILED', data: { error: 'Invalid ID' } })
         }
 
         const updatedPokemon = await pokemonsModel.updateOnePokemon(pokemonId, body)
@@ -92,7 +92,7 @@ async function deleteOnePokemon(req, res) {
         pokemonId = Number(pokemonId)
 
         if (isNaN(pokemonId)) {
-            return res.status(400).send({ status: 'FAILED', error: 'Invalid ID' })
+            return res.status(400).send({ status: 'FAILED', data: { error: 'Invalid ID' } })
         }
 
         const deleted = await pokemonsModel.deleteOnePokemon(pokemonId)
