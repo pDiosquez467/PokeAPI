@@ -45,7 +45,9 @@ async function updateOnePokemon(pokemonId, changes) {
     try {
 
         const exists = await prisma.pokemons.findUnique({
-            where: id
+            where: {
+                id: pokemonId
+            }
         })
 
         if (!exists) {
@@ -68,9 +70,10 @@ async function updateOnePokemon(pokemonId, changes) {
 
 async function deleteOnePokemon(pokemonId) {
     try {
-
         const exists = await prisma.pokemons.findUnique({
-            where: id
+            where: {
+                id: pokemonId
+            }
         })
 
         if (!exists) {
