@@ -97,6 +97,37 @@ router.get('/id/:id', validatePokemonId, pokemonController.getOnePokemon)
 
 router.delete('/id/:id', validatePokemonId, pokemonController.deleteOnePokemon)
 
+/**
+ * @swagger
+ * /pokemons/id/{id}:
+ *   put:
+ *     summary: Update a Pokemon by the id
+ *     tags: [Pokemons]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: The Pokemon id
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Pokemon'
+ *     responses:
+ *       200:
+ *         description: The Pokemon was updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Pokemon'
+ *       404:
+ *         description: The Pokemon was not found
+ *       500:
+ *         description: Some error happened
+ */
 router.patch('/id/:id', validatePokemonId, pokemonController.updateOnePokemon)
 
 module.exports = router
