@@ -1,5 +1,6 @@
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const path = require('path')
 
 const options = {
   definition: {
@@ -16,7 +17,7 @@ const options = {
       },
     ],
   },
-  apis: ['./routes/*.js'], // Ruta a los archivos con anotaciones Swagger
+  apis: [path.join(__dirname, '../v2/routes/*.js')], // Ruta a los archivos con anotaciones Swagger
 };
 
 // Genera la especificación en formato OpenAPI
