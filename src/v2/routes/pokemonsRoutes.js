@@ -51,7 +51,7 @@ router.get('/', pokemonController.getAllPokemons)
  * /pokemons:
  *   post:
  *     summary: Create a new Pokemon
- *     tags: [Pokemons]
+ *     tags: [Pokemon]
  *     requestBody:
  *       required: true
  *       content:
@@ -75,7 +75,7 @@ router.post('/', pokemonController.createOnePokemon)
  * /pokemons/id/{id}:
  *   get:
  *     summary: Get a Pokemon by id
- *     tags: [Pokemons]
+ *     tags: [Pokemon]
  *     parameters:
  *       - in: path
  *         name: id
@@ -95,14 +95,37 @@ router.post('/', pokemonController.createOnePokemon)
  */
 router.get('/id/:id', validatePokemonId, pokemonController.getOnePokemon)
 
+/**
+ * @swagger
+ * /jedis/id/{id}:
+ *   delete:
+ *     summary: Remove the Pokemon by id
+ *     tags: [Pokemon]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: The Pokemon id
+ *     responses:
+ *       200:
+ *         description: The Pokemon was deleted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Pokemon'
+ *       404:
+ *         description: The Pokemon was not found
+ */
 router.delete('/id/:id', validatePokemonId, pokemonController.deleteOnePokemon)
 
 /**
  * @swagger
  * /pokemons/id/{id}:
- *   put:
+ *   patch:
  *     summary: Update a Pokemon by the id
- *     tags: [Pokemons]
+ *     tags: [Pokemon]
  *     parameters:
  *       - in: path
  *         name: id
