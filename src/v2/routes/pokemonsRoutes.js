@@ -46,7 +46,28 @@ const { validateId: validatePokemonId } = require('../../middlewares/validateId'
  */
 router.get('/', pokemonController.getAllPokemons)
     
-
+/**
+ * @swagger
+ * /pokemons:
+ *   post:
+ *     summary: Create a new Pokemon
+ *     tags: [Pokemons]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Pokemon'
+ *     responses:
+ *       201:
+ *         description: The Pokemon was successfully created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Pokemon'
+ *       500:
+ *         description: Some server error
+ */
 router.post('/', pokemonController.createOnePokemon)
 
 /**
