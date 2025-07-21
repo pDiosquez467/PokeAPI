@@ -12,7 +12,19 @@ const getAllEntrenadores = async (req, res) => {
     }
 }
 
+const getOneEntrenador = async (req, res) => {
+    try {
+        const entrenadorId = Number(req.params.id)
+        const entrenador = await entrenadoresModel.getOneEntrenador(entrenadorId)
+
+        res.status(200).send({ status: 'OK', data: entrenador })
+
+    } catch (error) {
+        sendError(res, error)
+    }
+}
 
 module.exports = {
-    getAllEntrenadores
+    getAllEntrenadores,
+    getOneEntrenador
 } 
