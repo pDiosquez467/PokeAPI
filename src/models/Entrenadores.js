@@ -26,7 +26,22 @@ const getOneEntrenador = async (entrenadorId) => {
     }
 }
 
+const createOneEntrenador = async (newEntrenador) => {
+    try {
+        const createdEntrenador = await prisma.entrenadores.create({
+            data: {
+                ...newEntrenador
+            }
+        })
+        return createdEntrenador
+    } catch (error) {
+        throw { status: error?.status || 500, message: error?.message || String(error) }
+    }
+}
+
+
 module.exports = {
-    getAllEntrenadores, 
-    getOneEntrenador
+    getAllEntrenadores,
+    getOneEntrenador,
+    createOneEntrenador
 }
