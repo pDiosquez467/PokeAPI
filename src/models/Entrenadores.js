@@ -39,6 +39,30 @@ const createOneEntrenador = async (newEntrenador) => {
     }
 }
 
+const updateOneEntrenador = async (entrenadorId, changes) => {
+    try {
+        const exists = await prisma.entrenadores.findUnique({
+            where: {
+                id: entrenadorId
+            }
+        })
+
+        if (!exists) {
+            throw { status: 404, message: `Can't find entrenador with ID '${entrenadorId}'` }
+        }
+
+        const updated = await prisma.entrenadores.update({
+            where: {
+                id: entrenadorId
+            },
+            data: changes
+        })
+        return updated
+    } catch (error) {
+        throw { status: error?.status || 500, message: error?.message || String(error) }
+    }
+}
+
 const deleteOneEntrenador = async (entrenadorId) => {
     try {
         const exist = await prisma.entrenadores.findUnique({
