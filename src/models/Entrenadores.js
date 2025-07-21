@@ -8,7 +8,25 @@ const getAllEntrenadores = async () => {
     }
 }
 
+const getOneEntrenador = async (entrenadorId) => {
+    try {
+        const entrenador = await prisma.entrenadores.findUnique({
+            where: {
+                id: entrenadorId
+            }
+        })
+
+        if (!entrenador) {
+            throw { status: 404, message: `Can't find pokemon with ID '${entrenadorId}'` }
+        }
+
+        return entrenador
+    } catch (error) {
+        throw { status: error?.status || 500, message: error?.message || String(error) }
+    }
+}
 
 module.exports = {
-    getAllEntrenadores
+    getAllEntrenadores, 
+    getOneEntrenador
 }
