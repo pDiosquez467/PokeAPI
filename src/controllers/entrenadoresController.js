@@ -44,13 +44,26 @@ const createOneEntrenador = async (req, res) => {
     }
 }
 
+const updateOneEntrenador = async (req, res) => {
+    try {
+        const entrenadorId = Number(req.params.id)
+        const { body } = req
+
+        const updatedEntrenador = await entrenadoresModel.updateOneEntrenador(entrenadorId, body)
+
+        res.status(200).send({ status: 'OK', data: updatedEntrenador })
+    } catch (error) {
+        sendError(res, error)
+    }
+}
+
 const deleteOneEntrenador = async (req, res) => {
     try {
         const entrenadorId = Number(req.params.id)
         const deleted = await entrenadoresModel.deleteOneEntrenador(entrenadorId)
 
         res.status(202).send({ status: 'OK', data: deleted })
-        
+
     } catch (error) {
         sendError(res, error)
     }
@@ -60,5 +73,6 @@ module.exports = {
     getAllEntrenadores,
     getOneEntrenador,
     createOneEntrenador,
+    updateOneEntrenador,
     deleteOneEntrenador
 } 
