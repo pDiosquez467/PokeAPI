@@ -25,23 +25,40 @@ const getOneEntrenador = async (req, res) => {
 }
 
 const createOneEntrenador = async (req, res) => {
-    const { body } = req 
+    try {
+        const { body } = req
 
-    if (!body.nombre) {
-        return res.status(400).send({ status: 'FAILED', data: { error: "One of the following keys is missing or is empty in request body: 'nombre'" } })
+        if (!body.nombre) {
+            return res.status(400).send({ status: 'FAILED', data: { error: "One of the following keys is missing or is empty in request body: 'nombre'" } })
+        }
+
+        const newEntrenador = {
+            ...req.body
+        }
+
+        const createdEntrenador = await entrenadoresModel.createOneEntrenador(newEntrenador)
+
+        res.status(201).send({ status: 'OK', data: createdEntrenador })
+    } catch (error) {
+        sendError(res, error)
     }
+}
 
-    const newEntrenador = {
-        ...req.body
+const deleteOneEntrenador = async (req, res) => {
+    try {
+        const entrenadorId = Number(req.params.id)
+        const deleted = await entrenadoresModel.deleteOneEntrenador(entrenadorId)
+
+        res.status(202).send({ status: 'OK', data: deleted })
+        
+    } catch (error) {
+        sendError(res, error)
     }
-
-    const createdEntrenador = await entrenadoresModel.createOneEntrenador(newEntrenador)
-
-    res.status(201).send({ status: 'OK', data: createdEntrenador })
 }
 
 module.exports = {
     getAllEntrenadores,
     getOneEntrenador,
-    createOneEntrenador
+    createOneEntrenador,
+    deleteOneEntrenador
 } 
