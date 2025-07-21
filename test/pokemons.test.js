@@ -1,50 +1,124 @@
 const request = require('supertest')
-const app = require('../src/app')
+const app = require('../src/app') 
 
-describe('GET /api/v2/pokemons', () => {
-    test('Should return an array of pokemons', async () => {
-        const res = await request(app).get('/api/v2/pokemons')
-        expect(res.statusCode).toBe(200)
-        expect(res.body).toHaveProperty('status', 'OK')
-        expect(res.body).toHaveProperty('data')
-        expect(Array.isArray(res.body.data)).toBe(true)
-    })
-})
+describe('Pokemons API', () => {
 
-describe('GET /api/v2/pokemons/id/:id', () => {
-    test('Should return an existing Pokemon (status 200)', async () => {
-        const res = await request(app).get('/api/v2/pokemons/id/3')
-        expect(res.statusCode).toBe(200)
-        expect(res.body.data).toHaveProperty('id', 2)
-        expect(res.body.data).toHaveProperty('nombre')
+    let createdPokemonId = null
+
+    describe('GET /api/v2/pokemons', () => {
+        test('should return all pokemons', async () => {
+            const res = await request(app).get('/api/v2/pokemons')
+            expect(res.statusCode).toBe(200)
+            expect(res.body.status).toBe('OK')
+            expect(Array.isArray(res.body.data)).toBe(true)
+        })
     })
 
-    test('Should return "Pokemon NOT FOUND"', async () => {
-        const res = await request(app).get('/api/v2/pokemons/id/9999')
-        expect(res.statusCode).toBe(404)
+    describe('POST /api/v2/pokemons', () => {
+        test('should create a new pokemon', async () => {
+            const newPokemon = {
+                nombre: 'Charmander',
+                tipo: 'Fuego',
+                altura: 0.6,
+                peso: 8.5
+            }
+
+            const res = await request(app)
+                .post('/api/v2/pokemons')
+                .send(newPokemon)
+
+            expect(res.statusCode).toBe(201)
+            expect(res.body.status).toBe('OK')
+            expect(res.body.data).toHaveProperty('id')
+            expect(res.body.data.nombre).toBe(newPokemon.nombre)
+
+            createdPokemonId = res.body.data.id
+        })
+
+        test('should return 400 if missing fields', async () => {
+            const res = await request(app)
+                .post('/api/v2/pokemons')
+                .send({ nombre: 'Bulbasaur' })
+
+            expect(res.statusCode).toBe(400)
+            expect(res.body.status).toBe('FAILED')
+        })
     })
 
-    test('Should return status 400 BAD REQUEST', async () => {
-        const res = await request(app).get('/api/v2/pokemons/id/abc')
-        expect(res.statusCode).toBe(400)
-    })
-})
+    describe('GET /api/v2/pokemons/id/:id', () => {
+        test('should get a pokemon by ID', async () => {
+            const res = await request(app)
+                .get(`/api/v2/pokemons/id/${createdPokemonId}`)
 
-describe('DELETE /api/v2/pokemons/id/:id', () => {
-    test('Should return a deleted pokemon (status 200)', async () => {
-        const res = await request(app).delete('/api/v2/pokemons/id/3')
-        expect(res.statusCode).toBe(200)
-        expect(res.body.data).toHaveProperty('id', 3)
-        expect(res.body.data).toHaveProperty('nombre', 'TestMon UpUp')
+            expect(res.statusCode).toBe(200)
+            expect(res.body.status).toBe('OK')
+            expect(res.body.data).toHaveProperty('id', createdPokemonId)
+        })
+
+        test('should return 404 for non-existent ID', async () => {
+            const res = await request(app).get('/api/v2/pokemons/id/999999')
+            expect(res.statusCode).toBe(404)
+        })
+
+        test('should return 400 for invalid ID', async () => {
+            const res = await request(app).get('/api/v2/pokemons/id/abc')
+            expect(res.statusCode).toBe(400)
+        })
     })
 
-    test('Should return status 404 NOT FOUND', async () => {
-        const res = await request(app).delete('/api/v2/pokemons/id/0').send()
-        expect(res.statusCode).toBe(404)
+    describe('PATCH /api/v2/pokemons/id/:id', () => {
+        test('should update the pokemon', async () => {
+            const changes = { peso: 10.0 }
+
+            const res = await request(app)
+                .patch(`/api/v2/pokemons/id/${createdPokemonId}`)
+                .send(changes)
+
+            expect(res.statusCode).toBe(200)
+            expect(res.body.status).toBe('OK')
+            expect(res.body.data.peso).toBe(changes.peso)
+        })
+
+        test('should return 404 for non-existent ID', async () => {
+            const res = await request(app)
+                .patch('/api/v2/pokemons/id/99999')
+                .send({ peso: 12.0 })
+
+            expect(res.statusCode).toBe(404)
+        })
+
+        test('should return 400 for invalid ID', async () => {
+            const res = await request(app)
+                .patch('/api/v2/pokemons/id/abc')
+                .send({ peso: 12.0 })
+
+            expect(res.statusCode).toBe(400)
+        })
     })
 
-    // test('Should return status 400 BAD REQUEST', async () => {
-    //     const res = await request(app).delete('/api/v2/pokemons/abc').send()
-    //     expect(res.statusCode).toBe(400)
-    // })
+    describe('DELETE /api/v2/pokemons/id/:id', () => {
+        test('should delete the pokemon', async () => {
+            const res = await request(app)
+                .delete(`/api/v2/pokemons/id/${createdPokemonId}`)
+
+            expect(res.statusCode).toBe(202)
+            expect(res.body.status).toBe('OK')
+            expect(res.body.data.id).toBe(createdPokemonId)
+        })
+
+        test('should return 404 if already deleted or not found', async () => {
+            const res = await request(app)
+                .delete(`/api/v2/pokemons/id/${createdPokemonId}`)
+
+            expect(res.statusCode).toBe(404)
+        })
+
+        test('should return 400 for invalid ID', async () => {
+            const res = await request(app)
+                .delete('/api/v2/pokemons/id/abc')
+
+            expect(res.statusCode).toBe(400)
+        })
+    })
+
 })
