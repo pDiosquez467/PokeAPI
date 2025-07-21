@@ -17,7 +17,7 @@ const getOneEntrenador = async (entrenadorId) => {
         })
 
         if (!entrenador) {
-            throw { status: 404, message: `Can't find pokemon with ID '${entrenadorId}'` }
+            throw { status: 404, message: `Can't find entrenador with ID '${entrenadorId}'` }
         }
 
         return entrenador
@@ -39,9 +39,33 @@ const createOneEntrenador = async (newEntrenador) => {
     }
 }
 
+const deleteOneEntrenador = async (entrenadorId) => {
+    try {
+        const exist = await prisma.entrenadores.findUnique({
+            where: {
+                id: entrenadorId
+            }
+        })
+
+        if (!exist) {
+            throw { status: 404, message: `Can't find entrenador with ID '${entrenadorId}'` }
+        }
+
+        const deleted = await prisma.entrenadores.delete({
+            where: {
+                id: entrenadorId
+            }
+        })
+
+        return deleted
+    } catch (error) {
+        throw { status: error?.status || 500, message: error?.message || String(error) }
+    }
+}
 
 module.exports = {
     getAllEntrenadores,
     getOneEntrenador,
-    createOneEntrenador
+    createOneEntrenador,
+    deleteOneEntrenador
 }
