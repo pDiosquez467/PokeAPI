@@ -97,7 +97,7 @@ router.get('/id/:id', validatePokemonId, pokemonController.getOnePokemon)
 
 /**
  * @swagger
- * /jedis/id/{id}:
+ * /pokemons/id/{id}:
  *   delete:
  *     summary: Remove the Pokemon by id
  *     tags: [Pokemon]
