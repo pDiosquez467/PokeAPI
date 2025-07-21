@@ -69,7 +69,7 @@ async function deleteOnePokemon(req, res) {
 
         const deleted = await pokemonsModel.deleteOnePokemon(pokemonId)
 
-        res.status(200).send({ status: 'OK', data: deleted })
+        res.status(202).send({ status: 'OK', data: deleted })
 
     } catch (error) {
         sendError(res, error)
