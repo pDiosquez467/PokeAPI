@@ -62,6 +62,32 @@ describe('Pokemons API', () => {
         expect(res.statusCode).toBe(400)
     })
 
+    describe('PATCH /api/v2/entrenadores/id/:id', () => {
+        test('Should update the entrenador', async () => {
+            const changes = { origen: 'Pueblo 📍'}
+
+            const res = await request(app).patch(`/api/v2/entrenadores/id/${createdEntrenadorId}`).send(changes)
+
+            expect(res.statusCode).toBe(200)
+            expect(res.body.status).toBe('OK')
+            expect(res.body.data.origen).toBe(changes.origen)
+        })
+
+        test('Should return 404 for non-existent ID', async () => {
+            const res = await request(app).patch('/api/entrenadores/id/0').send({ origen: 'Somewhere over the Rainbow' })
+
+            expect(res.statusCode).toBe(404)
+        })
+
+        test('Should return 400 for invalid ID', async () => {
+            const res = await request(app)
+                .patch('/api/v2/entrenadores/id/abc')
+                .send({ origen: 'Somewhere over the Rainbow' })
+
+            expect(res.statusCode).toBe(400)
+        })
+    })
+
     describe('DELETE /api/v2/entrenadores/id/:id', () => {
         test('Should delete the entrenador', async () => {
             const res = await request(app).delete(`/api/v2/entrenadores/id/${createdEntrenadorId}`)
