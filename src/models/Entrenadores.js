@@ -91,5 +91,6 @@ module.exports = {
     getAllEntrenadores,
     getOneEntrenador,
     createOneEntrenador,
+    updateOneEntrenador,
     deleteOneEntrenador
 }
