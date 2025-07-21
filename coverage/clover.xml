@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1753040675204" clover="3.2.0">
-  <project timestamp="1753040675205" name="All files">
-    <metrics statements="201" coveredstatements="135" conditionals="4030" coveredconditionals="635" methods="1396" coveredmethods="305" elements="5627" coveredelements="1075" complexity="0" loc="201" ncloc="201" packages="10" files="10" classes="10"/>
+<coverage generated="1753112163589" clover="3.2.0">
+  <project timestamp="1753112163589" name="All files">
+    <metrics statements="283" coveredstatements="162" conditionals="4058" coveredconditionals="635" methods="1406" coveredmethods="305" elements="5747" coveredelements="1102" complexity="0" loc="283" ncloc="283" packages="10" files="13" classes="13"/>
     <package name="src">
-      <metrics statements="10" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="12" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="app.js" path="/home/diosquez/Intro/PokeAPI/src/app.js">
-        <metrics statements="10" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="12" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -14,8 +14,10 @@
         <line num="10" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.config">
@@ -31,7 +33,46 @@
       </file>
     </package>
     <package name="src.controllers">
-      <metrics statements="31" coveredstatements="11" conditionals="6" coveredconditionals="0" methods="5" coveredmethods="2"/>
+      <metrics statements="67" coveredstatements="19" conditionals="8" coveredconditionals="0" methods="10" coveredmethods="2"/>
+      <file name="entrenadoresController.js" path="/home/diosquez/Intro/PokeAPI/src/controllers/entrenadoresController.js">
+        <metrics statements="36" coveredstatements="8" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="31" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
+      </file>
       <file name="pokemonsController.js" path="/home/diosquez/Intro/PokeAPI/src/controllers/pokemonsController.js">
         <metrics statements="31" coveredstatements="11" conditionals="6" coveredconditionals="0" methods="5" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
@@ -80,7 +121,44 @@
       </file>
     </package>
     <package name="src.models">
-      <metrics statements="29" coveredstatements="10" conditionals="26" coveredconditionals="4" methods="5" coveredmethods="2"/>
+      <metrics statements="63" coveredstatements="17" conditionals="52" coveredconditionals="4" methods="10" coveredmethods="2"/>
+      <file name="Entrenadores.js" path="/home/diosquez/Intro/PokeAPI/src/models/Entrenadores.js">
+        <metrics statements="34" coveredstatements="7" conditionals="26" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="7" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="19" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="38" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="50" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="62" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="74" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="86" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="90" count="1" type="stmt"/>
+      </file>
       <file name="Pokemons.js" path="/home/diosquez/Intro/PokeAPI/src/models/Pokemons.js">
         <metrics statements="29" coveredstatements="10" conditionals="26" coveredconditionals="4" methods="5" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
@@ -248,7 +326,20 @@
       </file>
     </package>
     <package name="src.v2.routes">
-      <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="20" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="entrenadoresRoutes.js" path="/home/diosquez/Intro/PokeAPI/src/v2/routes/entrenadoresRoutes.js">
+        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
+        <line num="96" count="1" type="stmt"/>
+        <line num="129" count="1" type="stmt"/>
+        <line num="154" count="1" type="stmt"/>
+        <line num="157" count="1" type="stmt"/>
+      </file>
       <file name="pokemonsRoutes.js" path="/home/diosquez/Intro/PokeAPI/src/v2/routes/pokemonsRoutes.js">
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
