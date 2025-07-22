@@ -36,7 +36,7 @@ const { validateId: validateEntrenadorId } = require('../../middlewares/validate
  *     tags: [Entrenadores]
  *     responses:
  *       200:
- *         description: The list of the Entenadores
+ *         description: The list of the Entrenadores
  *         content:
  *           application/json:
  *             schema:
