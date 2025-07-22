@@ -28,6 +28,11 @@ export type entrenadores = $Result.DefaultSelection<Prisma.$entrenadoresPayload>
  * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
  */
 export type pokemons = $Result.DefaultSelection<Prisma.$pokemonsPayload>
+/**
+ * Model entrenadores_pokemons
+ * 
+ */
+export type entrenadores_pokemons = $Result.DefaultSelection<Prisma.$entrenadores_pokemonsPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -183,6 +188,16 @@ export class PrismaClient<
     * ```
     */
   get pokemons(): Prisma.pokemonsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.entrenadores_pokemons`: Exposes CRUD operations for the **entrenadores_pokemons** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Entrenadores_pokemons
+    * const entrenadores_pokemons = await prisma.entrenadores_pokemons.findMany()
+    * ```
+    */
+  get entrenadores_pokemons(): Prisma.entrenadores_pokemonsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -625,7 +640,8 @@ export namespace Prisma {
   export const ModelName: {
     combates: 'combates',
     entrenadores: 'entrenadores',
-    pokemons: 'pokemons'
+    pokemons: 'pokemons',
+    entrenadores_pokemons: 'entrenadores_pokemons'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -644,7 +660,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "combates" | "entrenadores" | "pokemons"
+      modelProps: "combates" | "entrenadores" | "pokemons" | "entrenadores_pokemons"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -870,6 +886,80 @@ export namespace Prisma {
           }
         }
       }
+      entrenadores_pokemons: {
+        payload: Prisma.$entrenadores_pokemonsPayload<ExtArgs>
+        fields: Prisma.entrenadores_pokemonsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.entrenadores_pokemonsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$entrenadores_pokemonsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.entrenadores_pokemonsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$entrenadores_pokemonsPayload>
+          }
+          findFirst: {
+            args: Prisma.entrenadores_pokemonsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$entrenadores_pokemonsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.entrenadores_pokemonsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$entrenadores_pokemonsPayload>
+          }
+          findMany: {
+            args: Prisma.entrenadores_pokemonsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$entrenadores_pokemonsPayload>[]
+          }
+          create: {
+            args: Prisma.entrenadores_pokemonsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$entrenadores_pokemonsPayload>
+          }
+          createMany: {
+            args: Prisma.entrenadores_pokemonsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.entrenadores_pokemonsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$entrenadores_pokemonsPayload>[]
+          }
+          delete: {
+            args: Prisma.entrenadores_pokemonsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$entrenadores_pokemonsPayload>
+          }
+          update: {
+            args: Prisma.entrenadores_pokemonsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$entrenadores_pokemonsPayload>
+          }
+          deleteMany: {
+            args: Prisma.entrenadores_pokemonsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.entrenadores_pokemonsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.entrenadores_pokemonsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$entrenadores_pokemonsPayload>[]
+          }
+          upsert: {
+            args: Prisma.entrenadores_pokemonsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$entrenadores_pokemonsPayload>
+          }
+          aggregate: {
+            args: Prisma.Entrenadores_pokemonsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEntrenadores_pokemons>
+          }
+          groupBy: {
+            args: Prisma.entrenadores_pokemonsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Entrenadores_pokemonsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.entrenadores_pokemonsCountArgs<ExtArgs>
+            result: $Utils.Optional<Entrenadores_pokemonsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -957,6 +1047,7 @@ export namespace Prisma {
     combates?: combatesOmit
     entrenadores?: entrenadoresOmit
     pokemons?: pokemonsOmit
+    entrenadores_pokemons?: entrenadores_pokemonsOmit
   }
 
   /* Types for Logging */
@@ -1053,11 +1144,13 @@ export namespace Prisma {
   export type EntrenadoresCountOutputType = {
     combates_combates_entrenador1_idToentrenadores: number
     combates_combates_entrenador2_idToentrenadores: number
+    pokemones_asignados: number
   }
 
   export type EntrenadoresCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     combates_combates_entrenador1_idToentrenadores?: boolean | EntrenadoresCountOutputTypeCountCombates_combates_entrenador1_idToentrenadoresArgs
     combates_combates_entrenador2_idToentrenadores?: boolean | EntrenadoresCountOutputTypeCountCombates_combates_entrenador2_idToentrenadoresArgs
+    pokemones_asignados?: boolean | EntrenadoresCountOutputTypeCountPokemones_asignadosArgs
   }
 
   // Custom InputTypes
@@ -1085,6 +1178,13 @@ export namespace Prisma {
     where?: combatesWhereInput
   }
 
+  /**
+   * EntrenadoresCountOutputType without action
+   */
+  export type EntrenadoresCountOutputTypeCountPokemones_asignadosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: entrenadores_pokemonsWhereInput
+  }
+
 
   /**
    * Count Type PokemonsCountOutputType
@@ -1097,6 +1197,7 @@ export namespace Prisma {
     entrenadores: number
     other_pokemons_pokemons_evoluciona_aTopokemons: number
     other_pokemons_pokemons_evoluciona_deTopokemons: number
+    entrenadores_asignados: number
   }
 
   export type PokemonsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1106,6 +1207,7 @@ export namespace Prisma {
     entrenadores?: boolean | PokemonsCountOutputTypeCountEntrenadoresArgs
     other_pokemons_pokemons_evoluciona_aTopokemons?: boolean | PokemonsCountOutputTypeCountOther_pokemons_pokemons_evoluciona_aTopokemonsArgs
     other_pokemons_pokemons_evoluciona_deTopokemons?: boolean | PokemonsCountOutputTypeCountOther_pokemons_pokemons_evoluciona_deTopokemonsArgs
+    entrenadores_asignados?: boolean | PokemonsCountOutputTypeCountEntrenadores_asignadosArgs
   }
 
   // Custom InputTypes
@@ -1159,6 +1261,13 @@ export namespace Prisma {
    */
   export type PokemonsCountOutputTypeCountOther_pokemons_pokemons_evoluciona_deTopokemonsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: pokemonsWhereInput
+  }
+
+  /**
+   * PokemonsCountOutputType without action
+   */
+  export type PokemonsCountOutputTypeCountEntrenadores_asignadosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: entrenadores_pokemonsWhereInput
   }
 
 
@@ -2724,6 +2833,7 @@ export namespace Prisma {
     combates_combates_entrenador1_idToentrenadores?: boolean | entrenadores$combates_combates_entrenador1_idToentrenadoresArgs<ExtArgs>
     combates_combates_entrenador2_idToentrenadores?: boolean | entrenadores$combates_combates_entrenador2_idToentrenadoresArgs<ExtArgs>
     pokemons?: boolean | entrenadores$pokemonsArgs<ExtArgs>
+    pokemones_asignados?: boolean | entrenadores$pokemones_asignadosArgs<ExtArgs>
     _count?: boolean | EntrenadoresCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["entrenadores"]>
 
@@ -2767,6 +2877,7 @@ export namespace Prisma {
     combates_combates_entrenador1_idToentrenadores?: boolean | entrenadores$combates_combates_entrenador1_idToentrenadoresArgs<ExtArgs>
     combates_combates_entrenador2_idToentrenadores?: boolean | entrenadores$combates_combates_entrenador2_idToentrenadoresArgs<ExtArgs>
     pokemons?: boolean | entrenadores$pokemonsArgs<ExtArgs>
+    pokemones_asignados?: boolean | entrenadores$pokemones_asignadosArgs<ExtArgs>
     _count?: boolean | EntrenadoresCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type entrenadoresIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2782,6 +2893,7 @@ export namespace Prisma {
       combates_combates_entrenador1_idToentrenadores: Prisma.$combatesPayload<ExtArgs>[]
       combates_combates_entrenador2_idToentrenadores: Prisma.$combatesPayload<ExtArgs>[]
       pokemons: Prisma.$pokemonsPayload<ExtArgs> | null
+      pokemones_asignados: Prisma.$entrenadores_pokemonsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3189,6 +3301,7 @@ export namespace Prisma {
     combates_combates_entrenador1_idToentrenadores<T extends entrenadores$combates_combates_entrenador1_idToentrenadoresArgs<ExtArgs> = {}>(args?: Subset<T, entrenadores$combates_combates_entrenador1_idToentrenadoresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$combatesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     combates_combates_entrenador2_idToentrenadores<T extends entrenadores$combates_combates_entrenador2_idToentrenadoresArgs<ExtArgs> = {}>(args?: Subset<T, entrenadores$combates_combates_entrenador2_idToentrenadoresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$combatesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     pokemons<T extends entrenadores$pokemonsArgs<ExtArgs> = {}>(args?: Subset<T, entrenadores$pokemonsArgs<ExtArgs>>): Prisma__pokemonsClient<$Result.GetResult<Prisma.$pokemonsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    pokemones_asignados<T extends entrenadores$pokemones_asignadosArgs<ExtArgs> = {}>(args?: Subset<T, entrenadores$pokemones_asignadosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$entrenadores_pokemonsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3689,6 +3802,30 @@ export namespace Prisma {
   }
 
   /**
+   * entrenadores.pokemones_asignados
+   */
+  export type entrenadores$pokemones_asignadosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the entrenadores_pokemons
+     */
+    select?: entrenadores_pokemonsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the entrenadores_pokemons
+     */
+    omit?: entrenadores_pokemonsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: entrenadores_pokemonsInclude<ExtArgs> | null
+    where?: entrenadores_pokemonsWhereInput
+    orderBy?: entrenadores_pokemonsOrderByWithRelationInput | entrenadores_pokemonsOrderByWithRelationInput[]
+    cursor?: entrenadores_pokemonsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Entrenadores_pokemonsScalarFieldEnum | Entrenadores_pokemonsScalarFieldEnum[]
+  }
+
+  /**
    * entrenadores without action
    */
   export type entrenadoresDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3981,6 +4118,7 @@ export namespace Prisma {
     other_pokemons_pokemons_evoluciona_aTopokemons?: boolean | pokemons$other_pokemons_pokemons_evoluciona_aTopokemonsArgs<ExtArgs>
     pokemons_pokemons_evoluciona_deTopokemons?: boolean | pokemons$pokemons_pokemons_evoluciona_deTopokemonsArgs<ExtArgs>
     other_pokemons_pokemons_evoluciona_deTopokemons?: boolean | pokemons$other_pokemons_pokemons_evoluciona_deTopokemonsArgs<ExtArgs>
+    entrenadores_asignados?: boolean | pokemons$entrenadores_asignadosArgs<ExtArgs>
     _count?: boolean | PokemonsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pokemons"]>
 
@@ -4040,6 +4178,7 @@ export namespace Prisma {
     other_pokemons_pokemons_evoluciona_aTopokemons?: boolean | pokemons$other_pokemons_pokemons_evoluciona_aTopokemonsArgs<ExtArgs>
     pokemons_pokemons_evoluciona_deTopokemons?: boolean | pokemons$pokemons_pokemons_evoluciona_deTopokemonsArgs<ExtArgs>
     other_pokemons_pokemons_evoluciona_deTopokemons?: boolean | pokemons$other_pokemons_pokemons_evoluciona_deTopokemonsArgs<ExtArgs>
+    entrenadores_asignados?: boolean | pokemons$entrenadores_asignadosArgs<ExtArgs>
     _count?: boolean | PokemonsCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type pokemonsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4062,6 +4201,7 @@ export namespace Prisma {
       other_pokemons_pokemons_evoluciona_aTopokemons: Prisma.$pokemonsPayload<ExtArgs>[]
       pokemons_pokemons_evoluciona_deTopokemons: Prisma.$pokemonsPayload<ExtArgs> | null
       other_pokemons_pokemons_evoluciona_deTopokemons: Prisma.$pokemonsPayload<ExtArgs>[]
+      entrenadores_asignados: Prisma.$entrenadores_pokemonsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -4477,6 +4617,7 @@ export namespace Prisma {
     other_pokemons_pokemons_evoluciona_aTopokemons<T extends pokemons$other_pokemons_pokemons_evoluciona_aTopokemonsArgs<ExtArgs> = {}>(args?: Subset<T, pokemons$other_pokemons_pokemons_evoluciona_aTopokemonsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pokemonsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     pokemons_pokemons_evoluciona_deTopokemons<T extends pokemons$pokemons_pokemons_evoluciona_deTopokemonsArgs<ExtArgs> = {}>(args?: Subset<T, pokemons$pokemons_pokemons_evoluciona_deTopokemonsArgs<ExtArgs>>): Prisma__pokemonsClient<$Result.GetResult<Prisma.$pokemonsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     other_pokemons_pokemons_evoluciona_deTopokemons<T extends pokemons$other_pokemons_pokemons_evoluciona_deTopokemonsArgs<ExtArgs> = {}>(args?: Subset<T, pokemons$other_pokemons_pokemons_evoluciona_deTopokemonsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pokemonsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    entrenadores_asignados<T extends pokemons$entrenadores_asignadosArgs<ExtArgs> = {}>(args?: Subset<T, pokemons$entrenadores_asignadosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$entrenadores_pokemonsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5095,6 +5236,30 @@ export namespace Prisma {
   }
 
   /**
+   * pokemons.entrenadores_asignados
+   */
+  export type pokemons$entrenadores_asignadosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the entrenadores_pokemons
+     */
+    select?: entrenadores_pokemonsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the entrenadores_pokemons
+     */
+    omit?: entrenadores_pokemonsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: entrenadores_pokemonsInclude<ExtArgs> | null
+    where?: entrenadores_pokemonsWhereInput
+    orderBy?: entrenadores_pokemonsOrderByWithRelationInput | entrenadores_pokemonsOrderByWithRelationInput[]
+    cursor?: entrenadores_pokemonsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Entrenadores_pokemonsScalarFieldEnum | Entrenadores_pokemonsScalarFieldEnum[]
+  }
+
+  /**
    * pokemons without action
    */
   export type pokemonsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5110,6 +5275,1071 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: pokemonsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model entrenadores_pokemons
+   */
+
+  export type AggregateEntrenadores_pokemons = {
+    _count: Entrenadores_pokemonsCountAggregateOutputType | null
+    _avg: Entrenadores_pokemonsAvgAggregateOutputType | null
+    _sum: Entrenadores_pokemonsSumAggregateOutputType | null
+    _min: Entrenadores_pokemonsMinAggregateOutputType | null
+    _max: Entrenadores_pokemonsMaxAggregateOutputType | null
+  }
+
+  export type Entrenadores_pokemonsAvgAggregateOutputType = {
+    entrenador_id: number | null
+    pokemon_id: number | null
+  }
+
+  export type Entrenadores_pokemonsSumAggregateOutputType = {
+    entrenador_id: number | null
+    pokemon_id: number | null
+  }
+
+  export type Entrenadores_pokemonsMinAggregateOutputType = {
+    entrenador_id: number | null
+    pokemon_id: number | null
+  }
+
+  export type Entrenadores_pokemonsMaxAggregateOutputType = {
+    entrenador_id: number | null
+    pokemon_id: number | null
+  }
+
+  export type Entrenadores_pokemonsCountAggregateOutputType = {
+    entrenador_id: number
+    pokemon_id: number
+    _all: number
+  }
+
+
+  export type Entrenadores_pokemonsAvgAggregateInputType = {
+    entrenador_id?: true
+    pokemon_id?: true
+  }
+
+  export type Entrenadores_pokemonsSumAggregateInputType = {
+    entrenador_id?: true
+    pokemon_id?: true
+  }
+
+  export type Entrenadores_pokemonsMinAggregateInputType = {
+    entrenador_id?: true
+    pokemon_id?: true
+  }
+
+  export type Entrenadores_pokemonsMaxAggregateInputType = {
+    entrenador_id?: true
+    pokemon_id?: true
+  }
+
+  export type Entrenadores_pokemonsCountAggregateInputType = {
+    entrenador_id?: true
+    pokemon_id?: true
+    _all?: true
+  }
+
+  export type Entrenadores_pokemonsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which entrenadores_pokemons to aggregate.
+     */
+    where?: entrenadores_pokemonsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of entrenadores_pokemons to fetch.
+     */
+    orderBy?: entrenadores_pokemonsOrderByWithRelationInput | entrenadores_pokemonsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: entrenadores_pokemonsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` entrenadores_pokemons from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` entrenadores_pokemons.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned entrenadores_pokemons
+    **/
+    _count?: true | Entrenadores_pokemonsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Entrenadores_pokemonsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Entrenadores_pokemonsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Entrenadores_pokemonsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Entrenadores_pokemonsMaxAggregateInputType
+  }
+
+  export type GetEntrenadores_pokemonsAggregateType<T extends Entrenadores_pokemonsAggregateArgs> = {
+        [P in keyof T & keyof AggregateEntrenadores_pokemons]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEntrenadores_pokemons[P]>
+      : GetScalarType<T[P], AggregateEntrenadores_pokemons[P]>
+  }
+
+
+
+
+  export type entrenadores_pokemonsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: entrenadores_pokemonsWhereInput
+    orderBy?: entrenadores_pokemonsOrderByWithAggregationInput | entrenadores_pokemonsOrderByWithAggregationInput[]
+    by: Entrenadores_pokemonsScalarFieldEnum[] | Entrenadores_pokemonsScalarFieldEnum
+    having?: entrenadores_pokemonsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Entrenadores_pokemonsCountAggregateInputType | true
+    _avg?: Entrenadores_pokemonsAvgAggregateInputType
+    _sum?: Entrenadores_pokemonsSumAggregateInputType
+    _min?: Entrenadores_pokemonsMinAggregateInputType
+    _max?: Entrenadores_pokemonsMaxAggregateInputType
+  }
+
+  export type Entrenadores_pokemonsGroupByOutputType = {
+    entrenador_id: number
+    pokemon_id: number
+    _count: Entrenadores_pokemonsCountAggregateOutputType | null
+    _avg: Entrenadores_pokemonsAvgAggregateOutputType | null
+    _sum: Entrenadores_pokemonsSumAggregateOutputType | null
+    _min: Entrenadores_pokemonsMinAggregateOutputType | null
+    _max: Entrenadores_pokemonsMaxAggregateOutputType | null
+  }
+
+  type GetEntrenadores_pokemonsGroupByPayload<T extends entrenadores_pokemonsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Entrenadores_pokemonsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Entrenadores_pokemonsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Entrenadores_pokemonsGroupByOutputType[P]>
+            : GetScalarType<T[P], Entrenadores_pokemonsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type entrenadores_pokemonsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    entrenador_id?: boolean
+    pokemon_id?: boolean
+    entrenador?: boolean | entrenadoresDefaultArgs<ExtArgs>
+    pokemon?: boolean | pokemonsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["entrenadores_pokemons"]>
+
+  export type entrenadores_pokemonsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    entrenador_id?: boolean
+    pokemon_id?: boolean
+    entrenador?: boolean | entrenadoresDefaultArgs<ExtArgs>
+    pokemon?: boolean | pokemonsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["entrenadores_pokemons"]>
+
+  export type entrenadores_pokemonsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    entrenador_id?: boolean
+    pokemon_id?: boolean
+    entrenador?: boolean | entrenadoresDefaultArgs<ExtArgs>
+    pokemon?: boolean | pokemonsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["entrenadores_pokemons"]>
+
+  export type entrenadores_pokemonsSelectScalar = {
+    entrenador_id?: boolean
+    pokemon_id?: boolean
+  }
+
+  export type entrenadores_pokemonsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"entrenador_id" | "pokemon_id", ExtArgs["result"]["entrenadores_pokemons"]>
+  export type entrenadores_pokemonsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    entrenador?: boolean | entrenadoresDefaultArgs<ExtArgs>
+    pokemon?: boolean | pokemonsDefaultArgs<ExtArgs>
+  }
+  export type entrenadores_pokemonsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    entrenador?: boolean | entrenadoresDefaultArgs<ExtArgs>
+    pokemon?: boolean | pokemonsDefaultArgs<ExtArgs>
+  }
+  export type entrenadores_pokemonsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    entrenador?: boolean | entrenadoresDefaultArgs<ExtArgs>
+    pokemon?: boolean | pokemonsDefaultArgs<ExtArgs>
+  }
+
+  export type $entrenadores_pokemonsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "entrenadores_pokemons"
+    objects: {
+      entrenador: Prisma.$entrenadoresPayload<ExtArgs>
+      pokemon: Prisma.$pokemonsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      entrenador_id: number
+      pokemon_id: number
+    }, ExtArgs["result"]["entrenadores_pokemons"]>
+    composites: {}
+  }
+
+  type entrenadores_pokemonsGetPayload<S extends boolean | null | undefined | entrenadores_pokemonsDefaultArgs> = $Result.GetResult<Prisma.$entrenadores_pokemonsPayload, S>
+
+  type entrenadores_pokemonsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<entrenadores_pokemonsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Entrenadores_pokemonsCountAggregateInputType | true
+    }
+
+  export interface entrenadores_pokemonsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['entrenadores_pokemons'], meta: { name: 'entrenadores_pokemons' } }
+    /**
+     * Find zero or one Entrenadores_pokemons that matches the filter.
+     * @param {entrenadores_pokemonsFindUniqueArgs} args - Arguments to find a Entrenadores_pokemons
+     * @example
+     * // Get one Entrenadores_pokemons
+     * const entrenadores_pokemons = await prisma.entrenadores_pokemons.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends entrenadores_pokemonsFindUniqueArgs>(args: SelectSubset<T, entrenadores_pokemonsFindUniqueArgs<ExtArgs>>): Prisma__entrenadores_pokemonsClient<$Result.GetResult<Prisma.$entrenadores_pokemonsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Entrenadores_pokemons that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {entrenadores_pokemonsFindUniqueOrThrowArgs} args - Arguments to find a Entrenadores_pokemons
+     * @example
+     * // Get one Entrenadores_pokemons
+     * const entrenadores_pokemons = await prisma.entrenadores_pokemons.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends entrenadores_pokemonsFindUniqueOrThrowArgs>(args: SelectSubset<T, entrenadores_pokemonsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__entrenadores_pokemonsClient<$Result.GetResult<Prisma.$entrenadores_pokemonsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Entrenadores_pokemons that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {entrenadores_pokemonsFindFirstArgs} args - Arguments to find a Entrenadores_pokemons
+     * @example
+     * // Get one Entrenadores_pokemons
+     * const entrenadores_pokemons = await prisma.entrenadores_pokemons.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends entrenadores_pokemonsFindFirstArgs>(args?: SelectSubset<T, entrenadores_pokemonsFindFirstArgs<ExtArgs>>): Prisma__entrenadores_pokemonsClient<$Result.GetResult<Prisma.$entrenadores_pokemonsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Entrenadores_pokemons that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {entrenadores_pokemonsFindFirstOrThrowArgs} args - Arguments to find a Entrenadores_pokemons
+     * @example
+     * // Get one Entrenadores_pokemons
+     * const entrenadores_pokemons = await prisma.entrenadores_pokemons.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends entrenadores_pokemonsFindFirstOrThrowArgs>(args?: SelectSubset<T, entrenadores_pokemonsFindFirstOrThrowArgs<ExtArgs>>): Prisma__entrenadores_pokemonsClient<$Result.GetResult<Prisma.$entrenadores_pokemonsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Entrenadores_pokemons that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {entrenadores_pokemonsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Entrenadores_pokemons
+     * const entrenadores_pokemons = await prisma.entrenadores_pokemons.findMany()
+     * 
+     * // Get first 10 Entrenadores_pokemons
+     * const entrenadores_pokemons = await prisma.entrenadores_pokemons.findMany({ take: 10 })
+     * 
+     * // Only select the `entrenador_id`
+     * const entrenadores_pokemonsWithEntrenador_idOnly = await prisma.entrenadores_pokemons.findMany({ select: { entrenador_id: true } })
+     * 
+     */
+    findMany<T extends entrenadores_pokemonsFindManyArgs>(args?: SelectSubset<T, entrenadores_pokemonsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$entrenadores_pokemonsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Entrenadores_pokemons.
+     * @param {entrenadores_pokemonsCreateArgs} args - Arguments to create a Entrenadores_pokemons.
+     * @example
+     * // Create one Entrenadores_pokemons
+     * const Entrenadores_pokemons = await prisma.entrenadores_pokemons.create({
+     *   data: {
+     *     // ... data to create a Entrenadores_pokemons
+     *   }
+     * })
+     * 
+     */
+    create<T extends entrenadores_pokemonsCreateArgs>(args: SelectSubset<T, entrenadores_pokemonsCreateArgs<ExtArgs>>): Prisma__entrenadores_pokemonsClient<$Result.GetResult<Prisma.$entrenadores_pokemonsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Entrenadores_pokemons.
+     * @param {entrenadores_pokemonsCreateManyArgs} args - Arguments to create many Entrenadores_pokemons.
+     * @example
+     * // Create many Entrenadores_pokemons
+     * const entrenadores_pokemons = await prisma.entrenadores_pokemons.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends entrenadores_pokemonsCreateManyArgs>(args?: SelectSubset<T, entrenadores_pokemonsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Entrenadores_pokemons and returns the data saved in the database.
+     * @param {entrenadores_pokemonsCreateManyAndReturnArgs} args - Arguments to create many Entrenadores_pokemons.
+     * @example
+     * // Create many Entrenadores_pokemons
+     * const entrenadores_pokemons = await prisma.entrenadores_pokemons.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Entrenadores_pokemons and only return the `entrenador_id`
+     * const entrenadores_pokemonsWithEntrenador_idOnly = await prisma.entrenadores_pokemons.createManyAndReturn({
+     *   select: { entrenador_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends entrenadores_pokemonsCreateManyAndReturnArgs>(args?: SelectSubset<T, entrenadores_pokemonsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$entrenadores_pokemonsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Entrenadores_pokemons.
+     * @param {entrenadores_pokemonsDeleteArgs} args - Arguments to delete one Entrenadores_pokemons.
+     * @example
+     * // Delete one Entrenadores_pokemons
+     * const Entrenadores_pokemons = await prisma.entrenadores_pokemons.delete({
+     *   where: {
+     *     // ... filter to delete one Entrenadores_pokemons
+     *   }
+     * })
+     * 
+     */
+    delete<T extends entrenadores_pokemonsDeleteArgs>(args: SelectSubset<T, entrenadores_pokemonsDeleteArgs<ExtArgs>>): Prisma__entrenadores_pokemonsClient<$Result.GetResult<Prisma.$entrenadores_pokemonsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Entrenadores_pokemons.
+     * @param {entrenadores_pokemonsUpdateArgs} args - Arguments to update one Entrenadores_pokemons.
+     * @example
+     * // Update one Entrenadores_pokemons
+     * const entrenadores_pokemons = await prisma.entrenadores_pokemons.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends entrenadores_pokemonsUpdateArgs>(args: SelectSubset<T, entrenadores_pokemonsUpdateArgs<ExtArgs>>): Prisma__entrenadores_pokemonsClient<$Result.GetResult<Prisma.$entrenadores_pokemonsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Entrenadores_pokemons.
+     * @param {entrenadores_pokemonsDeleteManyArgs} args - Arguments to filter Entrenadores_pokemons to delete.
+     * @example
+     * // Delete a few Entrenadores_pokemons
+     * const { count } = await prisma.entrenadores_pokemons.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends entrenadores_pokemonsDeleteManyArgs>(args?: SelectSubset<T, entrenadores_pokemonsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Entrenadores_pokemons.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {entrenadores_pokemonsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Entrenadores_pokemons
+     * const entrenadores_pokemons = await prisma.entrenadores_pokemons.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends entrenadores_pokemonsUpdateManyArgs>(args: SelectSubset<T, entrenadores_pokemonsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Entrenadores_pokemons and returns the data updated in the database.
+     * @param {entrenadores_pokemonsUpdateManyAndReturnArgs} args - Arguments to update many Entrenadores_pokemons.
+     * @example
+     * // Update many Entrenadores_pokemons
+     * const entrenadores_pokemons = await prisma.entrenadores_pokemons.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Entrenadores_pokemons and only return the `entrenador_id`
+     * const entrenadores_pokemonsWithEntrenador_idOnly = await prisma.entrenadores_pokemons.updateManyAndReturn({
+     *   select: { entrenador_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends entrenadores_pokemonsUpdateManyAndReturnArgs>(args: SelectSubset<T, entrenadores_pokemonsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$entrenadores_pokemonsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Entrenadores_pokemons.
+     * @param {entrenadores_pokemonsUpsertArgs} args - Arguments to update or create a Entrenadores_pokemons.
+     * @example
+     * // Update or create a Entrenadores_pokemons
+     * const entrenadores_pokemons = await prisma.entrenadores_pokemons.upsert({
+     *   create: {
+     *     // ... data to create a Entrenadores_pokemons
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Entrenadores_pokemons we want to update
+     *   }
+     * })
+     */
+    upsert<T extends entrenadores_pokemonsUpsertArgs>(args: SelectSubset<T, entrenadores_pokemonsUpsertArgs<ExtArgs>>): Prisma__entrenadores_pokemonsClient<$Result.GetResult<Prisma.$entrenadores_pokemonsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Entrenadores_pokemons.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {entrenadores_pokemonsCountArgs} args - Arguments to filter Entrenadores_pokemons to count.
+     * @example
+     * // Count the number of Entrenadores_pokemons
+     * const count = await prisma.entrenadores_pokemons.count({
+     *   where: {
+     *     // ... the filter for the Entrenadores_pokemons we want to count
+     *   }
+     * })
+    **/
+    count<T extends entrenadores_pokemonsCountArgs>(
+      args?: Subset<T, entrenadores_pokemonsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Entrenadores_pokemonsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Entrenadores_pokemons.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Entrenadores_pokemonsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Entrenadores_pokemonsAggregateArgs>(args: Subset<T, Entrenadores_pokemonsAggregateArgs>): Prisma.PrismaPromise<GetEntrenadores_pokemonsAggregateType<T>>
+
+    /**
+     * Group by Entrenadores_pokemons.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {entrenadores_pokemonsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends entrenadores_pokemonsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: entrenadores_pokemonsGroupByArgs['orderBy'] }
+        : { orderBy?: entrenadores_pokemonsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, entrenadores_pokemonsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEntrenadores_pokemonsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the entrenadores_pokemons model
+   */
+  readonly fields: entrenadores_pokemonsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for entrenadores_pokemons.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__entrenadores_pokemonsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    entrenador<T extends entrenadoresDefaultArgs<ExtArgs> = {}>(args?: Subset<T, entrenadoresDefaultArgs<ExtArgs>>): Prisma__entrenadoresClient<$Result.GetResult<Prisma.$entrenadoresPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    pokemon<T extends pokemonsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, pokemonsDefaultArgs<ExtArgs>>): Prisma__pokemonsClient<$Result.GetResult<Prisma.$pokemonsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the entrenadores_pokemons model
+   */
+  interface entrenadores_pokemonsFieldRefs {
+    readonly entrenador_id: FieldRef<"entrenadores_pokemons", 'Int'>
+    readonly pokemon_id: FieldRef<"entrenadores_pokemons", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * entrenadores_pokemons findUnique
+   */
+  export type entrenadores_pokemonsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the entrenadores_pokemons
+     */
+    select?: entrenadores_pokemonsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the entrenadores_pokemons
+     */
+    omit?: entrenadores_pokemonsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: entrenadores_pokemonsInclude<ExtArgs> | null
+    /**
+     * Filter, which entrenadores_pokemons to fetch.
+     */
+    where: entrenadores_pokemonsWhereUniqueInput
+  }
+
+  /**
+   * entrenadores_pokemons findUniqueOrThrow
+   */
+  export type entrenadores_pokemonsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the entrenadores_pokemons
+     */
+    select?: entrenadores_pokemonsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the entrenadores_pokemons
+     */
+    omit?: entrenadores_pokemonsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: entrenadores_pokemonsInclude<ExtArgs> | null
+    /**
+     * Filter, which entrenadores_pokemons to fetch.
+     */
+    where: entrenadores_pokemonsWhereUniqueInput
+  }
+
+  /**
+   * entrenadores_pokemons findFirst
+   */
+  export type entrenadores_pokemonsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the entrenadores_pokemons
+     */
+    select?: entrenadores_pokemonsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the entrenadores_pokemons
+     */
+    omit?: entrenadores_pokemonsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: entrenadores_pokemonsInclude<ExtArgs> | null
+    /**
+     * Filter, which entrenadores_pokemons to fetch.
+     */
+    where?: entrenadores_pokemonsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of entrenadores_pokemons to fetch.
+     */
+    orderBy?: entrenadores_pokemonsOrderByWithRelationInput | entrenadores_pokemonsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for entrenadores_pokemons.
+     */
+    cursor?: entrenadores_pokemonsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` entrenadores_pokemons from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` entrenadores_pokemons.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of entrenadores_pokemons.
+     */
+    distinct?: Entrenadores_pokemonsScalarFieldEnum | Entrenadores_pokemonsScalarFieldEnum[]
+  }
+
+  /**
+   * entrenadores_pokemons findFirstOrThrow
+   */
+  export type entrenadores_pokemonsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the entrenadores_pokemons
+     */
+    select?: entrenadores_pokemonsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the entrenadores_pokemons
+     */
+    omit?: entrenadores_pokemonsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: entrenadores_pokemonsInclude<ExtArgs> | null
+    /**
+     * Filter, which entrenadores_pokemons to fetch.
+     */
+    where?: entrenadores_pokemonsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of entrenadores_pokemons to fetch.
+     */
+    orderBy?: entrenadores_pokemonsOrderByWithRelationInput | entrenadores_pokemonsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for entrenadores_pokemons.
+     */
+    cursor?: entrenadores_pokemonsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` entrenadores_pokemons from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` entrenadores_pokemons.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of entrenadores_pokemons.
+     */
+    distinct?: Entrenadores_pokemonsScalarFieldEnum | Entrenadores_pokemonsScalarFieldEnum[]
+  }
+
+  /**
+   * entrenadores_pokemons findMany
+   */
+  export type entrenadores_pokemonsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the entrenadores_pokemons
+     */
+    select?: entrenadores_pokemonsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the entrenadores_pokemons
+     */
+    omit?: entrenadores_pokemonsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: entrenadores_pokemonsInclude<ExtArgs> | null
+    /**
+     * Filter, which entrenadores_pokemons to fetch.
+     */
+    where?: entrenadores_pokemonsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of entrenadores_pokemons to fetch.
+     */
+    orderBy?: entrenadores_pokemonsOrderByWithRelationInput | entrenadores_pokemonsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing entrenadores_pokemons.
+     */
+    cursor?: entrenadores_pokemonsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` entrenadores_pokemons from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` entrenadores_pokemons.
+     */
+    skip?: number
+    distinct?: Entrenadores_pokemonsScalarFieldEnum | Entrenadores_pokemonsScalarFieldEnum[]
+  }
+
+  /**
+   * entrenadores_pokemons create
+   */
+  export type entrenadores_pokemonsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the entrenadores_pokemons
+     */
+    select?: entrenadores_pokemonsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the entrenadores_pokemons
+     */
+    omit?: entrenadores_pokemonsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: entrenadores_pokemonsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a entrenadores_pokemons.
+     */
+    data: XOR<entrenadores_pokemonsCreateInput, entrenadores_pokemonsUncheckedCreateInput>
+  }
+
+  /**
+   * entrenadores_pokemons createMany
+   */
+  export type entrenadores_pokemonsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many entrenadores_pokemons.
+     */
+    data: entrenadores_pokemonsCreateManyInput | entrenadores_pokemonsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * entrenadores_pokemons createManyAndReturn
+   */
+  export type entrenadores_pokemonsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the entrenadores_pokemons
+     */
+    select?: entrenadores_pokemonsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the entrenadores_pokemons
+     */
+    omit?: entrenadores_pokemonsOmit<ExtArgs> | null
+    /**
+     * The data used to create many entrenadores_pokemons.
+     */
+    data: entrenadores_pokemonsCreateManyInput | entrenadores_pokemonsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: entrenadores_pokemonsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * entrenadores_pokemons update
+   */
+  export type entrenadores_pokemonsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the entrenadores_pokemons
+     */
+    select?: entrenadores_pokemonsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the entrenadores_pokemons
+     */
+    omit?: entrenadores_pokemonsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: entrenadores_pokemonsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a entrenadores_pokemons.
+     */
+    data: XOR<entrenadores_pokemonsUpdateInput, entrenadores_pokemonsUncheckedUpdateInput>
+    /**
+     * Choose, which entrenadores_pokemons to update.
+     */
+    where: entrenadores_pokemonsWhereUniqueInput
+  }
+
+  /**
+   * entrenadores_pokemons updateMany
+   */
+  export type entrenadores_pokemonsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update entrenadores_pokemons.
+     */
+    data: XOR<entrenadores_pokemonsUpdateManyMutationInput, entrenadores_pokemonsUncheckedUpdateManyInput>
+    /**
+     * Filter which entrenadores_pokemons to update
+     */
+    where?: entrenadores_pokemonsWhereInput
+    /**
+     * Limit how many entrenadores_pokemons to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * entrenadores_pokemons updateManyAndReturn
+   */
+  export type entrenadores_pokemonsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the entrenadores_pokemons
+     */
+    select?: entrenadores_pokemonsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the entrenadores_pokemons
+     */
+    omit?: entrenadores_pokemonsOmit<ExtArgs> | null
+    /**
+     * The data used to update entrenadores_pokemons.
+     */
+    data: XOR<entrenadores_pokemonsUpdateManyMutationInput, entrenadores_pokemonsUncheckedUpdateManyInput>
+    /**
+     * Filter which entrenadores_pokemons to update
+     */
+    where?: entrenadores_pokemonsWhereInput
+    /**
+     * Limit how many entrenadores_pokemons to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: entrenadores_pokemonsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * entrenadores_pokemons upsert
+   */
+  export type entrenadores_pokemonsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the entrenadores_pokemons
+     */
+    select?: entrenadores_pokemonsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the entrenadores_pokemons
+     */
+    omit?: entrenadores_pokemonsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: entrenadores_pokemonsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the entrenadores_pokemons to update in case it exists.
+     */
+    where: entrenadores_pokemonsWhereUniqueInput
+    /**
+     * In case the entrenadores_pokemons found by the `where` argument doesn't exist, create a new entrenadores_pokemons with this data.
+     */
+    create: XOR<entrenadores_pokemonsCreateInput, entrenadores_pokemonsUncheckedCreateInput>
+    /**
+     * In case the entrenadores_pokemons was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<entrenadores_pokemonsUpdateInput, entrenadores_pokemonsUncheckedUpdateInput>
+  }
+
+  /**
+   * entrenadores_pokemons delete
+   */
+  export type entrenadores_pokemonsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the entrenadores_pokemons
+     */
+    select?: entrenadores_pokemonsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the entrenadores_pokemons
+     */
+    omit?: entrenadores_pokemonsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: entrenadores_pokemonsInclude<ExtArgs> | null
+    /**
+     * Filter which entrenadores_pokemons to delete.
+     */
+    where: entrenadores_pokemonsWhereUniqueInput
+  }
+
+  /**
+   * entrenadores_pokemons deleteMany
+   */
+  export type entrenadores_pokemonsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which entrenadores_pokemons to delete
+     */
+    where?: entrenadores_pokemonsWhereInput
+    /**
+     * Limit how many entrenadores_pokemons to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * entrenadores_pokemons without action
+   */
+  export type entrenadores_pokemonsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the entrenadores_pokemons
+     */
+    select?: entrenadores_pokemonsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the entrenadores_pokemons
+     */
+    omit?: entrenadores_pokemonsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: entrenadores_pokemonsInclude<ExtArgs> | null
   }
 
 
@@ -5173,6 +6403,14 @@ export namespace Prisma {
   };
 
   export type PokemonsScalarFieldEnum = (typeof PokemonsScalarFieldEnum)[keyof typeof PokemonsScalarFieldEnum]
+
+
+  export const Entrenadores_pokemonsScalarFieldEnum: {
+    entrenador_id: 'entrenador_id',
+    pokemon_id: 'pokemon_id'
+  };
+
+  export type Entrenadores_pokemonsScalarFieldEnum = (typeof Entrenadores_pokemonsScalarFieldEnum)[keyof typeof Entrenadores_pokemonsScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5377,6 +6615,7 @@ export namespace Prisma {
     combates_combates_entrenador1_idToentrenadores?: CombatesListRelationFilter
     combates_combates_entrenador2_idToentrenadores?: CombatesListRelationFilter
     pokemons?: XOR<PokemonsNullableScalarRelationFilter, pokemonsWhereInput> | null
+    pokemones_asignados?: Entrenadores_pokemonsListRelationFilter
   }
 
   export type entrenadoresOrderByWithRelationInput = {
@@ -5391,6 +6630,7 @@ export namespace Prisma {
     combates_combates_entrenador1_idToentrenadores?: combatesOrderByRelationAggregateInput
     combates_combates_entrenador2_idToentrenadores?: combatesOrderByRelationAggregateInput
     pokemons?: pokemonsOrderByWithRelationInput
+    pokemones_asignados?: entrenadores_pokemonsOrderByRelationAggregateInput
   }
 
   export type entrenadoresWhereUniqueInput = Prisma.AtLeast<{
@@ -5408,6 +6648,7 @@ export namespace Prisma {
     combates_combates_entrenador1_idToentrenadores?: CombatesListRelationFilter
     combates_combates_entrenador2_idToentrenadores?: CombatesListRelationFilter
     pokemons?: XOR<PokemonsNullableScalarRelationFilter, pokemonsWhereInput> | null
+    pokemones_asignados?: Entrenadores_pokemonsListRelationFilter
   }, "id">
 
   export type entrenadoresOrderByWithAggregationInput = {
@@ -5463,6 +6704,7 @@ export namespace Prisma {
     other_pokemons_pokemons_evoluciona_aTopokemons?: PokemonsListRelationFilter
     pokemons_pokemons_evoluciona_deTopokemons?: XOR<PokemonsNullableScalarRelationFilter, pokemonsWhereInput> | null
     other_pokemons_pokemons_evoluciona_deTopokemons?: PokemonsListRelationFilter
+    entrenadores_asignados?: Entrenadores_pokemonsListRelationFilter
   }
 
   export type pokemonsOrderByWithRelationInput = {
@@ -5485,6 +6727,7 @@ export namespace Prisma {
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsOrderByRelationAggregateInput
     pokemons_pokemons_evoluciona_deTopokemons?: pokemonsOrderByWithRelationInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsOrderByRelationAggregateInput
+    entrenadores_asignados?: entrenadores_pokemonsOrderByRelationAggregateInput
   }
 
   export type pokemonsWhereUniqueInput = Prisma.AtLeast<{
@@ -5510,6 +6753,7 @@ export namespace Prisma {
     other_pokemons_pokemons_evoluciona_aTopokemons?: PokemonsListRelationFilter
     pokemons_pokemons_evoluciona_deTopokemons?: XOR<PokemonsNullableScalarRelationFilter, pokemonsWhereInput> | null
     other_pokemons_pokemons_evoluciona_deTopokemons?: PokemonsListRelationFilter
+    entrenadores_asignados?: Entrenadores_pokemonsListRelationFilter
   }, "id">
 
   export type pokemonsOrderByWithAggregationInput = {
@@ -5546,6 +6790,52 @@ export namespace Prisma {
     descripcion?: StringNullableWithAggregatesFilter<"pokemons"> | string | null
     evoluciona_de?: IntNullableWithAggregatesFilter<"pokemons"> | number | null
     evoluciona_a?: IntNullableWithAggregatesFilter<"pokemons"> | number | null
+  }
+
+  export type entrenadores_pokemonsWhereInput = {
+    AND?: entrenadores_pokemonsWhereInput | entrenadores_pokemonsWhereInput[]
+    OR?: entrenadores_pokemonsWhereInput[]
+    NOT?: entrenadores_pokemonsWhereInput | entrenadores_pokemonsWhereInput[]
+    entrenador_id?: IntFilter<"entrenadores_pokemons"> | number
+    pokemon_id?: IntFilter<"entrenadores_pokemons"> | number
+    entrenador?: XOR<EntrenadoresScalarRelationFilter, entrenadoresWhereInput>
+    pokemon?: XOR<PokemonsScalarRelationFilter, pokemonsWhereInput>
+  }
+
+  export type entrenadores_pokemonsOrderByWithRelationInput = {
+    entrenador_id?: SortOrder
+    pokemon_id?: SortOrder
+    entrenador?: entrenadoresOrderByWithRelationInput
+    pokemon?: pokemonsOrderByWithRelationInput
+  }
+
+  export type entrenadores_pokemonsWhereUniqueInput = Prisma.AtLeast<{
+    entrenador_id_pokemon_id?: entrenadores_pokemonsEntrenador_idPokemon_idCompoundUniqueInput
+    AND?: entrenadores_pokemonsWhereInput | entrenadores_pokemonsWhereInput[]
+    OR?: entrenadores_pokemonsWhereInput[]
+    NOT?: entrenadores_pokemonsWhereInput | entrenadores_pokemonsWhereInput[]
+    entrenador_id?: IntFilter<"entrenadores_pokemons"> | number
+    pokemon_id?: IntFilter<"entrenadores_pokemons"> | number
+    entrenador?: XOR<EntrenadoresScalarRelationFilter, entrenadoresWhereInput>
+    pokemon?: XOR<PokemonsScalarRelationFilter, pokemonsWhereInput>
+  }, "entrenador_id_pokemon_id">
+
+  export type entrenadores_pokemonsOrderByWithAggregationInput = {
+    entrenador_id?: SortOrder
+    pokemon_id?: SortOrder
+    _count?: entrenadores_pokemonsCountOrderByAggregateInput
+    _avg?: entrenadores_pokemonsAvgOrderByAggregateInput
+    _max?: entrenadores_pokemonsMaxOrderByAggregateInput
+    _min?: entrenadores_pokemonsMinOrderByAggregateInput
+    _sum?: entrenadores_pokemonsSumOrderByAggregateInput
+  }
+
+  export type entrenadores_pokemonsScalarWhereWithAggregatesInput = {
+    AND?: entrenadores_pokemonsScalarWhereWithAggregatesInput | entrenadores_pokemonsScalarWhereWithAggregatesInput[]
+    OR?: entrenadores_pokemonsScalarWhereWithAggregatesInput[]
+    NOT?: entrenadores_pokemonsScalarWhereWithAggregatesInput | entrenadores_pokemonsScalarWhereWithAggregatesInput[]
+    entrenador_id?: IntWithAggregatesFilter<"entrenadores_pokemons"> | number
+    pokemon_id?: IntWithAggregatesFilter<"entrenadores_pokemons"> | number
   }
 
   export type combatesCreateInput = {
@@ -5648,6 +6938,7 @@ export namespace Prisma {
     combates_combates_entrenador1_idToentrenadores?: combatesCreateNestedManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput
     combates_combates_entrenador2_idToentrenadores?: combatesCreateNestedManyWithoutEntrenadores_combates_entrenador2_idToentrenadoresInput
     pokemons?: pokemonsCreateNestedOneWithoutEntrenadoresInput
+    pokemones_asignados?: entrenadores_pokemonsCreateNestedManyWithoutEntrenadorInput
   }
 
   export type entrenadoresUncheckedCreateInput = {
@@ -5661,6 +6952,7 @@ export namespace Prisma {
     experiencia?: number | null
     combates_combates_entrenador1_idToentrenadores?: combatesUncheckedCreateNestedManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput
     combates_combates_entrenador2_idToentrenadores?: combatesUncheckedCreateNestedManyWithoutEntrenadores_combates_entrenador2_idToentrenadoresInput
+    pokemones_asignados?: entrenadores_pokemonsUncheckedCreateNestedManyWithoutEntrenadorInput
   }
 
   export type entrenadoresUpdateInput = {
@@ -5673,6 +6965,7 @@ export namespace Prisma {
     combates_combates_entrenador1_idToentrenadores?: combatesUpdateManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresNestedInput
     combates_combates_entrenador2_idToentrenadores?: combatesUpdateManyWithoutEntrenadores_combates_entrenador2_idToentrenadoresNestedInput
     pokemons?: pokemonsUpdateOneWithoutEntrenadoresNestedInput
+    pokemones_asignados?: entrenadores_pokemonsUpdateManyWithoutEntrenadorNestedInput
   }
 
   export type entrenadoresUncheckedUpdateInput = {
@@ -5686,6 +6979,7 @@ export namespace Prisma {
     experiencia?: NullableIntFieldUpdateOperationsInput | number | null
     combates_combates_entrenador1_idToentrenadores?: combatesUncheckedUpdateManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresNestedInput
     combates_combates_entrenador2_idToentrenadores?: combatesUncheckedUpdateManyWithoutEntrenadores_combates_entrenador2_idToentrenadoresNestedInput
+    pokemones_asignados?: entrenadores_pokemonsUncheckedUpdateManyWithoutEntrenadorNestedInput
   }
 
   export type entrenadoresCreateManyInput = {
@@ -5736,6 +7030,7 @@ export namespace Prisma {
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsCreateNestedManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput
     pokemons_pokemons_evoluciona_deTopokemons?: pokemonsCreateNestedOneWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsCreateNestedManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput
+    entrenadores_asignados?: entrenadores_pokemonsCreateNestedManyWithoutPokemonInput
   }
 
   export type pokemonsUncheckedCreateInput = {
@@ -5756,6 +7051,7 @@ export namespace Prisma {
     entrenadores?: entrenadoresUncheckedCreateNestedManyWithoutPokemonsInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUncheckedCreateNestedManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUncheckedCreateNestedManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput
+    entrenadores_asignados?: entrenadores_pokemonsUncheckedCreateNestedManyWithoutPokemonInput
   }
 
   export type pokemonsUpdateInput = {
@@ -5775,6 +7071,7 @@ export namespace Prisma {
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsNestedInput
     pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUpdateOneWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsNestedInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsNestedInput
+    entrenadores_asignados?: entrenadores_pokemonsUpdateManyWithoutPokemonNestedInput
   }
 
   export type pokemonsUncheckedUpdateInput = {
@@ -5795,6 +7092,7 @@ export namespace Prisma {
     entrenadores?: entrenadoresUncheckedUpdateManyWithoutPokemonsNestedInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsNestedInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsNestedInput
+    entrenadores_asignados?: entrenadores_pokemonsUncheckedUpdateManyWithoutPokemonNestedInput
   }
 
   export type pokemonsCreateManyInput = {
@@ -5834,6 +7132,40 @@ export namespace Prisma {
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     evoluciona_de?: NullableIntFieldUpdateOperationsInput | number | null
     evoluciona_a?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type entrenadores_pokemonsCreateInput = {
+    entrenador: entrenadoresCreateNestedOneWithoutPokemones_asignadosInput
+    pokemon: pokemonsCreateNestedOneWithoutEntrenadores_asignadosInput
+  }
+
+  export type entrenadores_pokemonsUncheckedCreateInput = {
+    entrenador_id: number
+    pokemon_id: number
+  }
+
+  export type entrenadores_pokemonsUpdateInput = {
+    entrenador?: entrenadoresUpdateOneRequiredWithoutPokemones_asignadosNestedInput
+    pokemon?: pokemonsUpdateOneRequiredWithoutEntrenadores_asignadosNestedInput
+  }
+
+  export type entrenadores_pokemonsUncheckedUpdateInput = {
+    entrenador_id?: IntFieldUpdateOperationsInput | number
+    pokemon_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type entrenadores_pokemonsCreateManyInput = {
+    entrenador_id: number
+    pokemon_id: number
+  }
+
+  export type entrenadores_pokemonsUpdateManyMutationInput = {
+
+  }
+
+  export type entrenadores_pokemonsUncheckedUpdateManyInput = {
+    entrenador_id?: IntFieldUpdateOperationsInput | number
+    pokemon_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -6046,7 +7378,17 @@ export namespace Prisma {
     none?: combatesWhereInput
   }
 
+  export type Entrenadores_pokemonsListRelationFilter = {
+    every?: entrenadores_pokemonsWhereInput
+    some?: entrenadores_pokemonsWhereInput
+    none?: entrenadores_pokemonsWhereInput
+  }
+
   export type combatesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type entrenadores_pokemonsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -6222,6 +7564,46 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type EntrenadoresScalarRelationFilter = {
+    is?: entrenadoresWhereInput
+    isNot?: entrenadoresWhereInput
+  }
+
+  export type PokemonsScalarRelationFilter = {
+    is?: pokemonsWhereInput
+    isNot?: pokemonsWhereInput
+  }
+
+  export type entrenadores_pokemonsEntrenador_idPokemon_idCompoundUniqueInput = {
+    entrenador_id: number
+    pokemon_id: number
+  }
+
+  export type entrenadores_pokemonsCountOrderByAggregateInput = {
+    entrenador_id?: SortOrder
+    pokemon_id?: SortOrder
+  }
+
+  export type entrenadores_pokemonsAvgOrderByAggregateInput = {
+    entrenador_id?: SortOrder
+    pokemon_id?: SortOrder
+  }
+
+  export type entrenadores_pokemonsMaxOrderByAggregateInput = {
+    entrenador_id?: SortOrder
+    pokemon_id?: SortOrder
+  }
+
+  export type entrenadores_pokemonsMinOrderByAggregateInput = {
+    entrenador_id?: SortOrder
+    pokemon_id?: SortOrder
+  }
+
+  export type entrenadores_pokemonsSumOrderByAggregateInput = {
+    entrenador_id?: SortOrder
+    pokemon_id?: SortOrder
+  }
+
   export type entrenadoresCreateNestedOneWithoutCombates_combates_entrenador1_idToentrenadoresInput = {
     create?: XOR<entrenadoresCreateWithoutCombates_combates_entrenador1_idToentrenadoresInput, entrenadoresUncheckedCreateWithoutCombates_combates_entrenador1_idToentrenadoresInput>
     connectOrCreate?: entrenadoresCreateOrConnectWithoutCombates_combates_entrenador1_idToentrenadoresInput
@@ -6346,6 +7728,13 @@ export namespace Prisma {
     connect?: pokemonsWhereUniqueInput
   }
 
+  export type entrenadores_pokemonsCreateNestedManyWithoutEntrenadorInput = {
+    create?: XOR<entrenadores_pokemonsCreateWithoutEntrenadorInput, entrenadores_pokemonsUncheckedCreateWithoutEntrenadorInput> | entrenadores_pokemonsCreateWithoutEntrenadorInput[] | entrenadores_pokemonsUncheckedCreateWithoutEntrenadorInput[]
+    connectOrCreate?: entrenadores_pokemonsCreateOrConnectWithoutEntrenadorInput | entrenadores_pokemonsCreateOrConnectWithoutEntrenadorInput[]
+    createMany?: entrenadores_pokemonsCreateManyEntrenadorInputEnvelope
+    connect?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
+  }
+
   export type combatesUncheckedCreateNestedManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput = {
     create?: XOR<combatesCreateWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput, combatesUncheckedCreateWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput> | combatesCreateWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput[] | combatesUncheckedCreateWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput[]
     connectOrCreate?: combatesCreateOrConnectWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput | combatesCreateOrConnectWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput[]
@@ -6358,6 +7747,13 @@ export namespace Prisma {
     connectOrCreate?: combatesCreateOrConnectWithoutEntrenadores_combates_entrenador2_idToentrenadoresInput | combatesCreateOrConnectWithoutEntrenadores_combates_entrenador2_idToentrenadoresInput[]
     createMany?: combatesCreateManyEntrenadores_combates_entrenador2_idToentrenadoresInputEnvelope
     connect?: combatesWhereUniqueInput | combatesWhereUniqueInput[]
+  }
+
+  export type entrenadores_pokemonsUncheckedCreateNestedManyWithoutEntrenadorInput = {
+    create?: XOR<entrenadores_pokemonsCreateWithoutEntrenadorInput, entrenadores_pokemonsUncheckedCreateWithoutEntrenadorInput> | entrenadores_pokemonsCreateWithoutEntrenadorInput[] | entrenadores_pokemonsUncheckedCreateWithoutEntrenadorInput[]
+    connectOrCreate?: entrenadores_pokemonsCreateOrConnectWithoutEntrenadorInput | entrenadores_pokemonsCreateOrConnectWithoutEntrenadorInput[]
+    createMany?: entrenadores_pokemonsCreateManyEntrenadorInputEnvelope
+    connect?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -6402,6 +7798,20 @@ export namespace Prisma {
     update?: XOR<XOR<pokemonsUpdateToOneWithWhereWithoutEntrenadoresInput, pokemonsUpdateWithoutEntrenadoresInput>, pokemonsUncheckedUpdateWithoutEntrenadoresInput>
   }
 
+  export type entrenadores_pokemonsUpdateManyWithoutEntrenadorNestedInput = {
+    create?: XOR<entrenadores_pokemonsCreateWithoutEntrenadorInput, entrenadores_pokemonsUncheckedCreateWithoutEntrenadorInput> | entrenadores_pokemonsCreateWithoutEntrenadorInput[] | entrenadores_pokemonsUncheckedCreateWithoutEntrenadorInput[]
+    connectOrCreate?: entrenadores_pokemonsCreateOrConnectWithoutEntrenadorInput | entrenadores_pokemonsCreateOrConnectWithoutEntrenadorInput[]
+    upsert?: entrenadores_pokemonsUpsertWithWhereUniqueWithoutEntrenadorInput | entrenadores_pokemonsUpsertWithWhereUniqueWithoutEntrenadorInput[]
+    createMany?: entrenadores_pokemonsCreateManyEntrenadorInputEnvelope
+    set?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
+    disconnect?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
+    delete?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
+    connect?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
+    update?: entrenadores_pokemonsUpdateWithWhereUniqueWithoutEntrenadorInput | entrenadores_pokemonsUpdateWithWhereUniqueWithoutEntrenadorInput[]
+    updateMany?: entrenadores_pokemonsUpdateManyWithWhereWithoutEntrenadorInput | entrenadores_pokemonsUpdateManyWithWhereWithoutEntrenadorInput[]
+    deleteMany?: entrenadores_pokemonsScalarWhereInput | entrenadores_pokemonsScalarWhereInput[]
+  }
+
   export type combatesUncheckedUpdateManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresNestedInput = {
     create?: XOR<combatesCreateWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput, combatesUncheckedCreateWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput> | combatesCreateWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput[] | combatesUncheckedCreateWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput[]
     connectOrCreate?: combatesCreateOrConnectWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput | combatesCreateOrConnectWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput[]
@@ -6428,6 +7838,20 @@ export namespace Prisma {
     update?: combatesUpdateWithWhereUniqueWithoutEntrenadores_combates_entrenador2_idToentrenadoresInput | combatesUpdateWithWhereUniqueWithoutEntrenadores_combates_entrenador2_idToentrenadoresInput[]
     updateMany?: combatesUpdateManyWithWhereWithoutEntrenadores_combates_entrenador2_idToentrenadoresInput | combatesUpdateManyWithWhereWithoutEntrenadores_combates_entrenador2_idToentrenadoresInput[]
     deleteMany?: combatesScalarWhereInput | combatesScalarWhereInput[]
+  }
+
+  export type entrenadores_pokemonsUncheckedUpdateManyWithoutEntrenadorNestedInput = {
+    create?: XOR<entrenadores_pokemonsCreateWithoutEntrenadorInput, entrenadores_pokemonsUncheckedCreateWithoutEntrenadorInput> | entrenadores_pokemonsCreateWithoutEntrenadorInput[] | entrenadores_pokemonsUncheckedCreateWithoutEntrenadorInput[]
+    connectOrCreate?: entrenadores_pokemonsCreateOrConnectWithoutEntrenadorInput | entrenadores_pokemonsCreateOrConnectWithoutEntrenadorInput[]
+    upsert?: entrenadores_pokemonsUpsertWithWhereUniqueWithoutEntrenadorInput | entrenadores_pokemonsUpsertWithWhereUniqueWithoutEntrenadorInput[]
+    createMany?: entrenadores_pokemonsCreateManyEntrenadorInputEnvelope
+    set?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
+    disconnect?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
+    delete?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
+    connect?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
+    update?: entrenadores_pokemonsUpdateWithWhereUniqueWithoutEntrenadorInput | entrenadores_pokemonsUpdateWithWhereUniqueWithoutEntrenadorInput[]
+    updateMany?: entrenadores_pokemonsUpdateManyWithWhereWithoutEntrenadorInput | entrenadores_pokemonsUpdateManyWithWhereWithoutEntrenadorInput[]
+    deleteMany?: entrenadores_pokemonsScalarWhereInput | entrenadores_pokemonsScalarWhereInput[]
   }
 
   export type combatesCreateNestedManyWithoutPokemons_combates_ganador_idTopokemonsInput = {
@@ -6484,6 +7908,13 @@ export namespace Prisma {
     connect?: pokemonsWhereUniqueInput | pokemonsWhereUniqueInput[]
   }
 
+  export type entrenadores_pokemonsCreateNestedManyWithoutPokemonInput = {
+    create?: XOR<entrenadores_pokemonsCreateWithoutPokemonInput, entrenadores_pokemonsUncheckedCreateWithoutPokemonInput> | entrenadores_pokemonsCreateWithoutPokemonInput[] | entrenadores_pokemonsUncheckedCreateWithoutPokemonInput[]
+    connectOrCreate?: entrenadores_pokemonsCreateOrConnectWithoutPokemonInput | entrenadores_pokemonsCreateOrConnectWithoutPokemonInput[]
+    createMany?: entrenadores_pokemonsCreateManyPokemonInputEnvelope
+    connect?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
+  }
+
   export type combatesUncheckedCreateNestedManyWithoutPokemons_combates_ganador_idTopokemonsInput = {
     create?: XOR<combatesCreateWithoutPokemons_combates_ganador_idTopokemonsInput, combatesUncheckedCreateWithoutPokemons_combates_ganador_idTopokemonsInput> | combatesCreateWithoutPokemons_combates_ganador_idTopokemonsInput[] | combatesUncheckedCreateWithoutPokemons_combates_ganador_idTopokemonsInput[]
     connectOrCreate?: combatesCreateOrConnectWithoutPokemons_combates_ganador_idTopokemonsInput | combatesCreateOrConnectWithoutPokemons_combates_ganador_idTopokemonsInput[]
@@ -6524,6 +7955,13 @@ export namespace Prisma {
     connectOrCreate?: pokemonsCreateOrConnectWithoutPokemons_pokemons_evoluciona_deTopokemonsInput | pokemonsCreateOrConnectWithoutPokemons_pokemons_evoluciona_deTopokemonsInput[]
     createMany?: pokemonsCreateManyPokemons_pokemons_evoluciona_deTopokemonsInputEnvelope
     connect?: pokemonsWhereUniqueInput | pokemonsWhereUniqueInput[]
+  }
+
+  export type entrenadores_pokemonsUncheckedCreateNestedManyWithoutPokemonInput = {
+    create?: XOR<entrenadores_pokemonsCreateWithoutPokemonInput, entrenadores_pokemonsUncheckedCreateWithoutPokemonInput> | entrenadores_pokemonsCreateWithoutPokemonInput[] | entrenadores_pokemonsUncheckedCreateWithoutPokemonInput[]
+    connectOrCreate?: entrenadores_pokemonsCreateOrConnectWithoutPokemonInput | entrenadores_pokemonsCreateOrConnectWithoutPokemonInput[]
+    createMany?: entrenadores_pokemonsCreateManyPokemonInputEnvelope
+    connect?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -6638,6 +8076,20 @@ export namespace Prisma {
     deleteMany?: pokemonsScalarWhereInput | pokemonsScalarWhereInput[]
   }
 
+  export type entrenadores_pokemonsUpdateManyWithoutPokemonNestedInput = {
+    create?: XOR<entrenadores_pokemonsCreateWithoutPokemonInput, entrenadores_pokemonsUncheckedCreateWithoutPokemonInput> | entrenadores_pokemonsCreateWithoutPokemonInput[] | entrenadores_pokemonsUncheckedCreateWithoutPokemonInput[]
+    connectOrCreate?: entrenadores_pokemonsCreateOrConnectWithoutPokemonInput | entrenadores_pokemonsCreateOrConnectWithoutPokemonInput[]
+    upsert?: entrenadores_pokemonsUpsertWithWhereUniqueWithoutPokemonInput | entrenadores_pokemonsUpsertWithWhereUniqueWithoutPokemonInput[]
+    createMany?: entrenadores_pokemonsCreateManyPokemonInputEnvelope
+    set?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
+    disconnect?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
+    delete?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
+    connect?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
+    update?: entrenadores_pokemonsUpdateWithWhereUniqueWithoutPokemonInput | entrenadores_pokemonsUpdateWithWhereUniqueWithoutPokemonInput[]
+    updateMany?: entrenadores_pokemonsUpdateManyWithWhereWithoutPokemonInput | entrenadores_pokemonsUpdateManyWithWhereWithoutPokemonInput[]
+    deleteMany?: entrenadores_pokemonsScalarWhereInput | entrenadores_pokemonsScalarWhereInput[]
+  }
+
   export type combatesUncheckedUpdateManyWithoutPokemons_combates_ganador_idTopokemonsNestedInput = {
     create?: XOR<combatesCreateWithoutPokemons_combates_ganador_idTopokemonsInput, combatesUncheckedCreateWithoutPokemons_combates_ganador_idTopokemonsInput> | combatesCreateWithoutPokemons_combates_ganador_idTopokemonsInput[] | combatesUncheckedCreateWithoutPokemons_combates_ganador_idTopokemonsInput[]
     connectOrCreate?: combatesCreateOrConnectWithoutPokemons_combates_ganador_idTopokemonsInput | combatesCreateOrConnectWithoutPokemons_combates_ganador_idTopokemonsInput[]
@@ -6720,6 +8172,48 @@ export namespace Prisma {
     update?: pokemonsUpdateWithWhereUniqueWithoutPokemons_pokemons_evoluciona_deTopokemonsInput | pokemonsUpdateWithWhereUniqueWithoutPokemons_pokemons_evoluciona_deTopokemonsInput[]
     updateMany?: pokemonsUpdateManyWithWhereWithoutPokemons_pokemons_evoluciona_deTopokemonsInput | pokemonsUpdateManyWithWhereWithoutPokemons_pokemons_evoluciona_deTopokemonsInput[]
     deleteMany?: pokemonsScalarWhereInput | pokemonsScalarWhereInput[]
+  }
+
+  export type entrenadores_pokemonsUncheckedUpdateManyWithoutPokemonNestedInput = {
+    create?: XOR<entrenadores_pokemonsCreateWithoutPokemonInput, entrenadores_pokemonsUncheckedCreateWithoutPokemonInput> | entrenadores_pokemonsCreateWithoutPokemonInput[] | entrenadores_pokemonsUncheckedCreateWithoutPokemonInput[]
+    connectOrCreate?: entrenadores_pokemonsCreateOrConnectWithoutPokemonInput | entrenadores_pokemonsCreateOrConnectWithoutPokemonInput[]
+    upsert?: entrenadores_pokemonsUpsertWithWhereUniqueWithoutPokemonInput | entrenadores_pokemonsUpsertWithWhereUniqueWithoutPokemonInput[]
+    createMany?: entrenadores_pokemonsCreateManyPokemonInputEnvelope
+    set?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
+    disconnect?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
+    delete?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
+    connect?: entrenadores_pokemonsWhereUniqueInput | entrenadores_pokemonsWhereUniqueInput[]
+    update?: entrenadores_pokemonsUpdateWithWhereUniqueWithoutPokemonInput | entrenadores_pokemonsUpdateWithWhereUniqueWithoutPokemonInput[]
+    updateMany?: entrenadores_pokemonsUpdateManyWithWhereWithoutPokemonInput | entrenadores_pokemonsUpdateManyWithWhereWithoutPokemonInput[]
+    deleteMany?: entrenadores_pokemonsScalarWhereInput | entrenadores_pokemonsScalarWhereInput[]
+  }
+
+  export type entrenadoresCreateNestedOneWithoutPokemones_asignadosInput = {
+    create?: XOR<entrenadoresCreateWithoutPokemones_asignadosInput, entrenadoresUncheckedCreateWithoutPokemones_asignadosInput>
+    connectOrCreate?: entrenadoresCreateOrConnectWithoutPokemones_asignadosInput
+    connect?: entrenadoresWhereUniqueInput
+  }
+
+  export type pokemonsCreateNestedOneWithoutEntrenadores_asignadosInput = {
+    create?: XOR<pokemonsCreateWithoutEntrenadores_asignadosInput, pokemonsUncheckedCreateWithoutEntrenadores_asignadosInput>
+    connectOrCreate?: pokemonsCreateOrConnectWithoutEntrenadores_asignadosInput
+    connect?: pokemonsWhereUniqueInput
+  }
+
+  export type entrenadoresUpdateOneRequiredWithoutPokemones_asignadosNestedInput = {
+    create?: XOR<entrenadoresCreateWithoutPokemones_asignadosInput, entrenadoresUncheckedCreateWithoutPokemones_asignadosInput>
+    connectOrCreate?: entrenadoresCreateOrConnectWithoutPokemones_asignadosInput
+    upsert?: entrenadoresUpsertWithoutPokemones_asignadosInput
+    connect?: entrenadoresWhereUniqueInput
+    update?: XOR<XOR<entrenadoresUpdateToOneWithWhereWithoutPokemones_asignadosInput, entrenadoresUpdateWithoutPokemones_asignadosInput>, entrenadoresUncheckedUpdateWithoutPokemones_asignadosInput>
+  }
+
+  export type pokemonsUpdateOneRequiredWithoutEntrenadores_asignadosNestedInput = {
+    create?: XOR<pokemonsCreateWithoutEntrenadores_asignadosInput, pokemonsUncheckedCreateWithoutEntrenadores_asignadosInput>
+    connectOrCreate?: pokemonsCreateOrConnectWithoutEntrenadores_asignadosInput
+    upsert?: pokemonsUpsertWithoutEntrenadores_asignadosInput
+    connect?: pokemonsWhereUniqueInput
+    update?: XOR<XOR<pokemonsUpdateToOneWithWhereWithoutEntrenadores_asignadosInput, pokemonsUpdateWithoutEntrenadores_asignadosInput>, pokemonsUncheckedUpdateWithoutEntrenadores_asignadosInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -6910,6 +8404,7 @@ export namespace Prisma {
     experiencia?: number | null
     combates_combates_entrenador2_idToentrenadores?: combatesCreateNestedManyWithoutEntrenadores_combates_entrenador2_idToentrenadoresInput
     pokemons?: pokemonsCreateNestedOneWithoutEntrenadoresInput
+    pokemones_asignados?: entrenadores_pokemonsCreateNestedManyWithoutEntrenadorInput
   }
 
   export type entrenadoresUncheckedCreateWithoutCombates_combates_entrenador1_idToentrenadoresInput = {
@@ -6922,6 +8417,7 @@ export namespace Prisma {
     edad?: number | null
     experiencia?: number | null
     combates_combates_entrenador2_idToentrenadores?: combatesUncheckedCreateNestedManyWithoutEntrenadores_combates_entrenador2_idToentrenadoresInput
+    pokemones_asignados?: entrenadores_pokemonsUncheckedCreateNestedManyWithoutEntrenadorInput
   }
 
   export type entrenadoresCreateOrConnectWithoutCombates_combates_entrenador1_idToentrenadoresInput = {
@@ -6938,6 +8434,7 @@ export namespace Prisma {
     experiencia?: number | null
     combates_combates_entrenador1_idToentrenadores?: combatesCreateNestedManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput
     pokemons?: pokemonsCreateNestedOneWithoutEntrenadoresInput
+    pokemones_asignados?: entrenadores_pokemonsCreateNestedManyWithoutEntrenadorInput
   }
 
   export type entrenadoresUncheckedCreateWithoutCombates_combates_entrenador2_idToentrenadoresInput = {
@@ -6950,6 +8447,7 @@ export namespace Prisma {
     edad?: number | null
     experiencia?: number | null
     combates_combates_entrenador1_idToentrenadores?: combatesUncheckedCreateNestedManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput
+    pokemones_asignados?: entrenadores_pokemonsUncheckedCreateNestedManyWithoutEntrenadorInput
   }
 
   export type entrenadoresCreateOrConnectWithoutCombates_combates_entrenador2_idToentrenadoresInput = {
@@ -6973,6 +8471,7 @@ export namespace Prisma {
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsCreateNestedManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput
     pokemons_pokemons_evoluciona_deTopokemons?: pokemonsCreateNestedOneWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsCreateNestedManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput
+    entrenadores_asignados?: entrenadores_pokemonsCreateNestedManyWithoutPokemonInput
   }
 
   export type pokemonsUncheckedCreateWithoutCombates_combates_ganador_idTopokemonsInput = {
@@ -6992,6 +8491,7 @@ export namespace Prisma {
     entrenadores?: entrenadoresUncheckedCreateNestedManyWithoutPokemonsInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUncheckedCreateNestedManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUncheckedCreateNestedManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput
+    entrenadores_asignados?: entrenadores_pokemonsUncheckedCreateNestedManyWithoutPokemonInput
   }
 
   export type pokemonsCreateOrConnectWithoutCombates_combates_ganador_idTopokemonsInput = {
@@ -7015,6 +8515,7 @@ export namespace Prisma {
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsCreateNestedManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput
     pokemons_pokemons_evoluciona_deTopokemons?: pokemonsCreateNestedOneWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsCreateNestedManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput
+    entrenadores_asignados?: entrenadores_pokemonsCreateNestedManyWithoutPokemonInput
   }
 
   export type pokemonsUncheckedCreateWithoutCombates_combates_pokemon1_idTopokemonsInput = {
@@ -7034,6 +8535,7 @@ export namespace Prisma {
     entrenadores?: entrenadoresUncheckedCreateNestedManyWithoutPokemonsInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUncheckedCreateNestedManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUncheckedCreateNestedManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput
+    entrenadores_asignados?: entrenadores_pokemonsUncheckedCreateNestedManyWithoutPokemonInput
   }
 
   export type pokemonsCreateOrConnectWithoutCombates_combates_pokemon1_idTopokemonsInput = {
@@ -7057,6 +8559,7 @@ export namespace Prisma {
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsCreateNestedManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput
     pokemons_pokemons_evoluciona_deTopokemons?: pokemonsCreateNestedOneWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsCreateNestedManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput
+    entrenadores_asignados?: entrenadores_pokemonsCreateNestedManyWithoutPokemonInput
   }
 
   export type pokemonsUncheckedCreateWithoutCombates_combates_pokemon2_idTopokemonsInput = {
@@ -7076,6 +8579,7 @@ export namespace Prisma {
     entrenadores?: entrenadoresUncheckedCreateNestedManyWithoutPokemonsInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUncheckedCreateNestedManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUncheckedCreateNestedManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput
+    entrenadores_asignados?: entrenadores_pokemonsUncheckedCreateNestedManyWithoutPokemonInput
   }
 
   export type pokemonsCreateOrConnectWithoutCombates_combates_pokemon2_idTopokemonsInput = {
@@ -7103,6 +8607,7 @@ export namespace Prisma {
     experiencia?: NullableIntFieldUpdateOperationsInput | number | null
     combates_combates_entrenador2_idToentrenadores?: combatesUpdateManyWithoutEntrenadores_combates_entrenador2_idToentrenadoresNestedInput
     pokemons?: pokemonsUpdateOneWithoutEntrenadoresNestedInput
+    pokemones_asignados?: entrenadores_pokemonsUpdateManyWithoutEntrenadorNestedInput
   }
 
   export type entrenadoresUncheckedUpdateWithoutCombates_combates_entrenador1_idToentrenadoresInput = {
@@ -7115,6 +8620,7 @@ export namespace Prisma {
     edad?: NullableIntFieldUpdateOperationsInput | number | null
     experiencia?: NullableIntFieldUpdateOperationsInput | number | null
     combates_combates_entrenador2_idToentrenadores?: combatesUncheckedUpdateManyWithoutEntrenadores_combates_entrenador2_idToentrenadoresNestedInput
+    pokemones_asignados?: entrenadores_pokemonsUncheckedUpdateManyWithoutEntrenadorNestedInput
   }
 
   export type entrenadoresUpsertWithoutCombates_combates_entrenador2_idToentrenadoresInput = {
@@ -7137,6 +8643,7 @@ export namespace Prisma {
     experiencia?: NullableIntFieldUpdateOperationsInput | number | null
     combates_combates_entrenador1_idToentrenadores?: combatesUpdateManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresNestedInput
     pokemons?: pokemonsUpdateOneWithoutEntrenadoresNestedInput
+    pokemones_asignados?: entrenadores_pokemonsUpdateManyWithoutEntrenadorNestedInput
   }
 
   export type entrenadoresUncheckedUpdateWithoutCombates_combates_entrenador2_idToentrenadoresInput = {
@@ -7149,6 +8656,7 @@ export namespace Prisma {
     edad?: NullableIntFieldUpdateOperationsInput | number | null
     experiencia?: NullableIntFieldUpdateOperationsInput | number | null
     combates_combates_entrenador1_idToentrenadores?: combatesUncheckedUpdateManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresNestedInput
+    pokemones_asignados?: entrenadores_pokemonsUncheckedUpdateManyWithoutEntrenadorNestedInput
   }
 
   export type pokemonsUpsertWithoutCombates_combates_ganador_idTopokemonsInput = {
@@ -7178,6 +8686,7 @@ export namespace Prisma {
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsNestedInput
     pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUpdateOneWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsNestedInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsNestedInput
+    entrenadores_asignados?: entrenadores_pokemonsUpdateManyWithoutPokemonNestedInput
   }
 
   export type pokemonsUncheckedUpdateWithoutCombates_combates_ganador_idTopokemonsInput = {
@@ -7197,6 +8706,7 @@ export namespace Prisma {
     entrenadores?: entrenadoresUncheckedUpdateManyWithoutPokemonsNestedInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsNestedInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsNestedInput
+    entrenadores_asignados?: entrenadores_pokemonsUncheckedUpdateManyWithoutPokemonNestedInput
   }
 
   export type pokemonsUpsertWithoutCombates_combates_pokemon1_idTopokemonsInput = {
@@ -7226,6 +8736,7 @@ export namespace Prisma {
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsNestedInput
     pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUpdateOneWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsNestedInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsNestedInput
+    entrenadores_asignados?: entrenadores_pokemonsUpdateManyWithoutPokemonNestedInput
   }
 
   export type pokemonsUncheckedUpdateWithoutCombates_combates_pokemon1_idTopokemonsInput = {
@@ -7245,6 +8756,7 @@ export namespace Prisma {
     entrenadores?: entrenadoresUncheckedUpdateManyWithoutPokemonsNestedInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsNestedInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsNestedInput
+    entrenadores_asignados?: entrenadores_pokemonsUncheckedUpdateManyWithoutPokemonNestedInput
   }
 
   export type pokemonsUpsertWithoutCombates_combates_pokemon2_idTopokemonsInput = {
@@ -7274,6 +8786,7 @@ export namespace Prisma {
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsNestedInput
     pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUpdateOneWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsNestedInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsNestedInput
+    entrenadores_asignados?: entrenadores_pokemonsUpdateManyWithoutPokemonNestedInput
   }
 
   export type pokemonsUncheckedUpdateWithoutCombates_combates_pokemon2_idTopokemonsInput = {
@@ -7293,6 +8806,7 @@ export namespace Prisma {
     entrenadores?: entrenadoresUncheckedUpdateManyWithoutPokemonsNestedInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsNestedInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsNestedInput
+    entrenadores_asignados?: entrenadores_pokemonsUncheckedUpdateManyWithoutPokemonNestedInput
   }
 
   export type combatesCreateWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput = {
@@ -7381,6 +8895,7 @@ export namespace Prisma {
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsCreateNestedManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput
     pokemons_pokemons_evoluciona_deTopokemons?: pokemonsCreateNestedOneWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsCreateNestedManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput
+    entrenadores_asignados?: entrenadores_pokemonsCreateNestedManyWithoutPokemonInput
   }
 
   export type pokemonsUncheckedCreateWithoutEntrenadoresInput = {
@@ -7400,11 +8915,30 @@ export namespace Prisma {
     combates_combates_pokemon2_idTopokemons?: combatesUncheckedCreateNestedManyWithoutPokemons_combates_pokemon2_idTopokemonsInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUncheckedCreateNestedManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUncheckedCreateNestedManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput
+    entrenadores_asignados?: entrenadores_pokemonsUncheckedCreateNestedManyWithoutPokemonInput
   }
 
   export type pokemonsCreateOrConnectWithoutEntrenadoresInput = {
     where: pokemonsWhereUniqueInput
     create: XOR<pokemonsCreateWithoutEntrenadoresInput, pokemonsUncheckedCreateWithoutEntrenadoresInput>
+  }
+
+  export type entrenadores_pokemonsCreateWithoutEntrenadorInput = {
+    pokemon: pokemonsCreateNestedOneWithoutEntrenadores_asignadosInput
+  }
+
+  export type entrenadores_pokemonsUncheckedCreateWithoutEntrenadorInput = {
+    pokemon_id: number
+  }
+
+  export type entrenadores_pokemonsCreateOrConnectWithoutEntrenadorInput = {
+    where: entrenadores_pokemonsWhereUniqueInput
+    create: XOR<entrenadores_pokemonsCreateWithoutEntrenadorInput, entrenadores_pokemonsUncheckedCreateWithoutEntrenadorInput>
+  }
+
+  export type entrenadores_pokemonsCreateManyEntrenadorInputEnvelope = {
+    data: entrenadores_pokemonsCreateManyEntrenadorInput | entrenadores_pokemonsCreateManyEntrenadorInput[]
+    skipDuplicates?: boolean
   }
 
   export type combatesUpsertWithWhereUniqueWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput = {
@@ -7483,6 +9017,7 @@ export namespace Prisma {
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsNestedInput
     pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUpdateOneWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsNestedInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsNestedInput
+    entrenadores_asignados?: entrenadores_pokemonsUpdateManyWithoutPokemonNestedInput
   }
 
   export type pokemonsUncheckedUpdateWithoutEntrenadoresInput = {
@@ -7502,6 +9037,31 @@ export namespace Prisma {
     combates_combates_pokemon2_idTopokemons?: combatesUncheckedUpdateManyWithoutPokemons_combates_pokemon2_idTopokemonsNestedInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsNestedInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsNestedInput
+    entrenadores_asignados?: entrenadores_pokemonsUncheckedUpdateManyWithoutPokemonNestedInput
+  }
+
+  export type entrenadores_pokemonsUpsertWithWhereUniqueWithoutEntrenadorInput = {
+    where: entrenadores_pokemonsWhereUniqueInput
+    update: XOR<entrenadores_pokemonsUpdateWithoutEntrenadorInput, entrenadores_pokemonsUncheckedUpdateWithoutEntrenadorInput>
+    create: XOR<entrenadores_pokemonsCreateWithoutEntrenadorInput, entrenadores_pokemonsUncheckedCreateWithoutEntrenadorInput>
+  }
+
+  export type entrenadores_pokemonsUpdateWithWhereUniqueWithoutEntrenadorInput = {
+    where: entrenadores_pokemonsWhereUniqueInput
+    data: XOR<entrenadores_pokemonsUpdateWithoutEntrenadorInput, entrenadores_pokemonsUncheckedUpdateWithoutEntrenadorInput>
+  }
+
+  export type entrenadores_pokemonsUpdateManyWithWhereWithoutEntrenadorInput = {
+    where: entrenadores_pokemonsScalarWhereInput
+    data: XOR<entrenadores_pokemonsUpdateManyMutationInput, entrenadores_pokemonsUncheckedUpdateManyWithoutEntrenadorInput>
+  }
+
+  export type entrenadores_pokemonsScalarWhereInput = {
+    AND?: entrenadores_pokemonsScalarWhereInput | entrenadores_pokemonsScalarWhereInput[]
+    OR?: entrenadores_pokemonsScalarWhereInput[]
+    NOT?: entrenadores_pokemonsScalarWhereInput | entrenadores_pokemonsScalarWhereInput[]
+    entrenador_id?: IntFilter<"entrenadores_pokemons"> | number
+    pokemon_id?: IntFilter<"entrenadores_pokemons"> | number
   }
 
   export type combatesCreateWithoutPokemons_combates_ganador_idTopokemonsInput = {
@@ -7618,6 +9178,7 @@ export namespace Prisma {
     experiencia?: number | null
     combates_combates_entrenador1_idToentrenadores?: combatesCreateNestedManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput
     combates_combates_entrenador2_idToentrenadores?: combatesCreateNestedManyWithoutEntrenadores_combates_entrenador2_idToentrenadoresInput
+    pokemones_asignados?: entrenadores_pokemonsCreateNestedManyWithoutEntrenadorInput
   }
 
   export type entrenadoresUncheckedCreateWithoutPokemonsInput = {
@@ -7630,6 +9191,7 @@ export namespace Prisma {
     experiencia?: number | null
     combates_combates_entrenador1_idToentrenadores?: combatesUncheckedCreateNestedManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput
     combates_combates_entrenador2_idToentrenadores?: combatesUncheckedCreateNestedManyWithoutEntrenadores_combates_entrenador2_idToentrenadoresInput
+    pokemones_asignados?: entrenadores_pokemonsUncheckedCreateNestedManyWithoutEntrenadorInput
   }
 
   export type entrenadoresCreateOrConnectWithoutPokemonsInput = {
@@ -7658,6 +9220,7 @@ export namespace Prisma {
     pokemons_pokemons_evoluciona_aTopokemons?: pokemonsCreateNestedOneWithoutOther_pokemons_pokemons_evoluciona_aTopokemonsInput
     pokemons_pokemons_evoluciona_deTopokemons?: pokemonsCreateNestedOneWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsCreateNestedManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput
+    entrenadores_asignados?: entrenadores_pokemonsCreateNestedManyWithoutPokemonInput
   }
 
   export type pokemonsUncheckedCreateWithoutOther_pokemons_pokemons_evoluciona_aTopokemonsInput = {
@@ -7677,6 +9240,7 @@ export namespace Prisma {
     combates_combates_pokemon2_idTopokemons?: combatesUncheckedCreateNestedManyWithoutPokemons_combates_pokemon2_idTopokemonsInput
     entrenadores?: entrenadoresUncheckedCreateNestedManyWithoutPokemonsInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUncheckedCreateNestedManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput
+    entrenadores_asignados?: entrenadores_pokemonsUncheckedCreateNestedManyWithoutPokemonInput
   }
 
   export type pokemonsCreateOrConnectWithoutOther_pokemons_pokemons_evoluciona_aTopokemonsInput = {
@@ -7700,6 +9264,7 @@ export namespace Prisma {
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsCreateNestedManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput
     pokemons_pokemons_evoluciona_deTopokemons?: pokemonsCreateNestedOneWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsCreateNestedManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput
+    entrenadores_asignados?: entrenadores_pokemonsCreateNestedManyWithoutPokemonInput
   }
 
   export type pokemonsUncheckedCreateWithoutPokemons_pokemons_evoluciona_aTopokemonsInput = {
@@ -7719,6 +9284,7 @@ export namespace Prisma {
     entrenadores?: entrenadoresUncheckedCreateNestedManyWithoutPokemonsInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUncheckedCreateNestedManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUncheckedCreateNestedManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput
+    entrenadores_asignados?: entrenadores_pokemonsUncheckedCreateNestedManyWithoutPokemonInput
   }
 
   export type pokemonsCreateOrConnectWithoutPokemons_pokemons_evoluciona_aTopokemonsInput = {
@@ -7747,6 +9313,7 @@ export namespace Prisma {
     pokemons_pokemons_evoluciona_aTopokemons?: pokemonsCreateNestedOneWithoutOther_pokemons_pokemons_evoluciona_aTopokemonsInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsCreateNestedManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput
     pokemons_pokemons_evoluciona_deTopokemons?: pokemonsCreateNestedOneWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsInput
+    entrenadores_asignados?: entrenadores_pokemonsCreateNestedManyWithoutPokemonInput
   }
 
   export type pokemonsUncheckedCreateWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsInput = {
@@ -7766,6 +9333,7 @@ export namespace Prisma {
     combates_combates_pokemon2_idTopokemons?: combatesUncheckedCreateNestedManyWithoutPokemons_combates_pokemon2_idTopokemonsInput
     entrenadores?: entrenadoresUncheckedCreateNestedManyWithoutPokemonsInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUncheckedCreateNestedManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput
+    entrenadores_asignados?: entrenadores_pokemonsUncheckedCreateNestedManyWithoutPokemonInput
   }
 
   export type pokemonsCreateOrConnectWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsInput = {
@@ -7789,6 +9357,7 @@ export namespace Prisma {
     pokemons_pokemons_evoluciona_aTopokemons?: pokemonsCreateNestedOneWithoutOther_pokemons_pokemons_evoluciona_aTopokemonsInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsCreateNestedManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsCreateNestedManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput
+    entrenadores_asignados?: entrenadores_pokemonsCreateNestedManyWithoutPokemonInput
   }
 
   export type pokemonsUncheckedCreateWithoutPokemons_pokemons_evoluciona_deTopokemonsInput = {
@@ -7808,6 +9377,7 @@ export namespace Prisma {
     entrenadores?: entrenadoresUncheckedCreateNestedManyWithoutPokemonsInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUncheckedCreateNestedManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUncheckedCreateNestedManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput
+    entrenadores_asignados?: entrenadores_pokemonsUncheckedCreateNestedManyWithoutPokemonInput
   }
 
   export type pokemonsCreateOrConnectWithoutPokemons_pokemons_evoluciona_deTopokemonsInput = {
@@ -7817,6 +9387,24 @@ export namespace Prisma {
 
   export type pokemonsCreateManyPokemons_pokemons_evoluciona_deTopokemonsInputEnvelope = {
     data: pokemonsCreateManyPokemons_pokemons_evoluciona_deTopokemonsInput | pokemonsCreateManyPokemons_pokemons_evoluciona_deTopokemonsInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type entrenadores_pokemonsCreateWithoutPokemonInput = {
+    entrenador: entrenadoresCreateNestedOneWithoutPokemones_asignadosInput
+  }
+
+  export type entrenadores_pokemonsUncheckedCreateWithoutPokemonInput = {
+    entrenador_id: number
+  }
+
+  export type entrenadores_pokemonsCreateOrConnectWithoutPokemonInput = {
+    where: entrenadores_pokemonsWhereUniqueInput
+    create: XOR<entrenadores_pokemonsCreateWithoutPokemonInput, entrenadores_pokemonsUncheckedCreateWithoutPokemonInput>
+  }
+
+  export type entrenadores_pokemonsCreateManyPokemonInputEnvelope = {
+    data: entrenadores_pokemonsCreateManyPokemonInput | entrenadores_pokemonsCreateManyPokemonInput[]
     skipDuplicates?: boolean
   }
 
@@ -7925,6 +9513,7 @@ export namespace Prisma {
     pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUpdateOneWithoutOther_pokemons_pokemons_evoluciona_aTopokemonsNestedInput
     pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUpdateOneWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsNestedInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsNestedInput
+    entrenadores_asignados?: entrenadores_pokemonsUpdateManyWithoutPokemonNestedInput
   }
 
   export type pokemonsUncheckedUpdateWithoutOther_pokemons_pokemons_evoluciona_aTopokemonsInput = {
@@ -7944,6 +9533,7 @@ export namespace Prisma {
     combates_combates_pokemon2_idTopokemons?: combatesUncheckedUpdateManyWithoutPokemons_combates_pokemon2_idTopokemonsNestedInput
     entrenadores?: entrenadoresUncheckedUpdateManyWithoutPokemonsNestedInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsNestedInput
+    entrenadores_asignados?: entrenadores_pokemonsUncheckedUpdateManyWithoutPokemonNestedInput
   }
 
   export type pokemonsUpsertWithWhereUniqueWithoutPokemons_pokemons_evoluciona_aTopokemonsInput = {
@@ -8006,6 +9596,7 @@ export namespace Prisma {
     pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUpdateOneWithoutOther_pokemons_pokemons_evoluciona_aTopokemonsNestedInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsNestedInput
     pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUpdateOneWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsNestedInput
+    entrenadores_asignados?: entrenadores_pokemonsUpdateManyWithoutPokemonNestedInput
   }
 
   export type pokemonsUncheckedUpdateWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsInput = {
@@ -8025,6 +9616,7 @@ export namespace Prisma {
     combates_combates_pokemon2_idTopokemons?: combatesUncheckedUpdateManyWithoutPokemons_combates_pokemon2_idTopokemonsNestedInput
     entrenadores?: entrenadoresUncheckedUpdateManyWithoutPokemonsNestedInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsNestedInput
+    entrenadores_asignados?: entrenadores_pokemonsUncheckedUpdateManyWithoutPokemonNestedInput
   }
 
   export type pokemonsUpsertWithWhereUniqueWithoutPokemons_pokemons_evoluciona_deTopokemonsInput = {
@@ -8041,6 +9633,182 @@ export namespace Prisma {
   export type pokemonsUpdateManyWithWhereWithoutPokemons_pokemons_evoluciona_deTopokemonsInput = {
     where: pokemonsScalarWhereInput
     data: XOR<pokemonsUpdateManyMutationInput, pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput>
+  }
+
+  export type entrenadores_pokemonsUpsertWithWhereUniqueWithoutPokemonInput = {
+    where: entrenadores_pokemonsWhereUniqueInput
+    update: XOR<entrenadores_pokemonsUpdateWithoutPokemonInput, entrenadores_pokemonsUncheckedUpdateWithoutPokemonInput>
+    create: XOR<entrenadores_pokemonsCreateWithoutPokemonInput, entrenadores_pokemonsUncheckedCreateWithoutPokemonInput>
+  }
+
+  export type entrenadores_pokemonsUpdateWithWhereUniqueWithoutPokemonInput = {
+    where: entrenadores_pokemonsWhereUniqueInput
+    data: XOR<entrenadores_pokemonsUpdateWithoutPokemonInput, entrenadores_pokemonsUncheckedUpdateWithoutPokemonInput>
+  }
+
+  export type entrenadores_pokemonsUpdateManyWithWhereWithoutPokemonInput = {
+    where: entrenadores_pokemonsScalarWhereInput
+    data: XOR<entrenadores_pokemonsUpdateManyMutationInput, entrenadores_pokemonsUncheckedUpdateManyWithoutPokemonInput>
+  }
+
+  export type entrenadoresCreateWithoutPokemones_asignadosInput = {
+    nombre: string
+    origen?: string | null
+    escuela?: string | null
+    medallas?: string | null
+    edad?: number | null
+    experiencia?: number | null
+    combates_combates_entrenador1_idToentrenadores?: combatesCreateNestedManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput
+    combates_combates_entrenador2_idToentrenadores?: combatesCreateNestedManyWithoutEntrenadores_combates_entrenador2_idToentrenadoresInput
+    pokemons?: pokemonsCreateNestedOneWithoutEntrenadoresInput
+  }
+
+  export type entrenadoresUncheckedCreateWithoutPokemones_asignadosInput = {
+    id?: number
+    nombre: string
+    origen?: string | null
+    escuela?: string | null
+    medallas?: string | null
+    pokemon_default?: number | null
+    edad?: number | null
+    experiencia?: number | null
+    combates_combates_entrenador1_idToentrenadores?: combatesUncheckedCreateNestedManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput
+    combates_combates_entrenador2_idToentrenadores?: combatesUncheckedCreateNestedManyWithoutEntrenadores_combates_entrenador2_idToentrenadoresInput
+  }
+
+  export type entrenadoresCreateOrConnectWithoutPokemones_asignadosInput = {
+    where: entrenadoresWhereUniqueInput
+    create: XOR<entrenadoresCreateWithoutPokemones_asignadosInput, entrenadoresUncheckedCreateWithoutPokemones_asignadosInput>
+  }
+
+  export type pokemonsCreateWithoutEntrenadores_asignadosInput = {
+    nombre: string
+    tipo: string
+    habilidades?: string | null
+    nivel_poder?: number | null
+    imagen?: string | null
+    altura: number
+    peso: number
+    descripcion?: string | null
+    combates_combates_ganador_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_ganador_idTopokemonsInput
+    combates_combates_pokemon1_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_pokemon1_idTopokemonsInput
+    combates_combates_pokemon2_idTopokemons?: combatesCreateNestedManyWithoutPokemons_combates_pokemon2_idTopokemonsInput
+    entrenadores?: entrenadoresCreateNestedManyWithoutPokemonsInput
+    pokemons_pokemons_evoluciona_aTopokemons?: pokemonsCreateNestedOneWithoutOther_pokemons_pokemons_evoluciona_aTopokemonsInput
+    other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsCreateNestedManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput
+    pokemons_pokemons_evoluciona_deTopokemons?: pokemonsCreateNestedOneWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsInput
+    other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsCreateNestedManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput
+  }
+
+  export type pokemonsUncheckedCreateWithoutEntrenadores_asignadosInput = {
+    id?: number
+    nombre: string
+    tipo: string
+    habilidades?: string | null
+    nivel_poder?: number | null
+    imagen?: string | null
+    altura: number
+    peso: number
+    descripcion?: string | null
+    evoluciona_de?: number | null
+    evoluciona_a?: number | null
+    combates_combates_ganador_idTopokemons?: combatesUncheckedCreateNestedManyWithoutPokemons_combates_ganador_idTopokemonsInput
+    combates_combates_pokemon1_idTopokemons?: combatesUncheckedCreateNestedManyWithoutPokemons_combates_pokemon1_idTopokemonsInput
+    combates_combates_pokemon2_idTopokemons?: combatesUncheckedCreateNestedManyWithoutPokemons_combates_pokemon2_idTopokemonsInput
+    entrenadores?: entrenadoresUncheckedCreateNestedManyWithoutPokemonsInput
+    other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUncheckedCreateNestedManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput
+    other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUncheckedCreateNestedManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput
+  }
+
+  export type pokemonsCreateOrConnectWithoutEntrenadores_asignadosInput = {
+    where: pokemonsWhereUniqueInput
+    create: XOR<pokemonsCreateWithoutEntrenadores_asignadosInput, pokemonsUncheckedCreateWithoutEntrenadores_asignadosInput>
+  }
+
+  export type entrenadoresUpsertWithoutPokemones_asignadosInput = {
+    update: XOR<entrenadoresUpdateWithoutPokemones_asignadosInput, entrenadoresUncheckedUpdateWithoutPokemones_asignadosInput>
+    create: XOR<entrenadoresCreateWithoutPokemones_asignadosInput, entrenadoresUncheckedCreateWithoutPokemones_asignadosInput>
+    where?: entrenadoresWhereInput
+  }
+
+  export type entrenadoresUpdateToOneWithWhereWithoutPokemones_asignadosInput = {
+    where?: entrenadoresWhereInput
+    data: XOR<entrenadoresUpdateWithoutPokemones_asignadosInput, entrenadoresUncheckedUpdateWithoutPokemones_asignadosInput>
+  }
+
+  export type entrenadoresUpdateWithoutPokemones_asignadosInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    origen?: NullableStringFieldUpdateOperationsInput | string | null
+    escuela?: NullableStringFieldUpdateOperationsInput | string | null
+    medallas?: NullableStringFieldUpdateOperationsInput | string | null
+    edad?: NullableIntFieldUpdateOperationsInput | number | null
+    experiencia?: NullableIntFieldUpdateOperationsInput | number | null
+    combates_combates_entrenador1_idToentrenadores?: combatesUpdateManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresNestedInput
+    combates_combates_entrenador2_idToentrenadores?: combatesUpdateManyWithoutEntrenadores_combates_entrenador2_idToentrenadoresNestedInput
+    pokemons?: pokemonsUpdateOneWithoutEntrenadoresNestedInput
+  }
+
+  export type entrenadoresUncheckedUpdateWithoutPokemones_asignadosInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    origen?: NullableStringFieldUpdateOperationsInput | string | null
+    escuela?: NullableStringFieldUpdateOperationsInput | string | null
+    medallas?: NullableStringFieldUpdateOperationsInput | string | null
+    pokemon_default?: NullableIntFieldUpdateOperationsInput | number | null
+    edad?: NullableIntFieldUpdateOperationsInput | number | null
+    experiencia?: NullableIntFieldUpdateOperationsInput | number | null
+    combates_combates_entrenador1_idToentrenadores?: combatesUncheckedUpdateManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresNestedInput
+    combates_combates_entrenador2_idToentrenadores?: combatesUncheckedUpdateManyWithoutEntrenadores_combates_entrenador2_idToentrenadoresNestedInput
+  }
+
+  export type pokemonsUpsertWithoutEntrenadores_asignadosInput = {
+    update: XOR<pokemonsUpdateWithoutEntrenadores_asignadosInput, pokemonsUncheckedUpdateWithoutEntrenadores_asignadosInput>
+    create: XOR<pokemonsCreateWithoutEntrenadores_asignadosInput, pokemonsUncheckedCreateWithoutEntrenadores_asignadosInput>
+    where?: pokemonsWhereInput
+  }
+
+  export type pokemonsUpdateToOneWithWhereWithoutEntrenadores_asignadosInput = {
+    where?: pokemonsWhereInput
+    data: XOR<pokemonsUpdateWithoutEntrenadores_asignadosInput, pokemonsUncheckedUpdateWithoutEntrenadores_asignadosInput>
+  }
+
+  export type pokemonsUpdateWithoutEntrenadores_asignadosInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    habilidades?: NullableStringFieldUpdateOperationsInput | string | null
+    nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
+    combates_combates_ganador_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_ganador_idTopokemonsNestedInput
+    combates_combates_pokemon1_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_pokemon1_idTopokemonsNestedInput
+    combates_combates_pokemon2_idTopokemons?: combatesUpdateManyWithoutPokemons_combates_pokemon2_idTopokemonsNestedInput
+    entrenadores?: entrenadoresUpdateManyWithoutPokemonsNestedInput
+    pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUpdateOneWithoutOther_pokemons_pokemons_evoluciona_aTopokemonsNestedInput
+    other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsNestedInput
+    pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUpdateOneWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsNestedInput
+    other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsNestedInput
+  }
+
+  export type pokemonsUncheckedUpdateWithoutEntrenadores_asignadosInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    habilidades?: NullableStringFieldUpdateOperationsInput | string | null
+    nivel_poder?: NullableIntFieldUpdateOperationsInput | number | null
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    altura?: FloatFieldUpdateOperationsInput | number
+    peso?: FloatFieldUpdateOperationsInput | number
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
+    evoluciona_de?: NullableIntFieldUpdateOperationsInput | number | null
+    evoluciona_a?: NullableIntFieldUpdateOperationsInput | number | null
+    combates_combates_ganador_idTopokemons?: combatesUncheckedUpdateManyWithoutPokemons_combates_ganador_idTopokemonsNestedInput
+    combates_combates_pokemon1_idTopokemons?: combatesUncheckedUpdateManyWithoutPokemons_combates_pokemon1_idTopokemonsNestedInput
+    combates_combates_pokemon2_idTopokemons?: combatesUncheckedUpdateManyWithoutPokemons_combates_pokemon2_idTopokemonsNestedInput
+    entrenadores?: entrenadoresUncheckedUpdateManyWithoutPokemonsNestedInput
+    other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsNestedInput
+    other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsNestedInput
   }
 
   export type combatesCreateManyEntrenadores_combates_entrenador1_idToentrenadoresInput = {
@@ -8067,6 +9835,10 @@ export namespace Prisma {
     fecha?: Date | string | null
     rondas?: number | null
     descripcion?: string | null
+  }
+
+  export type entrenadores_pokemonsCreateManyEntrenadorInput = {
+    pokemon_id: number
   }
 
   export type combatesUpdateWithoutEntrenadores_combates_entrenador1_idToentrenadoresInput = {
@@ -8145,6 +9917,18 @@ export namespace Prisma {
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type entrenadores_pokemonsUpdateWithoutEntrenadorInput = {
+    pokemon?: pokemonsUpdateOneRequiredWithoutEntrenadores_asignadosNestedInput
+  }
+
+  export type entrenadores_pokemonsUncheckedUpdateWithoutEntrenadorInput = {
+    pokemon_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type entrenadores_pokemonsUncheckedUpdateManyWithoutEntrenadorInput = {
+    pokemon_id?: IntFieldUpdateOperationsInput | number
+  }
+
   export type combatesCreateManyPokemons_combates_ganador_idTopokemonsInput = {
     id?: number
     entrenador1_id: number
@@ -8218,6 +10002,10 @@ export namespace Prisma {
     peso: number
     descripcion?: string | null
     evoluciona_a?: number | null
+  }
+
+  export type entrenadores_pokemonsCreateManyPokemonInput = {
+    entrenador_id: number
   }
 
   export type combatesUpdateWithoutPokemons_combates_ganador_idTopokemonsInput = {
@@ -8343,6 +10131,7 @@ export namespace Prisma {
     experiencia?: NullableIntFieldUpdateOperationsInput | number | null
     combates_combates_entrenador1_idToentrenadores?: combatesUpdateManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresNestedInput
     combates_combates_entrenador2_idToentrenadores?: combatesUpdateManyWithoutEntrenadores_combates_entrenador2_idToentrenadoresNestedInput
+    pokemones_asignados?: entrenadores_pokemonsUpdateManyWithoutEntrenadorNestedInput
   }
 
   export type entrenadoresUncheckedUpdateWithoutPokemonsInput = {
@@ -8355,6 +10144,7 @@ export namespace Prisma {
     experiencia?: NullableIntFieldUpdateOperationsInput | number | null
     combates_combates_entrenador1_idToentrenadores?: combatesUncheckedUpdateManyWithoutEntrenadores_combates_entrenador1_idToentrenadoresNestedInput
     combates_combates_entrenador2_idToentrenadores?: combatesUncheckedUpdateManyWithoutEntrenadores_combates_entrenador2_idToentrenadoresNestedInput
+    pokemones_asignados?: entrenadores_pokemonsUncheckedUpdateManyWithoutEntrenadorNestedInput
   }
 
   export type entrenadoresUncheckedUpdateManyWithoutPokemonsInput = {
@@ -8383,6 +10173,7 @@ export namespace Prisma {
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsNestedInput
     pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUpdateOneWithoutOther_pokemons_pokemons_evoluciona_deTopokemonsNestedInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsNestedInput
+    entrenadores_asignados?: entrenadores_pokemonsUpdateManyWithoutPokemonNestedInput
   }
 
   export type pokemonsUncheckedUpdateWithoutPokemons_pokemons_evoluciona_aTopokemonsInput = {
@@ -8402,6 +10193,7 @@ export namespace Prisma {
     entrenadores?: entrenadoresUncheckedUpdateManyWithoutPokemonsNestedInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsNestedInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsNestedInput
+    entrenadores_asignados?: entrenadores_pokemonsUncheckedUpdateManyWithoutPokemonNestedInput
   }
 
   export type pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsInput = {
@@ -8433,6 +10225,7 @@ export namespace Prisma {
     pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUpdateOneWithoutOther_pokemons_pokemons_evoluciona_aTopokemonsNestedInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsNestedInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsNestedInput
+    entrenadores_asignados?: entrenadores_pokemonsUpdateManyWithoutPokemonNestedInput
   }
 
   export type pokemonsUncheckedUpdateWithoutPokemons_pokemons_evoluciona_deTopokemonsInput = {
@@ -8452,6 +10245,7 @@ export namespace Prisma {
     entrenadores?: entrenadoresUncheckedUpdateManyWithoutPokemonsNestedInput
     other_pokemons_pokemons_evoluciona_aTopokemons?: pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_aTopokemonsNestedInput
     other_pokemons_pokemons_evoluciona_deTopokemons?: pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsNestedInput
+    entrenadores_asignados?: entrenadores_pokemonsUncheckedUpdateManyWithoutPokemonNestedInput
   }
 
   export type pokemonsUncheckedUpdateManyWithoutPokemons_pokemons_evoluciona_deTopokemonsInput = {
@@ -8465,6 +10259,18 @@ export namespace Prisma {
     peso?: FloatFieldUpdateOperationsInput | number
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     evoluciona_a?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type entrenadores_pokemonsUpdateWithoutPokemonInput = {
+    entrenador?: entrenadoresUpdateOneRequiredWithoutPokemones_asignadosNestedInput
+  }
+
+  export type entrenadores_pokemonsUncheckedUpdateWithoutPokemonInput = {
+    entrenador_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type entrenadores_pokemonsUncheckedUpdateManyWithoutPokemonInput = {
+    entrenador_id?: IntFieldUpdateOperationsInput | number
   }
 
 

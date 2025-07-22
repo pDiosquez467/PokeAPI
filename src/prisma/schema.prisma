@@ -41,6 +41,7 @@ model entrenadores {
   combates_combates_entrenador1_idToentrenadores combates[] @relation("combates_entrenador1_idToentrenadores")
   combates_combates_entrenador2_idToentrenadores combates[] @relation("combates_entrenador2_idToentrenadores")
   pokemons                                       pokemons?  @relation(fields: [pokemon_default], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  pokemones_asignados entrenadores_pokemons[]
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -64,4 +65,16 @@ model pokemons {
   other_pokemons_pokemons_evoluciona_aTopokemons  pokemons[]     @relation("pokemons_evoluciona_aTopokemons")
   pokemons_pokemons_evoluciona_deTopokemons       pokemons?      @relation("pokemons_evoluciona_deTopokemons", fields: [evoluciona_de], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_evoluciona_de")
   other_pokemons_pokemons_evoluciona_deTopokemons pokemons[]     @relation("pokemons_evoluciona_deTopokemons")
+  entrenadores_asignados entrenadores_pokemons[]
+}
+
+model entrenadores_pokemons {
+  entrenador_id Int
+  pokemon_id    Int
+
+  entrenador entrenadores @relation(fields: [entrenador_id], references: [id], onDelete: Cascade)
+  pokemon    pokemons     @relation(fields: [pokemon_id], references: [id], onDelete: Cascade)
+
+  @@id([entrenador_id, pokemon_id])  
+  @@map("entrenadores_pokemons")    
 }

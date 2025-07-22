@@ -159,6 +159,11 @@ exports.Prisma.PokemonsScalarFieldEnum = {
   evoluciona_a: 'evoluciona_a'
 };
 
+exports.Prisma.Entrenadores_pokemonsScalarFieldEnum = {
+  entrenador_id: 'entrenador_id',
+  pokemon_id: 'pokemon_id'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -178,7 +183,8 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   combates: 'combates',
   entrenadores: 'entrenadores',
-  pokemons: 'pokemons'
+  pokemons: 'pokemons',
+  entrenadores_pokemons: 'entrenadores_pokemons'
 };
 
 /**
