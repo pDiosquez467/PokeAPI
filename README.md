@@ -11,4 +11,10 @@ Esta es una API RESTful desarrollada con Node.js, Express y PostgreSQL, diseñad
 
   Preparada para escalar: próximamente se incorporará sistema de autenticación, control de acceso y nuevas entidades.
 
+  Desarrollo gestionado con Git y ramas:
+
+    feature/v1: primera versión funcional de la API.
+
+    feature/v2: nueva versión con mejoras, más endpoints y cobertura de pruebas.
+
   Ideal para practicar consumo desde el frontend o como base para construir servicios más complejos.
