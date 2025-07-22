@@ -33,7 +33,7 @@ const createOneEntrenador = async (req, res) => {
         }
 
         const newEntrenador = {
-            ...req.body
+            ...body
         }
 
         const createdEntrenador = await entrenadoresModel.createOneEntrenador(newEntrenador)
