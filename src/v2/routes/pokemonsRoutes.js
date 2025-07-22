@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const pokemonController = require('../../controllers/pokemonsController')
-const { validateId: validatePokemonId } = require('../../middlewares/validateId')
+const { validateId: validatePokemonId, validateTipo } = require('../../middlewares/validateValue')
 
 /**
  * @swagger
@@ -152,5 +152,7 @@ router.delete('/id/:id', validatePokemonId, pokemonController.deleteOnePokemon)
  *         description: Some error happened
  */
 router.patch('/id/:id', validatePokemonId, pokemonController.updateOnePokemon)
+
+router.get('/tipo/:tipo', validateTipo,  pokemonController.getPokemonsByTipo)
 
 module.exports = router

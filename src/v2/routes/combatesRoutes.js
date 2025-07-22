@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const combatesController = require('../../controllers/combatesController')
-const { validateId: validateCombateId } = require('../../middlewares/validateId')
+const { validateId: validateCombateId } = require('../../middlewares/validateValue')
 
 /**
  * @swagger
