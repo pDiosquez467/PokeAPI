@@ -8,7 +8,7 @@ async function getAllPokemons(req, res) {
 
         res.status(200).send({ status: 'OK', data: allPokemons })
     } catch (error) {
-        sendError(res, error) 
+        sendError(res, error)
     }
 }
 
@@ -76,10 +76,27 @@ async function deleteOnePokemon(req, res) {
     }
 }
 
+async function getPokemonsByTipo(req, res) {
+    try {
+        const { tipo } = req.params.tipo
+
+        if (!tipo) {
+            return res.status(400).send({ status: 'FAILED', data: { error: 'Invalid type' } })
+        }
+
+        const allPokemons = await pokemonsModel.getPokemonsByTipo(tipo)
+
+        res.status(200).send({ status: 'OK', data: allPokemons })
+    } catch (error) {
+        sendError(res, error)
+    }
+}
+
 module.exports = {
     getAllPokemons,
     getOnePokemon,
     createOnePokemon,
     updateOnePokemon,
-    deleteOnePokemon
+    deleteOnePokemon,
+    getPokemonsByTipo
 }
