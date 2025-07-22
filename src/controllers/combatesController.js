@@ -28,7 +28,7 @@ const createOneCombate = async (req, res) => {
         const { body } = req
 
         if (!body.nombre) {
-            return res.status(400).send({ status: 'FAILED', data: { error: "One of the following keys is missing or is empty in request body: 'nombre'" } })
+            return res.status(400).send({ status: 'FAILED', data: { error: "One of the following keys is missing or is empty in request body: 'pokemon1_id', 'pokemon2_id'" } })
         }
 
         const newCombate = {
