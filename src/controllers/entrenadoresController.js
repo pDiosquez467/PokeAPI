@@ -29,7 +29,7 @@ const createOneEntrenador = async (req, res) => {
         const { body } = req
 
         if (!body.pokemon1_id || !body.pokemon2_id) {
-            return res.status(400).send({ status: 'FAILED', data: { error: "One of the following keys is missing or is empty in request body: 'pokemon1_id', 'pokemon2_id'" } })
+            return res.status(400).send({ status: 'FAILED', data: { error: "One of the following keys is missing or is empty in request body: 'nombre'" } })
         }
 
         const newEntrenador = {
