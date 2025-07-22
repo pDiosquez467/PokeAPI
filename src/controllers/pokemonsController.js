@@ -80,10 +80,6 @@ async function getPokemonsByTipo(req, res) {
     try {
         const { tipo } = req.params.tipo
 
-        if (!tipo) {
-            return res.status(400).send({ status: 'FAILED', data: { error: 'Invalid type' } })
-        }
-
         const allPokemons = await pokemonsModel.getPokemonsByTipo(tipo)
 
         res.status(200).send({ status: 'OK', data: allPokemons })
