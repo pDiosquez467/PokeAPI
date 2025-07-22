@@ -18,7 +18,7 @@ const getOneCombate = async (combateId) => {
         })
 
         if (!combate) {
-            throw { status: 404, message: `Can't find combate with ID ${combateId}` }
+            throw { status: 404, message: `Can't find combate with ID '${combateId}'` }
         }
 
         return combate
@@ -50,7 +50,7 @@ const updateOneCombate = async (combateId, changes) => {
         })
 
         if (!exists) {
-            throw { status: 404, message: error?.message ?? error }
+            throw { status: 404, message: `Can't find combate with ID '${combateId}'` }
         }
 
         const updated = await prisma.combates.update({
@@ -75,7 +75,7 @@ const deleteOneCombate = async (combateId) => {
         })
 
         if (!exists) {
-            throw { status: 404, message: `Can't find combate with ID ${combateId}` }
+            throw { status: 404, message: `Can't find combate with ID '${combateId}'` }
         }
 
         const deleted = await prisma.combates.delete({
