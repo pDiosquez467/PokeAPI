@@ -92,10 +92,31 @@ async function deleteOnePokemon(pokemonId) {
     }
 }
 
+async function getPokemonsByTipo(tipo) {
+    try {
+        const pokemons = await prisma.pokemons.findMany({
+            where: {
+                tipo: {
+                    contains: tipo,
+                    mode: 'insensitive'
+                }
+            }
+        })
+
+        return pokemons
+    } catch (error) {
+        throw {
+            status: error?.status || 500,
+            message: error?.message || String(error)
+        }
+    }
+}
+
 module.exports = {
     getAllPokemons,
     getOnePokemon,
     createOnePokemon,
     updateOnePokemon,
-    deleteOnePokemon
+    deleteOnePokemon,
+    getPokemonsByTipo
 }
