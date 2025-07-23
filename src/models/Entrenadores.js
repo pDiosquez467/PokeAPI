@@ -92,10 +92,36 @@ const getAllPokemonsByEntrenador = async (entrenadorId) => {
         const allPokemons = await prisma.entrenadores_pokemons.findMany({
             where: {
                 entrenador_id: entrenadorId
+            },
+            include: {
+                pokemon: true
             }
         })
 
         return allPokemons
+    } catch (error) {
+        throw { status: error?.status || 500, message: error?.message || String(error) }
+    }
+}
+
+const getAllCombates = async (entrenadorId) => {
+    try {
+        const allCombates = await prisma.combates.findMany({
+            where: {
+                OR: [
+                    { entrenador1_id: entrenadorId },
+                    { entrenador2_id: entrenadorId }
+                ]
+            },
+            include: {
+                entrenadores_combates_entrenador1_idToentrenadores: true,
+                entrenadores_combates_entrenador2_idToentrenadores: true,
+                pokemons_combates_pokemon1_idTopokemons: true,
+                pokemons_combates_pokemon2_idTopokemons: true
+            }
+        })
+
+        return allCombates
     } catch (error) {
         throw { status: error?.status || 500, message: error?.message || String(error) }
     }
@@ -107,5 +133,6 @@ module.exports = {
     createOneEntrenador,
     updateOneEntrenador,
     deleteOneEntrenador,
-    getAllPokemonsByEntrenador
+    getAllPokemonsByEntrenador,
+    getAllCombates
 }
