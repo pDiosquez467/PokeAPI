@@ -87,10 +87,25 @@ const deleteOneEntrenador = async (entrenadorId) => {
     }
 }
 
+const getAllPokemonsByEntrenador = async (entrenadorId) => {
+    try {
+        const allPokemons = await prisma.entrenadores_pokemons.findMany({
+            where: {
+                entrenador_id: entrenadorId
+            }
+        })
+
+        return allPokemons
+    } catch (error) {
+        throw { status: error?.status || 500, message: error?.message || String(error) }
+    }
+}
+
 module.exports = {
     getAllEntrenadores,
     getOneEntrenador,
     createOneEntrenador,
     updateOneEntrenador,
-    deleteOneEntrenador
+    deleteOneEntrenador,
+    getAllPokemonsByEntrenador
 }
