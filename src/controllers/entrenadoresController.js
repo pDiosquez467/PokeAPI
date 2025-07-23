@@ -69,10 +69,22 @@ const deleteOneEntrenador = async (req, res) => {
     }
 }
 
+const getAllPokemonsByEntrenador = async (req, res) => {
+    try {
+        const entrenadorId = Number(req.params.id)
+        const allPokemons = await entrenadoresModel.getAllPokemonsByEntrenador(entrenadorId)
+
+        res.status(200).send({ status: 'OK', data: allPokemons })
+    } catch (error) {
+        sendError(res, error)
+    }
+}
+
 module.exports = {
     getAllEntrenadores,
     getOneEntrenador,
     createOneEntrenador,
     updateOneEntrenador,
-    deleteOneEntrenador
+    deleteOneEntrenador,
+    getAllPokemonsByEntrenador
 } 
