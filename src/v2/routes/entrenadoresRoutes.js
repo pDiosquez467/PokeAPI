@@ -154,4 +154,8 @@ router.patch('/id/:id', validateEntrenadorId, entrenadoresController.updateOneEn
 router.delete('/id/:id',  validateEntrenadorId, entrenadoresController.deleteOneEntrenador)
 
 
+router.get('/id/:id/pokemons', validateEntrenadorId, entrenadoresController.getAllPokemonsByEntrenador)
+
+router.get('/id/:id/combates', validateEntrenadorId, entrenadoresController.getAllCombates)
+
 module.exports = router 
